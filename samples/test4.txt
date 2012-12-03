@@ -1,0 +1,55 @@
+7230 1497 1585 1869 0735 3086 6508 6080 0271 2589 7098 0361 0674 QINGDAO, CHINA
+In 2010, astronomers reported more than 100 new candidate exoplanets - planets beyond our Solar System - bringing the total to more than 500. Most of these are so-called hot Jupiters - huge gas giants orbiting close to their parent stars - which are easiest to detect using existing techniques. 
+
+ 
+A truly Earth-like planet could be just around the corner But researchers have been steadily closing in on exoplanets that are more Earth-like in size and temperature. 
+
+The smallest known exoplanet is Corot-7b, which has a diameter less than twice that of Earth. But its surface temperature is estimated to be around 1,000C, making it far too hot to host any life forms. But in September 2010, a US team announced that it had discovered the planet Gliese 581g orbiting a star some 20 light-years away.
+
+Gliese 581g has a mass about three to four times that of Earth, but it orbits in the so-called "Goldilocks zone" - a region around its host star where temperatures are neither too hot nor too cold. Such conditions could allow for the presence on the planet's surface of liquid water - a key ingredient for life. 
+
+But researchers are on the look-out for distant worlds that are even more like our own. This search is being carried out both from telescopes on the ground and from space. Next year should see a release of data collected by the US Kepler space telescope, launched into orbit in March 2009. Most of the exoplanet candidates reported by Kepler so far are Neptune-sized or larger. But the US space agency (Nasa) hopes that the telescope's extraordinarily sensitive detectors will lead it to worlds ever more like our own.
+
+RISE OF THE PRIVATEERS
+In 2011, the US space agency is likely to launch its final space shuttle flight. But as one era in space ends, another is dawning, as privately built space vehicles make their first flights. Virgin Galactic's SpaceShipTwo is due to launch into space for the first time in 2011. Backed by Sir Richard Branson, the new ship is capable of carrying eight people - two crew and six passengers - and will eventually take people prepared to pay $200,000 (£126,000) on short hops above the atmosphere. 
+
+ 
+Orbital Sciences is developing a spacecraft to ferry cargo to the space station Several companies are involved in providing for the commercial re-supply of the International Space Station (ISS). Earlier this year, one of these firms, SpaceX launched its Dragon capsule - designed to carry cargo and astronauts - into space atop its own Falcon 9 rocket. In 2011, the Taurus II rocket built by Virginia-based Orbital Sciences should make its first flight. The two-stage launcher will eventually loft a capsule named Cygnus, which is designed to carry cargo to the space station. But further along on the horizon, Orbital is working on a crewed spaceplane about one quarter the size of the space shuttle.
+
+Another firm vying for a slice of the re-supply market is Sierra Nevada. The firm is developing a space vehicle called Dream Chaser, which could carry six to eight people to and from low-Earth orbit. Sir Richard Branson has given his support to the project, a move which could see Virgin buy seats on the Dream Chaser or allow its WhiteKnightTwo vehicle to be used as a carrier aircraft for Sierra Nevada's space vehicle during its atmospheric flight tests. More details of the effort should emerge in 2011. 
+
+RACE FOR THE HIGGS
+As 2010 drew to a close, Cern (the European Organization for Nuclear Research), which operates the Large Hadron Collider (LHC), announced that it might delay a shut-down of the LHC currently planned for the end of 2011. 
+
+ 
+The LHC is becoming sensitive enough to probe new domains in particle physics Delaying the shut-down by one year, until the end of 2012, would give the vast particle smasher extra time to look for signs of the Higgs boson, the particle which is responsible for the property of mass.
+
+It may be just as well, because the LHC is not the only smasher looking for hints of the Higgs. The Tevatron accelerator, based underground at the US Fermi National Accelerator Laboratory (Fermilab) in Batavia, Illinois, could also have its run extended to look for the elusive boson particle. The Higgs is a crucial missing piece in the Standard Model, the most widely accepted framework for particle physics.
+
+During 2011, the LHC will become sensitive enough to probe hitherto unexplored domains in particle physics. Scientists will be looking for evidence of "supersymmetry" - a theory in which existing elementary particles are paired with a massive "shadow" partner - and extra dimensions. But if these searches draw a blank, it could be just as informative.
+
+Over the course of the coming year, Cern physicists will certainly be working to explain interesting effects seen at the LHC in 2010. These puzzling effects emerged during the statistical study of particle movements in billions of collisions from the collider's CMS experiment. According to CMS spokesman Guido Tonelli, "it's like the particles talk to each other and they decide which way to go".
+
+QUANTUM COMPUTING
+If they could be made to work on a large scale, quantum computers would be able to solve problems much faster than any machines based around traditional electronics. The idea behind quantum computation is to hijack some of the "spookiness" in the area of physics known as quantum mechanics.
+
+Researchers aim to exploit the way sub-atomic particles can become delicately but inextricably linked in "entangled states" to do computing of unimaginable complexity. Part of that effort comes by bumping up, one by one, the number of quantum bits or "qubits" - units of quantum information - that can be brought under control.
+
+This year saw three qubits entangled in a situation not unlike that found in traditional electronics. Researchers were also able to entangle ten photons - the fundamental packets of light. Both results are regarded as an experimental tours de force.
+
+The demonstrations of logic gates using entangled states and of a way to store quantum bits (analogous to computer memory) were also promising advances towards the goal of a functioning quantum computer.
+
+More than that, quantum computation could simply be easier than originally thought. We now know that "quantum objects" might not need to be single atoms or photons. Instead, even objects big enough to be seen with the naked eye can take on slippery quantum properties. In 2010, we also saw that quantum computers might even work with lots of errors - that is, the constraints on how many delicate quantum states must be maintained for the computer to function might not be as tight as once thought. We can expect more promising advances to emerge in 2011.
+
+DESTINATION MARS
+Nasa's twin rovers Spirit and Opportunity are about to enter their seventh year on Mars. And it shouldn't be too long before they are joined by another roaming robot nicknamed Curiosity. The US space agency's Mars Science Laboratory mission is scheduled to launch in late 2011, to land the Curiosity rover on Mars's surface in the summer of 2012.
+
+
+Cannot play media.You do not have the correct version of the flash player. Download the correct version
+
+Nasa says it is on track to launch the Mars rover in 2011
+MSL is designed to determine whether Mars was, or still is, capable of hosting life. The 750kg rover will carry state-of-the-art instruments - a scientific payload to help study the Red Planet's geology, atmosphere and environmental conditions, as well as potential biosignatures.
+
+The mission will also employ cutting edge technology, including a "sky crane" system. MSL is too heavy for the airbags employed to cushion landings on previous Mars missions. Instead, the rocket-powered sky crane will gently lower the rover to the surface using a tether.
+
+We will have to wait until 2012 to see Curiosity touch down on the surface of Mars, but many are hopeful the mission will make an important contribution to answering a question that scientists - along with a certain mercurial rock solo artist from Brixton - have pondered for decades: Is there life on Mars?

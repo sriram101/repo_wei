@@ -1,0 +1,16 @@
+c:\wei\Wei\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
+c:\wei\Wei\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
+c:\wei\Wei\WeiDB\sql\debug\Wei_Database.sqlsettings
+c:\wei\Wei\WeiDB\sql\debug\Wei_Database.sqldeployment
+c:\wei\Wei\WeiDB\sql\debug\Wei_Database.sqlcmdvars
+c:\wei\Wei\WeiDB\sql\debug\WeiDB.deploymanifest
+c:\wei\Wei\WeiDB\sql\debug\WeiDB.dbschema
+c:\wei\Wei\WeiDB\obj\Debug\WeiDB.dbschema
+C:\wei\code\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
+C:\wei\code\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
+C:\wei\code\WeiDB\sql\debug\Wei_Database.sqlsettings
+C:\wei\code\WeiDB\sql\debug\Wei_Database.sqldeployment
+C:\wei\code\WeiDB\sql\debug\Wei_Database.sqlcmdvars
+C:\wei\code\WeiDB\sql\debug\WeiDB.deploymanifest
+C:\wei\code\WeiDB\sql\debug\WeiDB.dbschema
+C:\wei\code\WeiDB\obj\Debug\WeiDB.dbschema

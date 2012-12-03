@@ -1,0 +1,31 @@
+6/06/2012 5:05:41 AM:General:-1: 0: Information: :Starting Wei Service
+6/06/2012 5:05:42 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+6/06/2012 5:05:42 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+6/06/2012 5:06:00 AM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+6/06/2012 5:06:17 AM:General:-1: 0: Verbose: :Executed getInterfaces
+6/06/2012 5:06:25 AM:General:-1: 0: Verbose: :Has data from getInterfaces
+6/06/2012 5:06:34 AM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+6/06/2012 5:12:10 AM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+6/06/2012 5:19:16 AM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+6/06/2012 5:19:18 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+6/06/2012 5:19:19 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+6/06/2012 5:19:19 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+6/06/2012 5:19:20 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+6/06/2012 5:19:21 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+6/06/2012 5:19:21 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+6/06/2012 5:19:22 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+6/06/2012 5:19:42 AM:General:-1: 0: Information: :Started Interface:MQDriver1
+6/06/2012 5:21:21 AM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+6/06/2012 5:21:53 AM:General:-1: 0: Error: :Error Starting Wei Service. ExceptionMessage:HTTP could not register URL http://+:8000/WeiMonitoring/. Another application has already registered this URL with HTTP.SYS.
+6/06/2012 5:21:53 AM:General:-1: 0: Error: :   at System.ServiceModel.Channels.SharedHttpTransportManager.OnOpen()
+   at System.ServiceModel.Channels.TransportManager.Open(TransportChannelListener channelListener)
+   at System.ServiceModel.Channels.TransportManagerContainer.Open(SelectTransportManagersCallback selectTransportManagerCallback)
+   at System.ServiceModel.Channels.TransportChannelListener.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.HttpChannelListener.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.ChannelDispatcher.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.ServiceHostBase.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open()
+   at Telavance.AdvantageSuite.Wei.WeiService.WeiService.OnStart(String[] args) in C:\Telavance\Development\Wei\code\WeiService\WeiService.cs:line 87

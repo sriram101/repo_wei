@@ -1,0 +1,171 @@
+4/17/2012 9:54:00 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 9:54:00 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 9:54:00 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 9:54:01 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 9:54:02 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/17/2012 9:54:02 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/17/2012 9:54:02 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/17/2012 9:54:02 PM:General:-1: 0: Error: :Error getting type:Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler from dll C:/wei/bin/PrimeHandler.dll. ExceptionMessage:Could not load file or assembly 'file:///C:\wei\bin\PrimeHandler.dll' or one of its dependencies. The system cannot find the file specified.
+4/17/2012 9:54:02 PM:General:-1: 0: Error: :   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at Telavance.AdvantageSuite.Wei.WeiCommon.TypeUtil.getType(String dll, String typeName, Type expected) in C:\Telavance\Development\Wei\code\WeiCommon\util\TypeUtil.cs:line 57
+4/17/2012 9:54:02 PM:General:-1: 0: Information: :Cannot load typeName=Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler in dll=C:/wei/bin/PrimeHandler.dll
+4/17/2012 9:54:02 PM:General:-1: 0: Error: :Error getting type:Telavance.AdvantageSuite.Wei.MQDriver.MQDriver from dll C:/wei/bin/MQDriver.dll. ExceptionMessage:Could not load file or assembly 'file:///C:\wei\bin\MQDriver.dll' or one of its dependencies. The system cannot find the file specified.
+4/17/2012 9:54:02 PM:General:-1: 0: Error: :   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at Telavance.AdvantageSuite.Wei.WeiCommon.TypeUtil.getType(String dll, String typeName, Type expected) in C:\Telavance\Development\Wei\code\WeiCommon\util\TypeUtil.cs:line 57
+4/17/2012 9:54:02 PM:General:-1: 0: Information: :Cannot load typeName=Telavance.AdvantageSuite.Wei.MQDriver.MQDriver in dll=C:/wei/bin/MQDriver.dll
+4/17/2012 9:54:02 PM:General:-1: 0: Information: :Skipping Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME. Handler= and driver=
+4/17/2012 9:54:02 PM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/17/2012 9:54:04 PM:General:-1: 0: Information: :Started Wei Service
+4/17/2012 9:57:18 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 9:57:18 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 9:57:18 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 9:57:18 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 9:57:18 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/17/2012 9:57:18 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/17/2012 9:57:18 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/17/2012 9:57:18 PM:General:-1: 0: Error: :Error getting type:Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler from dll C:/wei/bin/PrimeHandler.dll. ExceptionMessage:Could not load file or assembly 'file:///C:\wei\bin\PrimeHandler.dll' or one of its dependencies. The system cannot find the file specified.
+4/17/2012 9:57:18 PM:General:-1: 0: Error: :   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at Telavance.AdvantageSuite.Wei.WeiCommon.TypeUtil.getType(String dll, String typeName, Type expected) in C:\Telavance\Development\Wei\code\WeiCommon\util\TypeUtil.cs:line 57
+4/17/2012 9:57:18 PM:General:-1: 0: Information: :Cannot load typeName=Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler in dll=C:/wei/bin/PrimeHandler.dll
+4/17/2012 9:57:18 PM:General:-1: 0: Error: :Error getting type:Telavance.AdvantageSuite.Wei.MQDriver.MQDriver from dll C:/wei/bin/MQDriver.dll. ExceptionMessage:Could not load file or assembly 'file:///C:\wei\bin\MQDriver.dll' or one of its dependencies. The system cannot find the file specified.
+4/17/2012 9:57:18 PM:General:-1: 0: Error: :   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at Telavance.AdvantageSuite.Wei.WeiCommon.TypeUtil.getType(String dll, String typeName, Type expected) in C:\Telavance\Development\Wei\code\WeiCommon\util\TypeUtil.cs:line 57
+4/17/2012 9:57:18 PM:General:-1: 0: Information: :Cannot load typeName=Telavance.AdvantageSuite.Wei.MQDriver.MQDriver in dll=C:/wei/bin/MQDriver.dll
+4/17/2012 9:57:18 PM:General:-1: 0: Information: :Skipping Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME. Handler= and driver=
+4/17/2012 9:57:18 PM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/17/2012 9:57:19 PM:General:-1: 0: Information: :Started Wei Service
+4/17/2012 10:02:24 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 10:02:24 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 10:02:24 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 10:02:24 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 10:02:24 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/17/2012 10:02:24 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/17/2012 10:02:24 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/17/2012 10:02:24 PM:General:-1: 0: Error: :Error getting type:Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler from dll C:/wei/bin/PrimeHandler.dll. ExceptionMessage:Could not load file or assembly 'file:///C:\wei\bin\PrimeHandler.dll' or one of its dependencies. The system cannot find the file specified.
+4/17/2012 10:02:25 PM:General:-1: 0: Error: :   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at Telavance.AdvantageSuite.Wei.WeiCommon.TypeUtil.getType(String dll, String typeName, Type expected) in C:\Telavance\Development\Wei\code\WeiCommon\util\TypeUtil.cs:line 57
+4/17/2012 10:02:25 PM:General:-1: 0: Information: :Cannot load typeName=Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler in dll=C:/wei/bin/PrimeHandler.dll
+4/17/2012 10:02:25 PM:General:-1: 0: Error: :Error getting type:Telavance.AdvantageSuite.Wei.MQDriver.MQDriver from dll C:/wei/bin/MQDriver.dll. ExceptionMessage:Could not load file or assembly 'file:///C:\wei\bin\MQDriver.dll' or one of its dependencies. The system cannot find the file specified.
+4/17/2012 10:02:25 PM:General:-1: 0: Error: :   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at Telavance.AdvantageSuite.Wei.WeiCommon.TypeUtil.getType(String dll, String typeName, Type expected) in C:\Telavance\Development\Wei\code\WeiCommon\util\TypeUtil.cs:line 57
+4/17/2012 10:02:25 PM:General:-1: 0: Information: :Cannot load typeName=Telavance.AdvantageSuite.Wei.MQDriver.MQDriver in dll=C:/wei/bin/MQDriver.dll
+4/17/2012 10:02:25 PM:General:-1: 0: Information: :Skipping Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME. Handler= and driver=
+4/17/2012 10:02:25 PM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/17/2012 10:02:26 PM:General:-1: 0: Information: :Started Wei Service
+4/17/2012 10:05:08 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 10:05:08 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 10:05:08 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 10:05:08 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 10:06:42 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 10:06:43 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 10:06:43 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 10:06:43 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 10:10:40 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 10:10:40 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 10:10:40 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 10:10:40 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 10:11:26 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/17/2012 10:11:36 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/17/2012 10:11:48 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/17/2012 10:11:49 PM:General:-1: 0: Error: :Error getting type:Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler from dll C:/wei/bin/PrimeHandler.dll. ExceptionMessage:Could not load file or assembly 'file:///C:\wei\bin\PrimeHandler.dll' or one of its dependencies. The system cannot find the file specified.
+4/17/2012 10:11:49 PM:General:-1: 0: Error: :   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark& stackMark, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at Telavance.AdvantageSuite.Wei.WeiCommon.TypeUtil.getType(String dll, String typeName, Type expected) in C:\Telavance\Development\Wei\code\WeiCommon\util\TypeUtil.cs:line 57
+4/17/2012 10:11:49 PM:General:-1: 0: Information: :Cannot load typeName=Telavance.AdvantageSuite.Wei.PrimeHandler.PrimeHandler in dll=C:/wei/bin/PrimeHandler.dll
+4/17/2012 10:12:37 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 10:12:37 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 10:12:37 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 10:12:37 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 10:12:37 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/17/2012 10:12:49 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/17/2012 10:12:49 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/17/2012 10:13:02 PM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/17/2012 10:16:39 PM:General:-1: 0: Error: :Error starting the interface. ExceptionMessage:An item with the same key has already been added.
+4/17/2012 10:16:39 PM:General:-1: 0: Error: :   at System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   at System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)
+   at Telavance.AdvantageSuite.Wei.WeiService.InterfaceManager.initailize(WeiService service) in C:\Telavance\Development\Wei\code\WeiService\InterfaceManager.cs:line 152
+4/17/2012 10:16:39 PM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/17/2012 10:16:42 PM:General:-1: 0: Information: :Started Wei Service
+4/17/2012 10:17:11 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 10:17:11 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 10:17:11 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 10:17:11 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 10:17:11 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/17/2012 10:17:11 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/17/2012 10:17:11 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/17/2012 10:17:16 PM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/17/2012 10:17:16 PM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+4/17/2012 10:17:17 PM:General:-1: 0: Information: :Started Interface:MQDriver1
+4/17/2012 10:17:17 PM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/17/2012 10:17:18 PM:General:-1: 0: Information: :Started Wei Service
+4/17/2012 10:17:18 PM:General:-1: 0: Information: :Created new request
+4/17/2012 10:17:18 PM:General:-1: 0: Information: :RequestId:23720. Created the request
+4/17/2012 10:17:19 PM:General:-1: 0: Information: :RequestId:23720. Started processing the request
+4/17/2012 10:17:19 PM:General:-1: 0: Information: :RequestId:23720. Translation started for the request
+4/17/2012 10:17:19 PM:General:-1: 0: Information: :Skipping translation of message:H.S CODE 2504 10 1000 8545 90 1000 CONTRACT NO. . 11 KR-FR 2010 CR . Because of the exception rule:^H\.S CODE.*
+4/17/2012 10:17:19 PM:General:-1: 0: Information: :Request id:23720 is processed by an instance of Telavance.AdvantageSuite.Wei.ChipsParser.ChipsParser
+4/17/2012 10:17:19 PM:General:-1: 0: Information: :RequestId:23720. Message doesn't have CTC
+4/17/2012 10:17:19 PM:General:-1: 0: Information: :RequestId:23720. Translation complete
+4/17/2012 10:17:19 PM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/17/2012 10:17:19 PM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/17/2012 10:17:19 PM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:23720
+4/17/2012 10:17:19 PM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/17/2012 10:17:19 PM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/17/2012 10:19:45 PM:General:-1: 0: Information: :Starting Wei Service
+4/17/2012 10:19:45 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/17/2012 10:19:45 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/17/2012 10:19:45 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/17/2012 10:19:45 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/17/2012 10:19:45 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/17/2012 10:19:45 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/17/2012 10:19:45 PM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Started Interface:MQDriver1
+4/17/2012 10:19:46 PM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/17/2012 10:19:46 PM:General:-1: 0: Information: :Started Wei Service

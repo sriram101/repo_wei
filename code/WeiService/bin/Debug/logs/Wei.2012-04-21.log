@@ -1,0 +1,76 @@
+4/18/2012 4:43:37 AM:General:-1: 0: Information: :Starting Wei Service
+4/18/2012 4:43:37 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/18/2012 4:43:37 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/18/2012 4:43:37 AM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/18/2012 4:43:39 AM:General:-1: 0: Verbose: :Executed getInterfaces
+4/18/2012 4:43:39 AM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/18/2012 4:43:39 AM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/18/2012 4:43:40 AM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+4/18/2012 4:43:41 AM:General:-1: 0: Information: :Started Interface:MQDriver1
+4/18/2012 4:43:41 AM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/18/2012 4:43:42 AM:General:-1: 0: Information: :Started Wei Service
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Starting Wei Service
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/18/2012 4:46:48 AM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/18/2012 4:46:48 AM:General:-1: 0: Verbose: :Executed getInterfaces
+4/18/2012 4:46:48 AM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+4/18/2012 4:46:48 AM:General:-1: 0: Information: :Started Interface:MQDriver1
+4/18/2012 4:46:48 AM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/18/2012 4:46:49 AM:General:-1: 0: Information: :Started Wei Service
+4/18/2012 4:49:43 AM:General:-1: 0: Information: :Starting Wei Service
+4/18/2012 4:49:43 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/18/2012 4:49:43 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/18/2012 4:49:43 AM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/18/2012 4:49:43 AM:General:-1: 0: Verbose: :Executed getInterfaces
+4/18/2012 4:49:43 AM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/18/2012 4:49:43 AM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+4/18/2012 4:49:51 AM:General:-1: 0: Information: :Started Interface:MQDriver1
+4/18/2012 4:49:51 AM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/18/2012 4:49:52 AM:General:-1: 0: Information: :Started Wei Service
+4/18/2012 4:51:06 AM:General:-1: 0: Information: :Starting Wei Service
+4/18/2012 4:51:06 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/18/2012 4:51:06 AM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/18/2012 4:51:06 AM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/18/2012 4:51:06 AM:General:-1: 0: Verbose: :Executed getInterfaces
+4/18/2012 4:51:06 AM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/18/2012 4:51:06 AM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/18/2012 4:51:06 AM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Started Interface:MQDriver1
+4/18/2012 4:51:07 AM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/18/2012 4:51:07 AM:General:-1: 0: Information: :Started Wei Service

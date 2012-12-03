@@ -1,0 +1,145 @@
+﻿/*
+**  File Name:		Config.cs
+**
+**  Functional Description:
+**
+**      This class is used to serialize and deserialize config for file driver
+**	
+**
+**	Author:	Lakshman Ramakrishnan
+**  Facility	    WEI
+**  Creation Date:  12/30/2010
+**
+*******************************************************************************
+**                                                                           **
+**      COPYRIGHT                                                            **
+**                                                                           **
+** (C) Copyright 2010                                                        **
+** Telavance, inc                                                            **
+**                                                                           **
+** This software is furnished under a license for use only on a single       **
+** computer system and may be copied only with the inclusion of the  above   **
+** copyright notice. This software or any other copies thereof, may not be   **
+** provided or otherwise made available to any other person  except for use  **
+** on such system and to one who agrees to these license terms. title and    **
+** ownership of the software shall at all times remain in Telavance,inc      **
+** Inc.                                                                      **
+**                                                                           **
+** The information in this software is subject to change without notice and  **
+** should not be construed as a commitment by Telavance, Inc.	             **
+**									     									 **
+*******************************************************************************
+ 									    
+*******************************************************************************
+ 		                    Maintenance History				    
+-------------|----------|------------------------------------------------------
+    Date     |	Person  |  Description of Modification			    
+-------------|----------|------------------------------------------------------
+
+12/30/2010       RL        Inital version
+*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
+
+namespace Telavance.AdvantageSuite.Wei.FileDriver
+{
+    [Serializable]
+    [XmlRoot("config")]
+    public class Config
+    {
+        [XmlElement(ElementName = "inputFilePattern")]
+        public String inputFilePattern;
+
+        [XmlElement(ElementName = "inputFolder")]
+        public String inputFolder;
+
+        [XmlElement(ElementName = "okFolder")]
+        public String okFolder;
+
+        [XmlElement(ElementName = "confirmFolder")]
+        public String confirmFolder;
+
+        [XmlElement(ElementName = "errorFolder")]
+        public String errorFolder;
+
+        [XmlElement(ElementName = "ofacInputFolder")]
+        public String ofacInputFolder;
+
+        [XmlElement(ElementName = "ofacOkFolder")]
+        public String ofacOkFolder;
+
+        [XmlElement(ElementName = "ofacConfirmFolder")]
+        public String ofacConfirmFolder;
+
+        [XmlElement(ElementName = "waitTime")]
+        public String waitTime;
+
+        [XmlElement(ElementName = "shouldMoveToError")]
+        public bool shouldMoveToError = true;
+
+        public bool isValid()
+        {
+            return inputFilePattern != null && inputFolder != null && okFolder != null && confirmFolder != null && errorFolder != null && ofacInputFolder != null && ofacOkFolder != null && ofacConfirmFolder!=null;
+        }
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("inputFilePattern:");
+            sb.Append(inputFilePattern);
+
+            sb.Append(";inputFolder:");
+            sb.Append(inputFolder);
+
+            sb.Append(";okFolder:");
+            sb.Append(okFolder);
+
+            sb.Append(";confirmFolder:");
+            sb.Append(confirmFolder);
+
+            sb.Append(";errorFolder:");
+            sb.Append(errorFolder);
+
+            
+
+            sb.Append(";ofacInputFolder:");
+            sb.Append(ofacInputFolder);
+
+            sb.Append(";ofacOkFolder:");
+            sb.Append(ofacOkFolder);
+
+            sb.Append(";ofacConfirmFolder:");
+            sb.Append(ofacConfirmFolder);
+
+            sb.Append(";waitTime:");
+            sb.Append(waitTime);
+
+            sb.Append(";shouldMoveToError:");
+            sb.Append(shouldMoveToError);
+
+            
+
+            return sb.ToString();
+        }
+
+        public static Config getConfig(String config)
+        {
+            var xs = new XmlSerializer(typeof(Config));
+
+            using (var stringReader = new StringReader(config))
+            {
+                XmlReader reader = new XmlTextReader(stringReader);
+                var newConfig = (Config)xs.Deserialize(reader);
+                return newConfig;
+            }
+        }
+
+    }
+}

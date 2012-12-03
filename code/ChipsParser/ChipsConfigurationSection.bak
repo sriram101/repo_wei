@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Configuration;
+
+namespace Telavance.AdvantageSuite.Wei.ChipsParser
+{
+    public class ChipsConfigurationSection : ConfigurationSection
+    {
+        [ConfigurationProperty("translateAllTags", IsRequired = true)]
+        public string TranslateAllTags
+        {
+            get
+            {
+                return (string)this["translateAllTags"];
+            }
+            set
+            {
+                this["translateAllTags"] = value;
+            }
+        }
+
+        [ConfigurationProperty("format", IsRequired = true)]
+        public string Format
+        {
+            get
+            {
+                return (string)this["format"];
+            }
+            set
+            {
+                this["format"] = value;
+            }
+        }
+
+        [ConfigurationProperty("PaymentTypes", IsDefaultCollection = false, IsRequired = false)]
+        public PaymentTypeConfigElementCollection PaymentTypes
+        {
+            get
+            {
+                return (PaymentTypeConfigElementCollection)this["PaymentTypes"];
+            }
+            set
+            {
+                this["PaymentTypes"] = value;
+            }
+        }
+
+       
+    }
+}

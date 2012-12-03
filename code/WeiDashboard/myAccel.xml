@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<openServiceDescription xmlns="http://www.microsoft.com/schemas/openservicedescription/1.0">
+  <homepageUrl>http://localhost/WeiDashboard</homepageUrl> 
+<display>
+  <name>Show Chinese Translation</name> 
+  <icon>http://code.google.com/images/code_logo.png</icon> 
+  </display>
+<activity category="Translate">
+<activityAction context="selection">
+<execute method="get" action="http://localhost/WeiDashboard/Translate.aspx">
+  <parameter name="from" value="ctc" /> 
+  <parameter name="text" value="{selection}" /> 
+  </execute>
+<preview method="get" action="http://localhost/WeiDashboard/Translate.aspx">
+  <parameter name="from" value="ctc" /> 
+  <parameter name="text" value="{selection}" /> 
+  </preview>
+  </activityAction>
+  </activity>
+  </openServiceDescription>
