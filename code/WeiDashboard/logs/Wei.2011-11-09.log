@@ -1,0 +1,12 @@
+11/8/2011 5:34:36 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+11/8/2011 5:34:36 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+11/8/2011 5:34:37 PM:General:-1: 0: Verbose: :Raw translated response:{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Paul wok support"
+   }
+  ]
+ }
+}
+

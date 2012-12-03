@@ -1,0 +1,81 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Telavance.AdvantageSuite.Wei.WeiDashboard.Site" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+<meta http-equiv="content-type" content="text/html;charset=gb2312" /> 
+<asp:ContentPlaceHolder ID="HeadContent" runat="server">
+</asp:ContentPlaceHolder>
+    <title>Telavance WEI Dashboard</title>
+    
+    
+    <style type="text/css">
+        .style1
+        {
+            width: 1815px;
+        }
+        .style2
+        {
+            width: 124px;
+        }
+        .style3
+        {
+            width: 398px;
+        }
+    </style>
+    <script type="text/javascript">
+        function open_win(url_add) {
+            window.open(url_add, 'Popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,height=400px,width=550px');
+        }
+       
+       
+    
+    </script>
+    <link href="Styles/Style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="Form1" runat="server">
+             <div class="page">
+        
+             <asp:Panel ID="Panel1" runat="server" CssClass="Panel">
+                 <table id="tblHeader">
+                     <tr>
+                         <td>
+                             <img src="Images/WEI.GIF" style="height: 60px; width: 123px; margin-top: 4px" />
+                         </td>
+                         <td class="style1">
+                             <asp:Label ID="lblCpation" runat="server" CssClass="LabelHeading"> WEI<sup class="Sup">TM</sup> Dashboard</asp:Label>
+                         </td>
+                         <td align="right" class="style3">
+                            <asp:LinkButton ID="lnkSupport" CssClass="HyperLink" runat="server">Support</asp:LinkButton>
+                             
+                         </td>
+                         <td align="right" class="style2">
+                            <asp:LinkButton ID="lnkAbout" CssClass="HyperLink" runat="server">About</asp:LinkButton>
+                             
+                         </td>
+                         <td align="right" class="style2">
+                            <asp:LinkButton ID="lnkClose" CssClass="HyperLink" runat="server" OnClientClick="window.close()">Close</asp:LinkButton>
+                             
+                         </td>
+    
+                     </tr>
+                 </table>
+             </asp:Panel>
+           
+            
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"  Visible="true">
+               
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="clear">
+        </div>
+    <div class="footer">
+    </div>
+    </form>
+</body>
+</html>

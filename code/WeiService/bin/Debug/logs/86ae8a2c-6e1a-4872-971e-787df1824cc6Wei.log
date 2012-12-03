@@ -1,0 +1,47 @@
+4/06/2012 10:46:38 PM:General:-1: 0: Information: :Starting Wei Service
+4/06/2012 10:46:38 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+4/06/2012 10:46:38 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+4/06/2012 10:46:38 PM:General:-1: 0: Verbose: :Starting initailize in InterfaceManager
+4/06/2012 10:46:38 PM:General:-1: 0: Verbose: :Executed getInterfaces
+4/06/2012 10:46:38 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/06/2012 10:46:38 PM:General:-1: 0: Information: :Starting Interface:FileDriver1 with interface id 1 DriverType:File Driver HandlerType: PRIME
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :config:inputFilePattern:*.*;inputFolder:C:\weitest\swiftdriver1\WeiInput;okFolder:C:\weitest\swiftdriver1\WeiOk;confirmFolder:C:\weitest\swiftdriver1\WeiConfirm;errorFolder:C:\weitest\swiftdriver1\WeiError;ofacInputFolder:C:\weitest\swiftdriver1\primeInput;ofacOkFolder:C:\weitest\swiftdriver1\primeOk;ofacConfirmFolder:C:\weitest\swiftdriver1\primeConfirm;waitTime:;shouldMoveToError:True
+4/06/2012 10:46:39 PM:General:-1: 0: Error: :Error starting the interface. ExceptionMessage:The directory name C:\weitest\swiftdriver1\WeiInput is invalid.
+4/06/2012 10:46:39 PM:General:-1: 0: Error: :   at System.IO.FileSystemWatcher..ctor(String path, String filter)
+   at Telavance.AdvantageSuite.Wei.FileDriver.FileDriver.initInput()
+   at Telavance.AdvantageSuite.Wei.FileDriver.FileDriver.start()
+   at Telavance.AdvantageSuite.Wei.WeiService.InterfaceManager.initailize(WeiService service) in C:\Telavance\Development\Wei\code\WeiService\InterfaceManager.cs:line 154
+4/06/2012 10:46:39 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Starting Interface:FileDriver2 with interface id 2 DriverType:File Driver HandlerType: PRIME
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :config:inputFilePattern:*.*;inputFolder:C:\weitest\swiftdriver2\WeiInput;okFolder:C:\weitest\swiftdriver2\WeiOk;confirmFolder:C:\weitest\swiftdriver2\WeiConfirm;errorFolder:C:\weitest\swiftdriver2\WeiError;ofacInputFolder:C:\weitest\swiftdriver2\primeInput;ofacOkFolder:C:\weitest\swiftdriver2\primeOk;ofacConfirmFolder:C:\weitest\swiftdriver2\primeConfirm;waitTime:;shouldMoveToError:True
+4/06/2012 10:46:39 PM:General:-1: 0: Error: :Error starting the interface. ExceptionMessage:The directory name C:\weitest\swiftdriver2\WeiInput is invalid.
+4/06/2012 10:46:39 PM:General:-1: 0: Error: :   at System.IO.FileSystemWatcher..ctor(String path, String filter)
+   at Telavance.AdvantageSuite.Wei.FileDriver.FileDriver.initInput()
+   at Telavance.AdvantageSuite.Wei.FileDriver.FileDriver.start()
+   at Telavance.AdvantageSuite.Wei.WeiService.InterfaceManager.initailize(WeiService service) in C:\Telavance\Development\Wei\code\WeiService\InterfaceManager.cs:line 154
+4/06/2012 10:46:39 PM:General:-1: 0: Verbose: :Has data from getInterfaces
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Starting Interface:MQDriver1 with interface id 3 DriverType:MQ Driver HandlerType: PRIME
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :config:remote:False;queueManager:QM_MQ1;connectionName:;channelName:;inputQueue:WeiInput;okQueue:WeiOk;confirmQueue:WeiConfirm;errorQueue:WeiError;ofacInputQueue:PrimeInput;ofacOkQueue:PrimeOk;ofacConfirmQueue:PrimeConfirm
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue manager:QM_MQ1
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiInput
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiOk
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiConfirm
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue:WeiError
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeInput
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeOk
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Succesully connected to the queue:PrimeConfirm
+4/06/2012 10:46:39 PM:General:-1: 0: Information: :Started Interface:MQDriver1
+4/06/2012 10:46:39 PM:General:-1: 0: Verbose: :Exiting initailize in InterfaceManager
+4/06/2012 10:46:40 PM:General:-1: 0: Error: :Error Starting Wei Service. ExceptionMessage:HTTP could not register URL http://+:8000/WeiMonitoring/. Another application has already registered this URL with HTTP.SYS.
+4/06/2012 10:46:40 PM:General:-1: 0: Error: :   at System.ServiceModel.Channels.SharedHttpTransportManager.OnOpen()
+   at System.ServiceModel.Channels.TransportManager.Open(TransportChannelListener channelListener)
+   at System.ServiceModel.Channels.TransportManagerContainer.Open(SelectTransportManagersCallback selectTransportManagerCallback)
+   at System.ServiceModel.Channels.TransportChannelListener.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.HttpChannelListener.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.ChannelDispatcher.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.ServiceHostBase.OnOpen(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open(TimeSpan timeout)
+   at System.ServiceModel.Channels.CommunicationObject.Open()
+   at Telavance.AdvantageSuite.Wei.WeiService.WeiService.OnStart(String[] args) in C:\Telavance\Development\Wei\code\WeiService\WeiService.cs:line 87

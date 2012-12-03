@@ -1,0 +1,40 @@
+11/07/2012 12:49:26 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+11/07/2012 12:49:26 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+11/07/2012 12:49:51 PM:General:-1: 0: Verbose: :Raw translated response:{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Osama bin Laden"
+   }
+  ]
+ }
+}
+
+11/07/2012 12:49:51 PM:General:-1: 0: Verbose: :convertedString:奧 薩 馬 本 拉 登. Translated:Osama bin Laden
+11/07/2012 4:16:48 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+11/07/2012 4:16:48 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+11/07/2012 4:21:46 PM:General:-1: 0: Verbose: :Raw translated response:{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Osama bin Laden"
+   }
+  ]
+ }
+}
+
+11/07/2012 4:21:54 PM:General:-1: 0: Verbose: :convertedString:奧 薩 馬 本 拉 登. Translated:Osama bin Laden
+11/07/2012 4:24:56 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+11/07/2012 4:24:56 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+11/07/2012 4:24:59 PM:General:-1: 0: Verbose: :Raw translated response:{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Osama bin Laden"
+   }
+  ]
+ }
+}
+
+11/07/2012 4:24:59 PM:General:-1: 0: Verbose: :convertedString:奧 薩 馬 本 拉 登. Translated:Osama bin Laden
+11/07/2012 4:55:10 PM:General:-1: 0: Information: :Method=Page Load, Startdate=7/11/2012 12:00:00 AM EndDate=7/11/2012 12:00:00 AM

@@ -1,0 +1,7 @@
+C:\Telavance\Development\Wei\code\TranslationTester\bin\Release\TranslationTester.exe.config
+C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\TranslationTester.Form2.resources
+C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\TranslationTester.Form1.resources
+C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\TranslationTester.Properties.Resources.resources
+C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\GenerateResource.write.1.tlog

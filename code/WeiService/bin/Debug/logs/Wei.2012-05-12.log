@@ -1,0 +1,420 @@
+4/28/2012 5:33:41 AM:General:-1: 0: Information: :RequestId:10607. Started processing the request
+4/28/2012 5:33:41 AM:General:-1: 0: Information: :RequestId:10607. Translation started for the request
+4/28/2012 5:33:42 AM:General:-1: 0: Information: :Request id:10607 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:33:42 AM:General:-1: 0: Information: :RequestId:10607. Message Has CTC
+4/28/2012 5:33:42 AM:General:-1: 0: Information: :RequestId:10607. Translation complete
+4/28/2012 5:33:42 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:42 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:33:42 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10607
+4/28/2012 5:33:43 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:43 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:33:56 AM:General:-1: 0: Information: :RequestId:10608. Started processing the request
+4/28/2012 5:33:56 AM:General:-1: 0: Information: :RequestId:10608. Translation started for the request
+4/28/2012 5:33:56 AM:General:-1: 0: Information: :Request id:10608 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:33:56 AM:General:-1: 0: Information: :RequestId:10608. Message Has CTC
+4/28/2012 5:33:56 AM:General:-1: 0: Information: :RequestId:10608. Translation complete
+4/28/2012 5:33:56 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:56 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:33:56 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10608
+4/28/2012 5:33:56 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:56 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:33:57 AM:General:-1: 0: Information: :RequestId:10609. Started processing the request
+4/28/2012 5:33:57 AM:General:-1: 0: Information: :RequestId:10609. Translation started for the request
+4/28/2012 5:33:57 AM:General:-1: 0: Information: :Request id:10609 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:33:57 AM:General:-1: 0: Information: :RequestId:10609. Message Has CTC
+4/28/2012 5:33:57 AM:General:-1: 0: Information: :RequestId:10609. Translation complete
+4/28/2012 5:33:57 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:57 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:33:57 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10609
+4/28/2012 5:33:57 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:57 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:33:58 AM:General:-1: 0: Information: :RequestId:10610. Started processing the request
+4/28/2012 5:33:58 AM:General:-1: 0: Information: :RequestId:10610. Translation started for the request
+4/28/2012 5:33:58 AM:General:-1: 0: Information: :Request id:10610 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:33:58 AM:General:-1: 0: Information: :RequestId:10610. Message Has CTC
+4/28/2012 5:33:58 AM:General:-1: 0: Information: :RequestId:10610. Translation complete
+4/28/2012 5:33:58 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:58 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:33:58 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10610
+4/28/2012 5:33:58 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:33:58 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:34:00 AM:General:-1: 0: Information: :RequestId:10611. Started processing the request
+4/28/2012 5:34:00 AM:General:-1: 0: Information: :RequestId:10611. Translation started for the request
+4/28/2012 5:34:00 AM:General:-1: 0: Information: :Request id:10611 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:34:00 AM:General:-1: 0: Information: :RequestId:10611. Message Has CTC
+4/28/2012 5:34:00 AM:General:-1: 0: Information: :RequestId:10611. Translation complete
+4/28/2012 5:34:00 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:34:00 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:34:00 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10611
+4/28/2012 5:34:00 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:34:00 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:02 AM:General:-1: 0: Information: :RequestId:10607. Started processing the request
+4/28/2012 5:42:02 AM:General:-1: 0: Information: :RequestId:10607. Translation started for the request
+4/28/2012 5:42:02 AM:General:-1: 0: Information: :Request id:10607 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:42:02 AM:General:-1: 0: Information: :RequestId:10607. Message Has CTC
+4/28/2012 5:42:02 AM:General:-1: 0: Information: :RequestId:10607. Translation complete
+4/28/2012 5:42:02 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:02 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:02 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10607
+4/28/2012 5:42:02 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:02 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:02 AM:General:-1: 0: Information: :RequestId:10608. Started processing the request
+4/28/2012 5:42:02 AM:General:-1: 0: Information: :RequestId:10608. Translation started for the request
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :Request id:10608 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10608. Message Has CTC
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10608. Translation complete
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10608
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10609. Started processing the request
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10609. Translation started for the request
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :Request id:10609 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10609. Message Has CTC
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10609. Translation complete
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10609
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10610. Started processing the request
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10610. Translation started for the request
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :Request id:10610 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10610. Message Has CTC
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10610. Translation complete
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10610
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10611. Started processing the request
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10611. Translation started for the request
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :Request id:10611 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10611. Message Has CTC
+4/28/2012 5:42:03 AM:General:-1: 0: Information: :RequestId:10611. Translation complete
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10611
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:42:03 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10607. Started processing the request
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10607. Translation started for the request
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :Request id:10607 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10607. Message Has CTC
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10607. Translation complete
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10607
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10608. Started processing the request
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10608. Translation started for the request
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :Request id:10608 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10608. Message Has CTC
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10608. Translation complete
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10608
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:20 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10609. Started processing the request
+4/28/2012 5:43:20 AM:General:-1: 0: Information: :RequestId:10609. Translation started for the request
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :Request id:10609 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10609. Message Has CTC
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10609. Translation complete
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10609
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10610. Started processing the request
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10610. Translation started for the request
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :Request id:10610 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10610. Message Has CTC
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10610. Translation complete
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10610
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10611. Started processing the request
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10611. Translation started for the request
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :Request id:10611 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10611. Message Has CTC
+4/28/2012 5:43:21 AM:General:-1: 0: Information: :RequestId:10611. Translation complete
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10611
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:43:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:20 AM:General:-1: 0: Information: :RequestId:10607. Started processing the request
+4/28/2012 5:54:20 AM:General:-1: 0: Information: :RequestId:10607. Translation started for the request
+4/28/2012 5:54:20 AM:General:-1: 0: Information: :Request id:10607 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:54:20 AM:General:-1: 0: Information: :RequestId:10607. Message Has CTC
+4/28/2012 5:54:20 AM:General:-1: 0: Information: :RequestId:10607. Translation complete
+4/28/2012 5:54:20 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:20 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:20 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10607
+4/28/2012 5:54:20 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:20 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:20 AM:General:-1: 0: Information: :RequestId:10608. Started processing the request
+4/28/2012 5:54:20 AM:General:-1: 0: Information: :RequestId:10608. Translation started for the request
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :Request id:10608 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10608. Message Has CTC
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10608. Translation complete
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10608
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10609. Started processing the request
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10609. Translation started for the request
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :Request id:10609 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10609. Message Has CTC
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10609. Translation complete
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10609
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10610. Started processing the request
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10610. Translation started for the request
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :Request id:10610 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10610. Message Has CTC
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10610. Translation complete
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10610
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10611. Started processing the request
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10611. Translation started for the request
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :Request id:10611 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10611. Message Has CTC
+4/28/2012 5:54:21 AM:General:-1: 0: Information: :RequestId:10611. Translation complete
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10611
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:54:21 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10607. Started processing the request
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10607. Translation started for the request
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :Request id:10607 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10607. Message Has CTC
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10607. Translation complete
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10607
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10608. Started processing the request
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10608. Translation started for the request
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :Request id:10608 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10608. Message Has CTC
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10608. Translation complete
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10608
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10609. Started processing the request
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10609. Translation started for the request
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :Request id:10609 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10609. Message Has CTC
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10609. Translation complete
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10609
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:17 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10610. Started processing the request
+4/28/2012 5:56:17 AM:General:-1: 0: Information: :RequestId:10610. Translation started for the request
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :Request id:10610 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :RequestId:10610. Message Has CTC
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :RequestId:10610. Translation complete
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10610
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :RequestId:10611. Started processing the request
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :RequestId:10611. Translation started for the request
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :Request id:10611 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :RequestId:10611. Message Has CTC
+4/28/2012 5:56:18 AM:General:-1: 0: Information: :RequestId:10611. Translation complete
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10611
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:56:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10607. Started processing the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10607. Translation started for the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :Request id:10607 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10607. Message Has CTC
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10607. Translation complete
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10607
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10608. Started processing the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10608. Translation started for the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :Request id:10608 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10608. Message Has CTC
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10608. Translation complete
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10608
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10609. Started processing the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10609. Translation started for the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :Request id:10609 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10609. Message Has CTC
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10609. Translation complete
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10609
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10610. Started processing the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10610. Translation started for the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :Request id:10610 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10610. Message Has CTC
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10610. Translation complete
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10610
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10611. Started processing the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10611. Translation started for the request
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :Request id:10611 is processed by an instance of Telavance.AdvantageSuite.Wei.WeiService.DefaultParser
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10611. Message Has CTC
+4/28/2012 5:57:18 AM:General:-1: 0: Information: :RequestId:10611. Translation complete
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  PrimeInput                                       queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Cannot send for OFAC check for requestid:10611
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :Error sending the message to  WeiError                                         queue. ExceptionMessage:MQRC_Q_FULL
+4/28/2012 5:57:18 AM:General:-1: 0: Error: :   at IBM.WMQ.MQBase.throwNewMQException()
+   at IBM.WMQ.MQDestination.Put(MQMessage message, MQPutMessageOptions pmo)
+   at Telavance.AdvantageSuite.Wei.MQDriver.MQDriver.sendMessage(String queueName, Int32 requestId, MQQueue queue, MQQueueManager manager, String messageId, String message, String correlationId, Object lockObject)

@@ -1,0 +1,37 @@
+11/16/2011 12:14:15 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+11/16/2011 12:14:15 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+11/16/2011 12:14:15 PM:General:-1: 0: Verbose: :Raw translated response:{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Paul wok support"
+   }
+  ]
+ }
+}
+
+11/16/2011 12:15:19 PM:General:-1: 0: Verbose: :convertedString:鑊 保 撑. Translated:
+11/16/2011 12:19:52 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+11/16/2011 12:19:52 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+11/16/2011 12:19:53 PM:General:-1: 0: Verbose: :Raw translated response:{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Paul wok support"
+   }
+  ]
+ }
+}
+
+11/16/2011 12:34:13 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
+11/16/2011 12:34:13 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
+11/16/2011 12:34:14 PM:General:-1: 0: Verbose: :Raw translated response:{
+ "data": {
+  "translations": [
+   {
+    "translatedText": "Paul wok support"
+   }
+  ]
+ }
+}
+

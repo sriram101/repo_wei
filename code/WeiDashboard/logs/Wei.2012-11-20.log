@@ -1,0 +1,17 @@
+16-11-2012 15:40:33:General:-1: 0: Error: :mscorlib.dll.WinIOErrorParameter Int32 errorCode,System.String maybeFullPath, - Could not find a part of the path 'C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map'.
+Stack Trace -    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize)
+   at System.IO.StreamReader..ctor(String path)
+   at Telavance.AdvantageSuite.Wei.WeiTranslator.MapFile.initiliaze() in C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiTranslator\MapFile.cs:line 98
+   at Telavance.AdvantageSuite.Wei.WeiTranslator.MapFile..ctor(String language, String filename, Int32 keyIndex, Int32 valueIndex) in C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiTranslator\MapFile.cs:line 74
+   at Telavance.AdvantageSuite.Wei.WeiTranslator.Translator..ctor(WeiConfiguration weiConfig) in C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiTranslator\Translator.cs:line 140
+16-11-2012 15:40:34:General:-1: 0: Error: :   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize)
+   at System.IO.StreamReader..ctor(String path)
+   at Telavance.AdvantageSuite.Wei.WeiTranslator.MapFile.initiliaze() in C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiTranslator\MapFile.cs:line 98
+   at Telavance.AdvantageSuite.Wei.WeiTranslator.MapFile..ctor(String language, String filename, Int32 keyIndex, Int32 valueIndex) in C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiTranslator\MapFile.cs:line 74
+   at Telavance.AdvantageSuite.Wei.WeiTranslator.Translator..ctor(WeiConfiguration weiConfig) in C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiTranslator\Translator.cs:line 140

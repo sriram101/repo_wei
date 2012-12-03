@@ -1,0 +1,2123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSchemaModel FileFormatVersion="1.2" SchemaVersion="1.1" DspName="Microsoft.Data.Schema.Sql.Sql90DatabaseSchemaProvider" CollationLcid="1033" CollationCaseSensitive="False">
+	<Header>
+		<CustomData Category="ModelCapability">
+			<Metadata Name="ModelCapability" Value="Default" />
+		</CustomData>
+		<CustomData Category="AnsiNulls">
+			<Metadata Name="AnsiNulls" Value="True" />
+		</CustomData>
+		<CustomData Category="QuotedIdentifier">
+			<Metadata Name="QuotedIdentifier" Value="True" />
+		</CustomData>
+		<CustomData Category="CompatibilityMode">
+			<Metadata Name="CompatibilityMode" Value="90" />
+		</CustomData>
+		<CustomData Category="Permissions" Type="XmlPermissions">
+			<Metadata Name="FileName" Value="C:\WEI\CODE\WEIDB\PROPERTIES\DATABASE.SQLPERMISSIONS" />
+		</CustomData>
+	</Header>
+	<Model>
+		<Element Type="ISql90DatabaseOptions">
+			<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
+			<Property Name="IsAnsiNullDefaultOn" Value="True" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="IsAnsiWarningsOn" Value="True" />
+			<Property Name="IsArithAbortOn" Value="True" />
+			<Property Name="IsConcatNullYieldsNullOn" Value="True" />
+			<Property Name="IsTornPageProtectionOn" Value="False" />
+			<Property Name="IsFullTextEnabled" Value="True" />
+			<Property Name="PageVerifyMode" Value="3" />
+			<Relationship Name="DefaultFilegroup">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[PRIMARY]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[OfacResponses].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[OfacResponses]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="2" />
+		</Element>
+		<Element Type="ISql90PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Audit].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Audit]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
+		</Element>
+		<Element Type="ISql90PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Requests].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+		</Element>
+		<Element Type="ISql90PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Interfaces].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Interfaces]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+		</Element>
+		<Element Type="ISql90PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Drivers].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Drivers]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
+		</Element>
+		<Element Type="ISql90PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Handlers].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Handlers]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[AddRequest]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	INSERT INTO [Requests]
+           ([name]
+           ,[interfaceid]
+		   ,[requestheaders]
+           ,[messagebody]
+           ,[status]
+		   ,[iserror]
+		   ,[hasctc]
+		   ,[ofacstatus]
+           ,[processlock]
+           ,[createddatetime]
+		   ,[createdoper])
+     VALUES
+           (@name
+           ,@interfaceid
+		   ,@requestheader 
+           ,@messagebody
+           ,@status
+		   ,@iserror
+		   ,0
+		   ,1
+           ,0
+           ,GETDATE()
+		   ,'dbo')
+select @@IDENTITY]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[interfaceid]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[requestheaders]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[messagebody]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[hasctc]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[ofacstatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[processlock]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[createddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[createdoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddRequest].[@name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddRequest].[@interfaceid]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddRequest].[@requestheader]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddRequest].[@messagebody]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddRequest].[@status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddRequest].[@iserror]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddRequest].[@name]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddRequest].[@interfaceid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddRequest].[@requestheader]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddRequest].[@messagebody]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddRequest].[@status]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddRequest].[@iserror]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddRequest].[@createdoper]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA['dbo']]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="706" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[AddRequest]&#xD;&#xA;&#x9;@name nvarchar(255),&#xD;&#xA;&#x9;@interfaceid int,&#xD;&#xA;&#x9;@requestheader ntext,&#xD;&#xA;&#x9;@messagebody ntext,&#xD;&#xA;&#x9;@status int,&#xD;&#xA;&#x9;@iserror int,&#xD;&#xA;&#x9;@createdoper varchar(255) = 'dbo'&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[AddTranslatedMessage]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	update Requests set translatedmessage=@translatedmessage, status=@status, iserror=@iserror,hasctc=@hasCtc,
+		modifieddatetime=GETDATE(), modifiedoper=@modifiedoper where id=@requestid]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[translatedmessage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddTranslatedMessage].[@translatedmessage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddTranslatedMessage].[@status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddTranslatedMessage].[@iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[hasctc]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddTranslatedMessage].[@hasCtc]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifieddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddTranslatedMessage].[@modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AddTranslatedMessage].[@requestid]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddTranslatedMessage].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddTranslatedMessage].[@translatedmessage]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddTranslatedMessage].[@status]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddTranslatedMessage].[@iserror]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddTranslatedMessage].[@hasCtc]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[AddTranslatedMessage].[@modifiedoper]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA['dbo']]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="366" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[AddTranslatedMessage]&#xD;&#xA;&#x9;@requestid int, &#xD;&#xA;&#x9;@translatedmessage nText,&#xD;&#xA;&#x9;@status int,&#xD;&#xA;&#x9;@iserror int,&#xD;&#xA;&#x9;@hasCtc int,&#xD;&#xA;&#x9;@modifiedoper varchar(255) = 'dbo'&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Table" Name="[dbo].[Audit]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Audit].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="3" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Audit].[requestid]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Audit].[level]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Audit].[status]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Audit].[message]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Audit].[createddatetime]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Audit].[createdoper]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[ChangeStatus]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	update Requests set status=@status, iserror=@iserror, ofacstatus=@ofacStatus,
+		modifieddatetime=GETDATE(), modifiedoper=@modifiedoper where id=@requestid]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ChangeStatus].[@status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ChangeStatus].[@iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[ofacstatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ChangeStatus].[@ofacStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifieddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ChangeStatus].[@modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ChangeStatus].[@requestid]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[ChangeStatus].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[ChangeStatus].[@status]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[ChangeStatus].[@iserror]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[ChangeStatus].[@ofacStatus]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[ChangeStatus].[@modifiedoper]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA['dbo']]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="305" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[ChangeStatus]&#xD;&#xA;&#x9;@requestid int, &#xD;&#xA;&#x9;@status int,&#xD;&#xA;&#x9;@iserror int,&#xD;&#xA;&#x9;@ofacStatus int,&#xD;&#xA;&#x9;@modifiedoper varchar(255) = 'dbo'&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Table" Name="[dbo].[Drivers]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Drivers].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="6" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Drivers].[name]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Drivers].[dll]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Drivers].[type]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Drivers].[config]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[text]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[getHandlers]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT * from Handlers
+RETURN 0]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Handlers]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="78" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[getHandlers]&#xD;&#xA;&#x9;&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[getInterfaces]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT i.*, d.name as drivername, d.dll as driverdll, d.type as drivertype, h.name as handlername, h.dll as handlerdll, h.type as handlertype from Interfaces i, Handlers h, Drivers d
+	where i.driver=d.id and i.handler=h.id
+RETURN 0]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Interfaces]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Handlers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Drivers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Drivers].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Drivers].[dll]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Drivers].[type]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Handlers].[name]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Handlers].[dll]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Handlers].[type]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Interfaces].[driver]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Drivers].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Interfaces].[handler]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Handlers].[id]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="281" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[getInterfaces]&#xD;&#xA;&#x9;&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[GetLock]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	update Requests set processlock=1, modifieddatetime=GETDATE(), modifiedoper='dbo' where processlock=0 and id=@requestid
+RETURN]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[processlock]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifieddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetLock].[@requestid]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[GetLock].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="184" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetLock]&#xD;&#xA;&#x9;@requestid int &#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Table" Name="[dbo].[Handlers]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Handlers].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="7" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Handlers].[name]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Handlers].[dll]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Handlers].[type]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90Table" Name="[dbo].[Interfaces]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Interfaces].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="5" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Interfaces].[name]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Interfaces].[handler]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Interfaces].[driver]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Interfaces].[fileformat]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Interfaces].[config]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[text]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90Table" Name="[dbo].[OfacResponses]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[OfacResponses].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="2" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[OfacResponses].[requestid]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[OfacResponses].[responsebody]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[OfacResponses].[identifier]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[OfacResponses].[createddatetime]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[OfacResponses].[createdoper]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[ReleaseLock]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	update Requests set processlock=0,modifieddatetime=GETDATE(), modifiedoper='dbo' where processlock=1 and id=@requestid
+
+RETURN]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[processlock]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifieddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ReleaseLock].[@requestid]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[ReleaseLock].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="189" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[ReleaseLock]&#xD;&#xA;&#x9;@requestid int &#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Table" Name="[dbo].[Requests]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[id]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="4" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[name]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[requestheaders]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[interfaceid]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[messagebody]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[status]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[iserror]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[ofacstatus]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[hasctc]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[processlock]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[translatedmessage]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[responsemessage]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[createddatetime]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[createdoper]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[modifieddatetime]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSimpleColumn" Name="[dbo].[Requests].[modifiedoper]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[Wei_AddAudit]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	declare @status int
+	select @status=status from Requests where id=@requestId
+
+	insert into [Audit] (requestid, status,level, message, createdoper, createddatetime)
+	values (@requestId, @status, @auditLevel, @message, @createdoper, GETDATE())
+
+RETURN 0]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddAudit].[@requestId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Audit]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Audit].[requestid]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Audit].[status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Audit].[level]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Audit].[message]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Audit].[createdoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Audit].[createddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddAudit].[@auditLevel]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddAudit].[@message]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddAudit].[@createdoper]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddAudit].[@requestId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddAudit].[@auditLevel]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddAudit].[@message]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddAudit].[@createdoper]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA['dbo']]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="394" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Wei_AddAudit]&#xD;&#xA;&#x9;@requestId int,&#xD;&#xA;&#x9;@auditLevel int,&#xD;&#xA;&#x9;@message ntext,&#xD;&#xA;&#x9;@createdoper varchar(255) = 'dbo'&#xD;&#xA;&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[Wei_AddOfacResponse]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	insert into OfacResponses (requestid, responsebody , identifier, createddatetime , createdoper)
+		values (@requestid, @responsebody, @identifier, GETDATE(), @createdoper)]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[OfacResponses]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[OfacResponses].[requestid]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[OfacResponses].[responsebody]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[OfacResponses].[identifier]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[OfacResponses].[createddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[OfacResponses].[createdoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddOfacResponse].[@requestid]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddOfacResponse].[@responsebody]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddOfacResponse].[@identifier]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddOfacResponse].[@createdoper]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddOfacResponse].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddOfacResponse].[@responsebody]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddOfacResponse].[@identifier]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddOfacResponse].[@createdoper]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA['dbo']]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="328" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Wei_AddOfacResponse]&#xD;&#xA;&#x9;@requestid int, &#xD;&#xA;&#x9;@responsebody ntext,&#xD;&#xA;&#x9;@identifier varchar(255),&#xD;&#xA;&#x9;@createdoper varchar(255) = 'dbo'&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[Wei_AddResponseMessage]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	update Requests set responsemessage=@responsemessage, status=@status, iserror=@iserror,
+		modifieddatetime=GETDATE(), modifiedoper=@modifiedoper where id=@requestid]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[responsemessage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddResponseMessage].[@responsemessage]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddResponseMessage].[@status]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddResponseMessage].[@iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifieddatetime]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddResponseMessage].[@modifiedoper]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_AddResponseMessage].[@requestid]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddResponseMessage].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddResponseMessage].[@responsemessage]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[ntext]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddResponseMessage].[@status]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddResponseMessage].[@iserror]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_AddResponseMessage].[@modifiedoper]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA['dbo']]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="255" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="332" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Wei_AddResponseMessage]&#xD;&#xA;&#x9;@requestid int, &#xD;&#xA;&#x9;@responsemessage nText,&#xD;&#xA;&#x9;@status int,&#xD;&#xA;&#x9;@iserror int,&#xD;&#xA;&#x9;@modifiedoper varchar(255) = 'dbo'&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[Wei_GetRequest]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT * from Requests where id = @requestid]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_GetRequest].[@requestid]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_GetRequest].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="107" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Wei_GetRequest]&#xD;&#xA;&#x9;@requestid int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="ISql90Procedure" Name="[dbo].[Wei_MarkRequestError]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+update Requests set  iserror=1
+		 where id=@requestid]]></Value>
+			</Property>
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Requests]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[iserror]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Requests].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Wei_MarkRequestError].[@requestid]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISqlSubroutineParameter" Name="[dbo].[Wei_MarkRequestError].[@requestid]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="122" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Wei_MarkRequestError]&#xD;&#xA;&#x9;@requestid int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+	</Model>
+</DataSchemaModel>
