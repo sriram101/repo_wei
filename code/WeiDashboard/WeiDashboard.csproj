@@ -74,11 +74,22 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Telerik.Web.Design, Version=2012.2.724.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Telerik\RadControls for ASP.NET AJAX Q2 2012 SP1\Bin40\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>C:\Program Files\Telerik\RadControls for ASP.NET AJAX Q2 2012 SP1\Bin40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins">
+      <HintPath>C:\Program Files\Telerik\RadControls for ASP.NET AJAX Q2 2012 SP1\Bin40\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Accelerator.htm" />
     <Content Include="CustomErrorPage.aspx" />
+    <Content Include="Images\48.gif" />
     <Content Include="Images\Calendar.png" />
     <Content Include="Images\collapse.jpg" />
     <Content Include="Images\expand.jpg" />
@@ -102,9 +113,14 @@
     <Content Include="Global.asax" />
     <Content Include="myAccel.xml" />
     <Content Include="PageNotFound.aspx" />
+    <Content Include="Pages\Messages.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\Messages.js" />
+    <Content Include="Styles\Generic.css" />
+    <Content Include="Styles\MasterPage.css" />
+    <Content Include="Styles\Messages.css" />
     <Content Include="Styles\Style.css" />
     <Content Include="Support.aspx" />
     <Content Include="Translate.aspx" />
@@ -120,6 +136,11 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\locStrings.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>locStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="CustomErrorPage.aspx.cs">
       <DependentUpon>CustomErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,7 +148,10 @@
     <Compile Include="CustomErrorPage.aspx.designer.cs">
       <DependentUpon>CustomErrorPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataSources\cDS_Messages_List.cs" />
     <Compile Include="DBUtil.cs" />
+    <Compile Include="Generic\cGeneric.cs" />
+    <Compile Include="Generic\cStoredProcedureConstants.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,6 +168,20 @@
     </Compile>
     <Compile Include="PageNotFound.aspx.designer.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Messages.aspx.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Messages.aspx.designer.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WEIDashboard.Master.cs">
+      <DependentUpon>WEIDashboard.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\WEIDashboard.Master.designer.cs">
+      <DependentUpon>WEIDashboard.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -180,6 +218,16 @@
       <Project>{EB9FA2DF-4240-4DB4-B0C9-C3C81D6B92F7}</Project>
       <Name>WeiTranslator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\WEIDashboard.Master" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_GlobalResources\locStrings.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>locStrings.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

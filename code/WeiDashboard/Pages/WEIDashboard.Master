@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WEIDashboard.master.cs" Inherits="WEI_Dashboard.Pages.WEIDashboard" %>
+
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <title></title>
+    <link href="../Styles/MasterPage.css" rel="Stylesheet" type="text/css" />
+
+<asp:ContentPlaceHolder ID="head" runat="server">    
+</asp:ContentPlaceHolder>
+
+</head>
+
+<body>
+<form id="MasterForm" runat="server">
+
+    <div class="page">
+
+        <div class="header">
+
+            <div class="title">
+                <asp:Label runat="server" ID="i1" Text=" WEI Dashboard" Font-Size="X-Large"></asp:Label>
+             </div>
+
+             <div class="menu">
+                <table>
+                    <tr>
+                        <td style="width:80px"> <asp:LinkButton runat="server" ID="SupportLinkButton" Text="Support" ></asp:LinkButton></td>
+                        <td style="width:80px"> <asp:LinkButton runat="server" ID="LinkButton1" Text="About" ></asp:LinkButton></td>
+                        <td style="width:80px"> <asp:LinkButton runat="server" ID="LinkButton3" Text="Close" ></asp:LinkButton></td>
+                    </tr>
+                </table>
+                <%--<asp:LinkButton runat="server" ID="LinkButton2" Text="Support" ></asp:LinkButton>
+                <asp:LinkButton runat="server" ID="AboutLinkButton" Text="About" ></asp:LinkButton>
+                <asp:LinkButton runat="server" ID="CloseLinkButton" Text="Close" ></asp:LinkButton>--%>
+             </div>
+
+            <div class="loginDisplay">
+                <%--<asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>--%>
+
+                Support About 
+                
+            </div>
+        </div>
+
+        <div class="main">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>   
+    
+
+</form>
+</body>
+</html>
