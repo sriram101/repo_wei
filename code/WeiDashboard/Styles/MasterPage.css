@@ -1,0 +1,51 @@
+﻿.page
+{
+    width: 1160px;
+    background-color: #fff;
+    margin: 10px auto 0px auto;    
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+    padding: 5px 5px 5px 5px;    
+}
+
+.menu
+{
+	float:right;
+	padding: 10px;
+	font-size: 1.1em;
+	font-family: Calibri;
+	font-size: 13px;
+}
+
+.loginDisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    color: White;
+}
+
+.main
+{
+    /*padding: 0px 12px;*/
+    margin-top: 4px;
+    min-height: 420px;
+    /*border: 1px solid #496077;*/
+}
