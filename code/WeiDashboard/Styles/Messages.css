@@ -1,0 +1,38 @@
+﻿.viewWrap
+{
+    padding: 0px 5px 5px 5px;
+    background: #c9c9c9;
+}
+
+div.RadGrid_Office2007 .rgRow td,
+div.RadGrid_Office2007 .rgAltRow td,
+div.RadGrid_Office2007 .rgSelectedRow td
+{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.RadGrid_Office2007 th.rgHeader
+{
+    /*background-image: none;
+    background-color: #FFE0B2;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/*div.RadGrid .rgExpand
+{
+    background-position: 1px -496px;
+}
+        
+.RadGrid_Default th.rgHeader
+{
+    background-image: none;
+    background-color: #FFE0B2;
+}*/
+    
+.RadGrid .RowCSS td
+{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
