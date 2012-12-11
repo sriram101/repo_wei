@@ -97,6 +97,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Release Selected to OFAC Check.
+        /// </summary>
+        internal static string CMD_Messages_Release {
+            get {
+                return ResourceManager.GetString("CMD_Messages_Release", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string CMD_Messages_Update {
+            get {
+                return ResourceManager.GetString("CMD_Messages_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve.
+        /// </summary>
+        internal static string GV_COL_Messages_Approve {
+            get {
+                return ResourceManager.GetString("GV_COL_Messages_Approve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audit Message.
         /// </summary>
         internal static string GV_COL_Messages_AuditMessage {
@@ -115,29 +142,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Original Message.
+        ///   Looks up a localized string similar to Chinese Char.
         /// </summary>
-        internal static string GV_COL_Messages_Col1 {
+        internal static string GV_COl_Messages_ChineseChar {
             get {
-                return ResourceManager.GetString("GV_COL_Messages_Col1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Transilated Message.
-        /// </summary>
-        internal static string GV_COL_Messages_Col2 {
-            get {
-                return ResourceManager.GetString("GV_COL_Messages_Col2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Response Message.
-        /// </summary>
-        internal static string GV_COL_Messages_Col3 {
-            get {
-                return ResourceManager.GetString("GV_COL_Messages_Col3", resourceCulture);
+                return ResourceManager.GetString("GV_COl_Messages_ChineseChar", resourceCulture);
             }
         }
         
@@ -147,6 +156,15 @@ namespace Resources {
         internal static string GV_COL_Messages_CreateDate {
             get {
                 return ResourceManager.GetString("GV_COL_Messages_CreateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CTC Code.
+        /// </summary>
+        internal static string GV_COl_Messages_CTCCode {
+            get {
+                return ResourceManager.GetString("GV_COl_Messages_CTCCode", resourceCulture);
             }
         }
         
@@ -187,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Trans.
+        /// </summary>
+        internal static string GV_COl_Messages_NewTrans {
+            get {
+                return ResourceManager.GetString("GV_COl_Messages_NewTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OFAC Violation.
         /// </summary>
         internal static string GV_COL_Messages_OFACViolation {
@@ -196,11 +223,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Old Trans.
+        /// </summary>
+        internal static string GV_COl_Messages_OldTrans {
+            get {
+                return ResourceManager.GetString("GV_COl_Messages_OldTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original Message.
+        /// </summary>
+        internal static string GV_COL_Messages_OriginalMessage {
+            get {
+                return ResourceManager.GetString("GV_COL_Messages_OriginalMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Response Message.
+        /// </summary>
+        internal static string GV_COL_Messages_ResponseMessage {
+            get {
+                return ResourceManager.GetString("GV_COL_Messages_ResponseMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Review.
+        /// </summary>
+        internal static string GV_COL_Messages_Review {
+            get {
+                return ResourceManager.GetString("GV_COL_Messages_Review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string GV_COL_Messages_Select {
+            get {
+                return ResourceManager.GetString("GV_COL_Messages_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         internal static string GV_COL_Messages_Status {
             get {
                 return ResourceManager.GetString("GV_COL_Messages_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Translated Message.
+        /// </summary>
+        internal static string GV_COL_Messages_TranslatedMessage {
+            get {
+                return ResourceManager.GetString("GV_COL_Messages_TranslatedMessage", resourceCulture);
             }
         }
         

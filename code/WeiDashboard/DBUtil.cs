@@ -122,7 +122,68 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
             {
                 throw ex;
             }
+        }
 
+        //public DataSet getTranslations(string strCTCCodes)
+        //{
+        //    try
+        //    {
+        //        string sStoreProcName = "Wei_GetTranslations";
+        //        DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
+
+        //        _weidb.AddInParameter(dbCommand, "@CTCCodes", DbType.String, strCTCCodes);
+
+        //        return _weidb.ExecuteDataSet(dbCommand);
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
+
+        public DataSet getTranslations(int intRequestsID)
+        {
+            try
+            {
+                string sStoreProcName = "Wei_GetTranslations";
+                DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
+
+                _weidb.AddInParameter(dbCommand, "@RequestsID", DbType.Int32, intRequestsID);
+
+                return _weidb.ExecuteDataSet(dbCommand);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public void UpdateTranslations(int intId, string strNewTrans, Boolean bReviewed, Boolean bApproved, string strOperatorName, string strReviewMode)
+        {
+            try
+            {
+                string sStoreProcName = "Wei_UpdateTranslations1";
+                DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
+
+                _weidb.AddInParameter(dbCommand, "@ID", DbType.Int32, intId);
+                _weidb.AddInParameter(dbCommand, "@NewTrans", DbType.String, strNewTrans);
+                _weidb.AddInParameter(dbCommand, "@Reviewed", DbType.Boolean, bReviewed);
+                _weidb.AddInParameter(dbCommand, "@Approved", DbType.Boolean, bApproved);
+                _weidb.AddInParameter(dbCommand, "@OperatorName", DbType.String, strOperatorName);
+                _weidb.AddInParameter(dbCommand, "@ReviewMode", DbType.String, strReviewMode);
+
+                //return _weidb.ExecuteDataSet(dbCommand);
+                _weidb.ExecuteDataSet(dbCommand);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

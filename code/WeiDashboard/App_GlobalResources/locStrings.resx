@@ -135,11 +135,11 @@
   <data name="GV_COL_Messages_AuditStatus" xml:space="preserve">
     <value>Audit Status</value>
   </data>
-  <data name="GV_COL_Messages_Col1" xml:space="preserve">
+  <data name="GV_COL_Messages_OriginalMessage" xml:space="preserve">
     <value>Original Message</value>
   </data>
-  <data name="GV_COL_Messages_Col2" xml:space="preserve">
-    <value>Transilated Message</value>
+  <data name="GV_COL_Messages_TranslatedMessage" xml:space="preserve">
+    <value>Translated Message</value>
   </data>
   <data name="GV_COL_Messages_CreateDate" xml:space="preserve">
     <value>Create Date</value>
@@ -189,7 +189,34 @@
   <data name="LBL_Messages_ToCreateDate" xml:space="preserve">
     <value>To Create Date:</value>
   </data>
-  <data name="GV_COL_Messages_Col3" xml:space="preserve">
+  <data name="GV_COL_Messages_ResponseMessage" xml:space="preserve">
     <value>Response Message</value>
+  </data>
+  <data name="CMD_Messages_Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="GV_COl_Messages_ChineseChar" xml:space="preserve">
+    <value>Chinese Char</value>
+  </data>
+  <data name="GV_COl_Messages_CTCCode" xml:space="preserve">
+    <value>CTC Code</value>
+  </data>
+  <data name="GV_COl_Messages_NewTrans" xml:space="preserve">
+    <value>New Trans</value>
+  </data>
+  <data name="GV_COl_Messages_OldTrans" xml:space="preserve">
+    <value>Old Trans</value>
+  </data>
+  <data name="CMD_Messages_Release" xml:space="preserve">
+    <value>Release Selected to OFAC Check</value>
+  </data>
+  <data name="GV_COL_Messages_Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="GV_COL_Messages_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="GV_COL_Messages_Select" xml:space="preserve">
+    <value>Select</value>
   </data>
 </root>

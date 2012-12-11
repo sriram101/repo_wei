@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
-    <title></title>
+    <title>Telavance WEI Dashboard</title>
     <link href="../Styles/MasterPage.css" rel="Stylesheet" type="text/css" />
 
 <asp:ContentPlaceHolder ID="head" runat="server">    
@@ -22,7 +22,11 @@
         <div class="header">
 
             <div class="title">
-                <asp:Label runat="server" ID="i1" Text=" WEI Dashboard" Font-Size="X-Large"></asp:Label>
+                <%--style="height: 60px; width: 123px; margin-top: 4px"--%>
+                <%--<asp:Label runat="server" ID="i1" Text=" WEI Dashboard" Font-Size="X-Large"></asp:Label>--%>
+                    <img src="../Images/WEI.GIF" style="height: 30px; width: 61px; margin-top: 2px" alt="" />
+
+                    <asp:Label ID="lblCpation" runat="server" CssClass="LabelHeading"> WEI<sup class="Sup">TM</sup> Dashboard</asp:Label>
              </div>
 
              <div class="menu">

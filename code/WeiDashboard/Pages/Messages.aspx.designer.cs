@@ -67,6 +67,24 @@ namespace WEI_Dashboard.Pages {
         protected global::System.Web.UI.WebControls.HiddenField hfDisplayMessagesLabel;
         
         /// <summary>
+        /// hfUserType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfUserType;
+        
+        /// <summary>
+        /// hfRequestsID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfRequestsID;
+        
+        /// <summary>
         /// SearchCriteriaLabel control.
         /// </summary>
         /// <remarks>
@@ -193,6 +211,15 @@ namespace WEI_Dashboard.Pages {
         protected global::System.Web.UI.WebControls.Label DisplayMessagesLabel;
         
         /// <summary>
+        /// ReleaseButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton ReleaseButton;
+        
+        /// <summary>
         /// MasterPanel control.
         /// </summary>
         /// <remarks>
@@ -211,22 +238,31 @@ namespace WEI_Dashboard.Pages {
         protected global::Telerik.Web.UI.RadGrid MessagesGrid;
         
         /// <summary>
-        /// LabelValueGridPanel control.
+        /// RadAjaxPanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxPanel LabelValueGridPanel;
+        protected global::Telerik.Web.UI.RadAjaxPanel RadAjaxPanel1;
         
         /// <summary>
-        /// LabelValueGrid control.
+        /// RadGrid1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid LabelValueGrid;
+        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+        
+        /// <summary>
+        /// UpdateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton UpdateButton;
         
         /// <summary>
         /// objDsMessagesList control.
