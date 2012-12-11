@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Data;
 using Telerik.Web.UI;
+using System.Web.UI.WebControls;
 using Telavance.AdvantageSuite.Wei.DBUtils;
-using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 
 namespace WEI_Dashboard.Pages
 {
+
+    public enum UserType
+    {
+        Reviewer = 1,
+        Approver = 2
+    }
+
     public partial class Messages : System.Web.UI.Page
     {
         private DBUtil mdbUtils;
         private DataTable mdtMSG;
         private int mintKey;
+        private UserType meUserType;
+        private string mstrUserName = "";
+        //private string mstrCTCCodes = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,28 +29,28 @@ namespace WEI_Dashboard.Pages
 
             mdbUtils = EnterpriseLibraryContainer.Current.GetInstance<DBUtil>();
 
-            PopulateDropDownlist();
+            mstrUserName = "SRI";
+            meUserType = UserType.Reviewer;
+            SetUserCredentials();
 
-            hfDisplayMessagesLabel.Value = Resources.locStrings.LBL_Messages_DisplayMessages;
-            DisplayMessagesLabel.Text = "";
+            if (!IsPostBack)
+            {
+                PopulateDropDownlist();                
+
+                hfDisplayMessagesLabel.Value = Resources.locStrings.LBL_Messages_DisplayMessages;
+                DisplayMessagesLabel.Text = "";
+
+                //for test
+                FromDatePicker.SelectedDate = new DateTime(2011, 1, 1);
+                ToDatePicker.SelectedDate = new DateTime(2012, 1, 1);
+            }
         }
 
         protected void DataSourceSelecting(object sender, System.Web.UI.WebControls.ObjectDataSourceSelectingEventArgs e)
         {
             e.InputParameters["filterExpression"] = MessagesGrid.MasterTableView.FilterExpression;
-        }
 
-        protected void MessagesGrid_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
-        {
-            //if (hfSelectedAttribValueIds.Value != "")
-            //{
-            MessagesGrid.DataSource = GetMasterTable();
-            //}
-            //else
-            //{
-            //    RadGridMaster.DataSource = "";
-            //}
-            
+            //rcbStatus.SelectedIndex = 2;
         }
 
         protected void MessagesGrid_ItemCommand(object sender, GridCommandEventArgs e)
@@ -59,10 +68,10 @@ namespace WEI_Dashboard.Pages
 
                 CreateChildTable1(strMsg1, strMsg2, strMsg3);
 
-                RadGrid rg = parentItem.ChildItem.FindControl("ChildGrid1") as RadGrid;
+                RadGrid rg = parentItem.ChildItem.FindControl("OriginalMessageGrid") as RadGrid;
                 rg.Rebind();
 
-                rg = parentItem.ChildItem.FindControl("ChildGrid2") as RadGrid;
+                rg = parentItem.ChildItem.FindControl("AuditGrid") as RadGrid;
                 rg.Rebind();
 
                 if (e.CommandName == RadGrid.ExpandCollapseCommandName && e.Item is GridDataItem)
@@ -72,24 +81,46 @@ namespace WEI_Dashboard.Pages
             }
         }
 
-        protected void ChildGrid1_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        protected void OriginalMessageGrid_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
         {
-            //int intTabIndex = radMultiPage.SelectedIndex;
-            //bool bExclusive = chkExclusiveResultSet.Checked;
-
             GridDataItem parentItem = ((source as RadGrid).NamingContainer as GridNestedViewItem).ParentItem as GridDataItem;
-
-            //DataTable dtTable = IQR.DataSources.Inventory.Attributes.cDS_Attributes.GetDetailList1(parentItem.GetDataKeyValue("attribvalueids").ToString(), intTabIndex, bExclusive);
-            //(source as RadGrid).DataSource = dtTable;
-
-            //DataTable dtTable = GetChildTable1();
             (source as RadGrid).DataSource = mdtMSG;
 
             //(source as RadGrid).Height = 38 + dtTable.Rows.Count * 22;
             (source as RadGrid).Height = 112;
         }
 
-        protected void ChildGrid1_ItemDataBound(object sender, GridItemEventArgs e)
+        protected void AuditGrid_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {
+            GridDataItem parentItem = ((source as RadGrid).NamingContainer as GridNestedViewItem).ParentItem as GridDataItem;
+
+            DataSet dsDataset = mdbUtils.getAuditMessagesByRequest(mintKey);
+            (source as RadGrid).DataSource = dsDataset.Tables[0];
+
+            //(source as RadGrid).Height = 38 + dtTable.Rows.Count * 22;
+            //(source as RadGrid).Height = 38 + 5 * 22;
+            (source as RadGrid).Height = 120;
+        }
+
+        protected void RadGrid1_OnNeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {            
+            DataSet ds = mdbUtils.getTranslations(2998);
+
+            if (hfRequestsID.Value != string.Empty)
+            {
+                ds = mdbUtils.getTranslations(Convert.ToInt32(hfRequestsID.Value));
+                if (ds.Tables.Count > 0)
+                {
+                    RadGrid1.DataSource = ds.Tables[0];
+                }
+            }
+            else
+            {
+                RadGrid1.DataSource =  ds.Tables[0];
+            }
+        }
+
+        protected void OriginalMessageGrid_ItemDataBound(object sender, GridItemEventArgs e)
         {
             if (e.Item is GridDataItem)
             {
@@ -99,87 +130,6 @@ namespace WEI_Dashboard.Pages
                 item["col3"].Text = Server.HtmlEncode(item["col3"].Text);
             }
 
-        }
-
-        protected void ChildGrid2_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
-        {
-            //int intTabIndex = radMultiPage.SelectedIndex;
-            //bool bExclusive = chkExclusiveResultSet.Checked;
-
-            GridDataItem parentItem = ((source as RadGrid).NamingContainer as GridNestedViewItem).ParentItem as GridDataItem;
-
-            //DataTable dtTable = IQR.DataSources.Inventory.Attributes.cDS_Attributes.GetDetailList1(parentItem.GetDataKeyValue("attribvalueids").ToString(), intTabIndex, bExclusive);
-            //(source as RadGrid).DataSource = dtTable;
-
-            //DataTable dtTable = GetChildTable2();
-            //(source as RadGrid).DataSource = dtTable;
-
-            DataSet dsDataset = mdbUtils.getAuditMessagesByRequest(mintKey);
-            (source as RadGrid).DataSource = dsDataset.Tables[0];                       
-
-            //(source as RadGrid).Height = 38 + dtTable.Rows.Count * 22;
-            //(source as RadGrid).Height = 38 + 5 * 22;
-            (source as RadGrid).Height = 120;
-        }
-
-        protected void LabelValueGrid_OnNeedDataSource(object source, GridNeedDataSourceEventArgs e)
-        {
-            if (hfSelectedLabelValueId.Value != "")
-            {
-                LabelValueGrid.DataSource = GetLabelValueTable();
-            }
-            else
-            {
-                LabelValueGrid.DataSource = "";
-            }
-        }
-
-        private DataTable GetMasterTable()
-        {
-            DataTable dtTest = new DataTable();
-
-            //dtTest.Columns.Add("ID", typeof(int));
-            //dtTest.Columns.Add("status", typeof(string));
-            //dtTest.Columns.Add("OFACViolation", typeof(string));
-            //dtTest.Columns.Add("CreateDate", typeof(DateTime));
-            //dtTest.Columns.Add("ModifiedDate", typeof(DateTime));
-
-            //dtTest.Rows.Add(1, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(2, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(3, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(4, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(5, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(6, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(7, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(8, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(9, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(10, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(11, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(12, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(13, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(14, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(15, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(16, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(17, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(18, "OK", "Processed", DateTime.Now, DateTime.Now);
-            //dtTest.Rows.Add(19, "OK", "Processed", DateTime.Now, DateTime.Now);
-
-            return (dtTest);
-        }
-
-        private DataTable GetChildTable1()
-        {
-            DataTable dtTest = new DataTable();
-
-            dtTest.Columns.Add("id", typeof(int));
-            dtTest.Columns.Add("col1", typeof(string));
-            dtTest.Columns.Add("col2", typeof(string));
-
-            //dtTest.Rows.Add(1, "MasterTableView", "table");
-            dtTest.Rows.Add(1, "<!DOCTYPE html PUBLIC -//W3C//DTD XHTML 1.0 Transitional//EN http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd><html xmlns=http://www.w3.org/1999/xhtml dir=ltr lang=en class=nojs> </script><link rel=shortcut icon type=image/x-icon href=/shared/templates/master/o365Page/images/favicon.ico /><meta http-equiv=imagetoolbar content=false /><script type=text/javascript src=/en-in/office365/shared/core/2/js/js.ashx?s=Csp;shared></script></script><noscript>", 
-                " <label> Label1 </label> <value> Value1 <value> <label> Label2 </label> <value> Value2 <value> <label> Label3 </label> <value> Value3 <value> <label> Label4 </label> <value> Value4 <value> <label> Label5 </label> <value> Value5 <value> <label> Label6 </label> <value> Value6 <value> <label> Label7 </label> <value> Value7 <value> <label> Label8 </label> <value> Value8 <value> <label> Label9 </label> <value> Value9 <value> <label> Label10 </label> <value> Value10 <value>");
-
-            return (dtTest);
         }
 
         private void CreateChildTable1(string strMsg1, string strMsg2, string strMsg3)
@@ -196,54 +146,7 @@ namespace WEI_Dashboard.Pages
 
         }
 
-        private DataTable GetChildTable2()
-        {
-            DataTable dtTest = new DataTable();
-
-            dtTest.Columns.Add("id", typeof(int));
-            dtTest.Columns.Add("AuditStatus", typeof(string));
-            dtTest.Columns.Add("Level", typeof(string));
-            dtTest.Columns.Add("CreateDate", typeof(DateTime));
-            dtTest.Columns.Add("AuditMessage", typeof(string));
-
-            dtTest.Rows.Add(1, "OK2", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(2, "OK3", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(3, "OK4", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(4, "OK5", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(5, "OK2", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(6, "OK3", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(7, "OK4", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(8, "OK5", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(9, "OK2", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(10, "OK3", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(11, "OK4", "Level", DateTime.Now, "Message");
-            dtTest.Rows.Add(12, "OK5", "Level", DateTime.Now, "Message");
-
-            return (dtTest);
-        }
-
-        private DataTable GetLabelValueTable()
-        {
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("label", typeof(string));
-            dt.Columns.Add("value", typeof(string));
-
-            dt.Rows.Add("Label1", "Value1");
-            dt.Rows.Add("Label2", "Value2");
-            dt.Rows.Add("Label3", "Value3");
-            dt.Rows.Add("Label4", "Value4");
-            dt.Rows.Add("Label5", "Value5");
-            dt.Rows.Add("Label6", "Value6");
-            dt.Rows.Add("Label7", "Value7");
-            dt.Rows.Add("Label8", "Value8");
-            dt.Rows.Add("Label9", "Value9");
-            dt.Rows.Add("Label10", "Value10");
-
-            return (dt);
-        }
-
-        void PopulateDropDownlist()
+        private void PopulateDropDownlist()
         {
 
             try
@@ -262,5 +165,92 @@ namespace WEI_Dashboard.Pages
             }
 
         }
+
+        private void SetUserCredentials()
+        {
+
+            if (meUserType == UserType.Approver)
+            {
+                hfUserType.Value = UserType.Approver.ToString();                
+            }
+
+            if (meUserType == UserType.Reviewer)
+            {
+                hfUserType.Value = UserType.Reviewer.ToString();
+                //LabelValueGrid.Columns[5].
+            }
+            
+        }
+
+        protected void UpdateButton_OnClick(object sender, EventArgs e)
+        {
+            string strReviewMode = "Review";
+
+            //if (meUserType == UserType.Reviewer)
+            //{
+            //    strReviewMode = "Review";
+            //}
+
+            if (meUserType == UserType.Approver)
+            {
+                strReviewMode = "Approve";
+            }
+
+            //foreach (GridDataItem item in LabelValueGrid.MasterTableView.Items)
+            foreach (GridDataItem item in RadGrid1.MasterTableView.Items)
+            {
+                if (((CheckBox)item.FindControl("UpdatedCheckBox")).Checked)
+                {
+                    Boolean bReviewed = ((CheckBox)item.FindControl("ReviewedCheckBox")).Checked;
+                    Boolean bApproved = ((CheckBox)item.FindControl("ApprovedCheckBox")).Checked;
+
+                    mdbUtils.UpdateTranslations(Convert.ToInt32(item["id"].Text), ((RadTextBox)item.FindControl("NewTransTextBox")).Text.Trim(), bReviewed, bApproved, mstrUserName, strReviewMode);
+                }
+            }
+        }
+
+        protected void LabelValueGrid_OnNeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {
+            //if (hfRequestsID.Value != string.Empty && mstrCTCCodes != null)
+            //{
+
+            //    //DataSet ds = mdbUtils.getTranslations(mstrCTCCodes);
+            //    //if (ds.Tables.Count > 0)
+            //    //{
+            //    //    LabelValueGrid.DataSource = ds.Tables[0];
+            //    //}
+            //}
+            //else
+            //{
+            //    LabelValueGrid.DataSource = "";
+            //}
+        }
+
+        //private string  GetCTCCodes(string strMessage)
+        //{
+
+        //    string pattern = @"\d{4}";
+        //    System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(pattern);
+        //    MatchCollection mc = r.Matches(strMessage);
+        //    foreach (Match match in mc)
+        //    {
+        //        //match
+        //    }
+
+        //    return("'3527 5646 7456 2609 2139 0030', '3527 5646 7456 2609 2139 0031'");
+        //}
+
+        //protected void MessagesGrid_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        //{
+        //    //if (hfSelectedAttribValueIds.Value != "")
+        //    //{
+        //    //MessagesGrid.DataSource = GetMasterTable();
+        //    //}
+        //    //else
+        //    //{
+        //    //    RadGridMaster.DataSource = "";
+        //    //}
+
+        //}
     }
 }
