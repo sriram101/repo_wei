@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WEIDashboard.master.cs" Inherits="WeiDashboard.Pages.WEIDashboard" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WEIDashboard.master.cs" Inherits="Telavance.AdvantageSuite.Wei.WeiDashboard.Pages.WEIDashboard" %>
 
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 

@@ -223,7 +223,6 @@
   <ItemGroup>
     <Content Include="Pages\WEIDashboard.Master" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="App_GlobalResources\locStrings.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
