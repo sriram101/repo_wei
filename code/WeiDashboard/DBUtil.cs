@@ -67,7 +67,7 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
         public DataSet getMessages(DateTime fromDate, DateTime toDate, string status, bool hasCTC, bool hasErrors, string searchText, string sorting, int currentPage, int pageSize, out double totalRecords)
         {
             //, int currentPage, int pageSize, out int totalRecords
-             string sStoreProcName = "Wei_GetMessages";
+             string sStoreProcName = "Wei_GetMessagesVSS";
                 DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
 
                 _weidb.AddInParameter(dbCommand, "@StartDate", DbType.DateTime, fromDate);
@@ -161,20 +161,33 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
             }
 
         }
-
-        public void UpdateTranslations(int intId, string strNewTrans, Boolean bReviewed, Boolean bApproved, string strOperatorName, string strReviewMode)
+        
+        //public void UpdateTranslations(int intId, string strNewTrans, Boolean bReviewed, Boolean bApproved, string strOperatorName, string strReviewMode)
+        public void UpdateTranslations(int RequestID, string CTCCode, string ChineseChar, string PinYin, string ReviewMode, string NewTrans, 
+                                        string ReviewOper, Boolean Reviewed, string ApproveOper, Boolean Approved)
         {
             try
             {
-                string sStoreProcName = "Wei_UpdateTranslations1";
+                string sStoreProcName = "Wei_UpdateTranslations";
                 DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
 
-                _weidb.AddInParameter(dbCommand, "@ID", DbType.Int32, intId);
-                _weidb.AddInParameter(dbCommand, "@NewTrans", DbType.String, strNewTrans);
-                _weidb.AddInParameter(dbCommand, "@Reviewed", DbType.Boolean, bReviewed);
-                _weidb.AddInParameter(dbCommand, "@Approved", DbType.Boolean, bApproved);
-                _weidb.AddInParameter(dbCommand, "@OperatorName", DbType.String, strOperatorName);
-                _weidb.AddInParameter(dbCommand, "@ReviewMode", DbType.String, strReviewMode);
+                //_weidb.AddInParameter(dbCommand, "@ID", DbType.Int32, intId);
+                //_weidb.AddInParameter(dbCommand, "@NewTrans", DbType.String, strNewTrans);
+                //_weidb.AddInParameter(dbCommand, "@Reviewed", DbType.Boolean, bReviewed);
+                //_weidb.AddInParameter(dbCommand, "@Approved", DbType.Boolean, bApproved);
+                //_weidb.AddInParameter(dbCommand, "@OperatorName", DbType.String, strOperatorName);
+                //_weidb.AddInParameter(dbCommand, "@ReviewMode", DbType.String, strReviewMode);
+
+                _weidb.AddInParameter(dbCommand, "@RequestID", DbType.Int32, RequestID);
+                _weidb.AddInParameter(dbCommand, "@CTCCode", DbType.String, CTCCode);
+                _weidb.AddInParameter(dbCommand, "@ChineseChar", DbType.String, ChineseChar);
+                _weidb.AddInParameter(dbCommand, "@NewTrans", DbType.String, NewTrans);
+                _weidb.AddInParameter(dbCommand, "@ReviewMode", DbType.String, ReviewMode);
+                _weidb.AddInParameter(dbCommand, "@PinYin", DbType.String, PinYin);
+                _weidb.AddInParameter(dbCommand, "@ReviewOper", DbType.String, ReviewOper);
+                _weidb.AddInParameter(dbCommand, "@Reviewed", DbType.Boolean, Reviewed);
+                _weidb.AddInParameter(dbCommand, "@ApproveOper", DbType.String, ApproveOper);
+                _weidb.AddInParameter(dbCommand, "@Approved", DbType.Boolean, Approved);
 
                 //return _weidb.ExecuteDataSet(dbCommand);
                 _weidb.ExecuteDataSet(dbCommand);

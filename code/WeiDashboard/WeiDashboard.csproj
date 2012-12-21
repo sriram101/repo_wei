@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PackageAsSingleFile>true</PackageAsSingleFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=4.1.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
@@ -111,9 +112,9 @@
     <Content Include="Images\YahooSprite.gif" />
     <Content Include="Messages.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Messages1.aspx" />
     <Content Include="myAccel.xml" />
     <Content Include="PageNotFound.aspx" />
-    <Content Include="Pages\Messages.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -162,19 +163,19 @@
     <Compile Include="Messages.aspx.designer.cs">
       <DependentUpon>Messages.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Messages1.aspx.cs">
+      <DependentUpon>Messages1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Messages1.aspx.designer.cs">
+      <DependentUpon>Messages1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PageNotFound.aspx.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PageNotFound.aspx.designer.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Messages.aspx.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Messages.aspx.designer.cs">
-      <DependentUpon>Messages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\WEIDashboard.Master.cs">
       <DependentUpon>WEIDashboard.Master</DependentUpon>

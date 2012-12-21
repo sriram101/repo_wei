@@ -2,7 +2,7 @@
 {
     width: 1160px;
     background-color: #fff;
-    margin: 10px auto 0px auto;    
+    margin: 0px auto 0px auto;    
 }
 
 .header
@@ -45,7 +45,7 @@
 .main
 {
     /*padding: 0px 12px;*/
-    margin-top: 4px;
+    margin-top: 2px;
     min-height: 420px;
     /*border: 1px solid #496077;*/
 }

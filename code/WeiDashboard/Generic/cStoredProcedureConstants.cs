@@ -8,6 +8,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard.Generic
     public class cStoredProcedureConstants
     {
 
-        public const string SP_Messages_List = "Wei_GetMessages";
+        public const string SP_Messages_List = "Wei_GetMessagesVSS";
     }
 }

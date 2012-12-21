@@ -219,4 +219,22 @@
   <data name="GV_COL_Messages_Select" xml:space="preserve">
     <value>Select</value>
   </data>
+  <data name="MSG_DateCannotBeforeThenFromDate" xml:space="preserve">
+    <value>You cannot select a day before then From Date!</value>
+  </data>
+  <data name="MSG_DateCannotLaterThenToDate" xml:space="preserve">
+    <value>You cannot select a day later then To date!</value>
+  </data>
+  <data name="MSG_DateCannotLaterThenToday" xml:space="preserve">
+    <value>You cannot select a day later then today!</value>
+  </data>
+  <data name="MSG_FromDateNotEmpty" xml:space="preserve">
+    <value>From date should not be empty!</value>
+  </data>
+  <data name="MSG_StatusNotEmpty" xml:space="preserve">
+    <value>Status should not be empty!</value>
+  </data>
+  <data name="MSG_ToDateNotEmpty" xml:space="preserve">
+    <value>To date should not be empty!</value>
+  </data>
 </root>
