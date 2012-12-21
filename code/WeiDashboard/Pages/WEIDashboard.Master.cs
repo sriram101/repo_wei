@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WEI_Dashboard.Pages
+namespace WeiDashboard.Pages
 {
     public partial class WEIDashboard : System.Web.UI.MasterPage
     {

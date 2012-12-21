@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WEI_Dashboard.Pages {
+namespace WeiDashboard.Pages {
     
     
     public partial class WEIDashboard {

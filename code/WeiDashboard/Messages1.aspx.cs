@@ -1,660 +1,178 @@
-﻿/*
-**  File Name:		Messages.aspx
-**
-**  Functional Description:
-**
-**      
-**	
-**
-**	Author:	Rama Pappu
-**  Facility	    WEI Dashboard
-**  Creation Date:  01/09/2011
-**
-*******************************************************************************
-**                                                                           **
-**      COPYRIGHT                                                            **
-**                                                                           **
-** (C) Copyright 2010                                                        **
-** Telavance, inc                                                            **
-**                                                                           **
-** This software is furnished under a license for use only on a single       **
-** computer system and may be copied only with the inclusion of the  above   **
-** copyright notice. This software or any other copies thereof, may not be   **
-** provided or otherwise made available to any other person  except for use  **
-** on such system and to one who agrees to these license terms. title and    **
-** ownership of the software shall at all times remain in Telavance,inc      **
-**                                                                           **
-**                                                                           **
-** The information in this software is subject to change without notice and  **
-** should not be construed as a commitment by Telavance, Inc.	             **
-**									     									 **
-*******************************************************************************
- 									    
-*******************************************************************************
- 		                    Maintenance History				    
--------------|----------|------------------------------------------------------
-    Date     |	Person  |  Description of Modification			    
--------------|----------|------------------------------------------------------
-
-12/30/2010       RP        Initial Version
-02/13/2011       RP        Modified the code to include the logic for filtering 
-                           error messages
-04/23/2011       RP        changed the namespace
-05/01/2011       RP        Introduced custom paging
-*/
-
-using System;
+﻿using System;
 using System.Data;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
+using Telerik.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.Practices.EnterpriseLibrary.Data;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using Telavance.AdvantageSuite.Wei.WeiCommon;
-using System.Configuration;
-using System.Text.RegularExpressions;
 using Telavance.AdvantageSuite.Wei.DBUtils;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 
-
-
-namespace Telavance.AdvantageSuite.Wei.WeiDashboard
+namespace Telavance.AdvantageSuite.Wei.WeiDashboard.Pages
 {
+
+    public enum UserType
+    {
+        Reviewer = 1,
+        Approver = 2
+    }
+
     public partial class Messages1 : System.Web.UI.Page
     {
-        private DBUtil _dbUtils;
-        private DateTime _dfromdate;
-        private DateTime _dtodate;
-        private string _sdropdownvalue;
-        private DataSet _dDataset;
-        private DataTable _dDataTable;
-        private int _gridRefresh;
-        private bool _hasCTC;
-        private bool _hasError;
-        private int _pageSize;
-        private double _recCount;
-        private String _strSortExp = "ModifiedDateTime";
-        private SortDirection _SortDirection = SortDirection.Descending;
-        protected string _sSearchString = String.Empty;
-        protected int _currentPageNumber = 1;
-        protected int _totalPages = 1;
+        private DBUtil mdbUtils;
+        private DataTable mdtMSG;
+        private int mintKey;
+        private UserType meUserType;
+        private string mstrUserName = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Page.Title = "Telavance WEI Dashboard";
 
-            try
+            MSG_DateCannotLaterThenToday.Value = Resources.locStrings.MSG_DateCannotLaterThenToday;
+            MSG_DateCannotLaterThenToDate.Value = Resources.locStrings.MSG_DateCannotLaterThenToDate;
+            MSG_DateCannotBeforeThenFromDate.Value = Resources.locStrings.MSG_DateCannotBeforeThenFromDate;
+            MSG_FromDateNotEmpty.Value = Resources.locStrings.MSG_FromDateNotEmpty;
+            MSG_ToDateNotEmpty.Value = Resources.locStrings.MSG_ToDateNotEmpty;
+            MSG_StatusNotEmpty.Value = Resources.locStrings.MSG_StatusNotEmpty;
+
+            mdbUtils = EnterpriseLibraryContainer.Current.GetInstance<DBUtil>();
+
+            mstrUserName = "SRI";
+            meUserType = UserType.Approver;
+            SetUserCredentials();
+
+            strPanelClientID.Value = ToDatePicker.ClientID;
+
+            if (!IsPostBack)
             {
-                _dbUtils = EnterpriseLibraryContainer.Current.GetInstance<DBUtil>();
-                _gridRefresh = Convert.ToInt32(ConfigurationManager.AppSettings["GridRefresh"]);
-                _pageSize = Convert.ToInt32(ConfigurationManager.AppSettings.Get("GridPaging"));
+                PopulateDropDownlist();
 
+                hfDisplayMessagesLabel.Value = Resources.locStrings.LBL_Messages_DisplayMessages;
+                DisplayMessagesLabel.Text = "";
 
-                ViewState["GridRowHighlight"] = true;
-                ViewState["RowHighlightLabel"] = null;
-                ViewState["ShowModal"] = null;
-
-                txtFromDate.Attributes.Add("ReadOnly", "true"); // Make the text box readonly.
-                txtFromDate.Attributes.Add("ReadOnly", "true"); // Make the text box readonly.
-                lblInfo.Attributes.Add("ReadOnly", "true");
-                divPopUp.Visible = false;
-
-                //grdShowMessages.PagerSettings.Position = PagerPosition.Bottom;
-                if (!Page.IsPostBack)
-                {
-
-                    txtFromDate.Text = System.DateTime.Now.ToShortDateString();
-                    txtToDate.Text = System.DateTime.Now.ToShortDateString();
-
-                    _dfromdate = DateTime.Parse(txtFromDate.Text, System.Globalization.CultureInfo.InvariantCulture);
-                    _dtodate = DateTime.Parse(txtToDate.Text, System.Globalization.CultureInfo.InvariantCulture);
-
-                    _sdropdownvalue = string.Empty;
-                    _hasCTC = true;
-                    _hasError = false;
-
-
-                    labelText(); // Assign the label text based on the Grid Refresh or Select Criteria
-                    populateGridView();
-                    populateDropDownlist(); // to populate the dropdown list with Message Status
-
-                }
-                else
-                {
-                    if (null != ViewState["SortExp"])
-                    {
-                        _strSortExp = ViewState["SortExp"] as String;
-                    }
-
-                    if (null != ViewState["SortDirection"])
-                    {
-                        _SortDirection = (SortDirection)ViewState["SortDirection"];
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
+                //for test
+                //FromDatePicker.SelectedDate = new DateTime(2011, 1, 1);
+                //ToDatePicker.SelectedDate = new DateTime(2012, 1, 1);
             }
         }
 
-        int GetSortColumnIndex(String strCol, GridView grdView)
+        protected void Page_PreRender(object sender, EventArgs e)
         {
-            foreach (DataControlField field in grdView.Columns)
+            if (MessagesGrid.SelectedIndexes.Count == 0)
+                MessagesGrid.SelectedIndexes.Add(0);
+            if (RadGrid2.SelectedIndexes.Count == 0)
             {
-                if (field.SortExpression == strCol)
-                {
-                    return grdView.Columns.IndexOf(field);
-                }
+                RadGrid2.Rebind();
+                RadGrid2.SelectedIndexes.Add(0);
             }
-
-            return -1;
         }
 
-        void AddSortImage(GridViewRow headerRow, GridView grdView)
+        protected void DataSourceSelecting(object sender, System.Web.UI.WebControls.ObjectDataSourceSelectingEventArgs e)
         {
-            Int32 iCol = GetSortColumnIndex(_strSortExp, grdView);
-            if (-1 == iCol)
-            {
-                return;
-            }
-            // Create the sorting image based on the sort direction.
-            Image sortImage = new Image();
-            if (SortDirection.Ascending == _SortDirection)
-            {
-                sortImage.ImageUrl = "/Images/sort_asc.gif";
-                sortImage.AlternateText = "Ascending Order";
+            e.InputParameters["filterExpression"] = MessagesGrid.MasterTableView.FilterExpression;
 
+            //rcbStatus.SelectedIndex = 2;
+        }
+
+        protected void MessagesGrid_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+            RadGrid2.SelectedIndexes.Clear();
+            if (null != (e.Item as GridDataItem))
+            {
+                hfRequestsID.Value = (e.Item as GridDataItem).GetDataKeyValue("ID").ToString();
+            }
+
+            if (e.CommandName == RadGrid.ExpandCollapseCommandName && !e.Item.Expanded)
+            {
+                GridDataItem parentItem = e.Item as GridDataItem;
+
+                string strMsg1 = (e.Item as GridDataItem).GetDataKeyValue("OriginalMessage").ToString();
+                string strMsg2 = (e.Item as GridDataItem).GetDataKeyValue("TransilatedMessage").ToString();
+                string strMsg3 = (e.Item as GridDataItem).GetDataKeyValue("ModifiedMessage").ToString();
+
+                mintKey = Convert.ToInt32((e.Item as GridDataItem).GetDataKeyValue("ID"));
+
+                CreateChildTable1(strMsg1, strMsg2, strMsg3);
+
+                RadGrid rg = parentItem.ChildItem.FindControl("OriginalMessageGrid") as RadGrid;
+                rg.Rebind();
+
+                rg = parentItem.ChildItem.FindControl("AuditGrid") as RadGrid;
+                rg.Rebind();
+
+                if (e.CommandName == RadGrid.ExpandCollapseCommandName && e.Item is GridDataItem)
+                {
+                    ((GridDataItem)e.Item).ChildItem.FindControl("InnerContainer").Visible = !e.Item.Expanded;
+                }
+            }
+        }
+
+        protected void OriginalMessageGrid_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {
+            GridDataItem parentItem = ((source as RadGrid).NamingContainer as GridNestedViewItem).ParentItem as GridDataItem;
+            (source as RadGrid).DataSource = mdtMSG;
+
+            //(source as RadGrid).Height = 38 + dtTable.Rows.Count * 22;
+            (source as RadGrid).Height = 112;
+        }
+
+        protected void AuditGrid_NeedDataSource(object source, GridNeedDataSourceEventArgs e)
+        {
+            GridDataItem parentItem = ((source as RadGrid).NamingContainer as GridNestedViewItem).ParentItem as GridDataItem;
+
+            DataSet dsDataset = mdbUtils.getAuditMessagesByRequest(mintKey);
+            (source as RadGrid).DataSource = dsDataset.Tables[0];
+
+            //(source as RadGrid).Height = 38 + dtTable.Rows.Count * 22;
+            //(source as RadGrid).Height = 38 + 5 * 22;
+            (source as RadGrid).Height = 120;
+        }
+
+        private void CreateChildTable1(string strMsg1, string strMsg2, string strMsg3)
+        {
+            mdtMSG = new DataTable();
+
+            mdtMSG.Columns.Add("id", typeof(int));
+            mdtMSG.Columns.Add("col1", typeof(string));
+            mdtMSG.Columns.Add("col2", typeof(string));
+            mdtMSG.Columns.Add("col3", typeof(string));
+
+            mdtMSG.Rows.Add(1, strMsg1, strMsg2, strMsg3);
+        }
+
+        protected void OriginalMessageGrid_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridDataItem)
+            {
+                GridDataItem item = e.Item as GridDataItem;
+                item["col1"].Text = Server.HtmlEncode(item["col1"].Text);
+                item["col2"].Text = Server.HtmlEncode(item["col2"].Text);
+                item["col3"].Text = Server.HtmlEncode(item["col3"].Text);
+            }
+        }
+
+        protected void SqlDSTranslations_OnSelecting(object sender, System.Web.UI.WebControls.SqlDataSourceSelectingEventArgs e)
+        {
+            e.Command.Connection.ConnectionString = Generic.cGeneric.GetConnectionString();
+
+            if (!string.IsNullOrWhiteSpace(hfRequestsID.Value))
+            {
+                e.Command.Parameters["@RequestsID"].Value = int.Parse(hfRequestsID.Value);
             }
             else
             {
-                sortImage.ImageUrl = "/Images/sort_desc.gif";
-                sortImage.AlternateText = "Descending Order";
-
+                e.Command.Parameters["@RequestsID"].Value = 0;
             }
-
-            // Add the image to the appropriate header cell.
-            //headerRow.Cells[iCol].Controls.Add(sortImage);
-
         }
 
-        void labelText()
-        {
-            string _sLabelText;
-            if (Timer1.Enabled == false)
-            {
-                if ((_sdropdownvalue == null || _sdropdownvalue == ""))
-                {
-                    _sLabelText = "Display messages created between <b>" + txtFromDate.Text + "</b> and <b>" + txtToDate.Text + "</b> and status is <b> -ALL- </b>. Auto Refresh is turned <b>OFF.</b>";
-                }
-                else
-                {
-                    _sLabelText = "Display messages created between <b>" + txtFromDate.Text + "</b> and <b>" + txtToDate.Text + "</b> and status is <b> " + ddlMessageStatus.SelectedItem.Text + "</b>. Auto Refresh is turned <b>OFF.</b>";
-                }
-            }
-            else
-            {
-                _sLabelText = "Display messages created between <b>" + txtFromDate.Text + "</b> and <b>" + txtToDate.Text + "</b>. Auto Refresh is turned <b>ON</b>. Messages will be refreshed automatically every " + (_gridRefresh) / 1000 + " seconds.";
-            }
-            lblMessage.Text = _sLabelText;
-
-
-        }
-        protected void Timer1_Tick(object sender, EventArgs e)
+        private void PopulateDropDownlist()
         {
             try
             {
-
-                Timer1.Enabled = true;
-                resetParams();
-                labelText();
-                populateGridView();
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-
-        }
-        void resetParams()
-        {
-
-            txtFromDate.Text = System.DateTime.Now.ToShortDateString();
-            txtToDate.Text = System.DateTime.Now.ToShortDateString();
-            ddlMessageStatus.SelectedIndex = 0; //reset the value from the dropdownlist
-            _dfromdate = DateTime.Parse(txtFromDate.Text, System.Globalization.CultureInfo.InvariantCulture);
-            _dtodate = DateTime.Parse(txtToDate.Text, System.Globalization.CultureInfo.InvariantCulture);
-            _sdropdownvalue = string.Empty;
-
-
-        }
-        protected void chkShowCTC_CheckChanged(object sender, EventArgs e)
-        {
-            _hasCTC = (_hasCTC == chkShowCTC.Checked) ? false : true;
-        }
-
-        protected void chkShowErrors_CheckChanged(object sender, EventArgs e)
-        {
-
-            _hasError = (_hasError == chkShowErrors.Checked) ? false : true;
-        }
-
-        protected void ddlRows_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _currentPageNumber = 1;
-            grdShowMessages.PageSize = Int32.Parse(ddlRows.SelectedValue);
-            _pageSize = Int32.Parse(ddlRows.SelectedValue);
-            setParams();
-            populateGridView();
-        }
-
-        protected void ddlPage_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _currentPageNumber = Int32.Parse(ddlPage.SelectedValue);
-            setParams();
-            populateGridView();
-        }
-
-        protected void GetPageIndex(object sender, CommandEventArgs e)
-        {
-            switch (e.CommandName)
-            {
-                case "First":
-                    _currentPageNumber = 1;
-                    break;
-                case "Previous":
-                    _currentPageNumber = Int32.Parse(ddlPage.SelectedValue) - 1;
-                    break;
-                case "Next":
-                    _currentPageNumber = Int32.Parse(ddlPage.SelectedValue) + 1;
-                    break;
-                case "Last":
-                    _currentPageNumber = Int32.Parse(lblTotalPages.Text);
-                    break;
-
-            }
-            setParams();
-            populateGridView();
-        }
-
-        private int GetTotalPages(double totalRows)
-        {
-            int totalPages = (int)Math.Ceiling(totalRows / _pageSize);
-
-            return totalPages;
-        }
-
-        void populateGridView()
-        {
-            String strSort = String.Empty;
-
-            // Refresh the grid 
-            if (grdShowMessages.PageSize > 0)
-            {
-                _pageSize = grdShowMessages.PageSize;
-            }
-            _dDataset = _dbUtils.getMessages(_dfromdate, _dtodate, _sdropdownvalue, _hasCTC, _hasError, txtSearchText.Text, _currentPageNumber, _pageSize, out _recCount);
-            //,_currentPageNumber,_pageSize, out _recCount
-            _dDataTable = _dDataset.Tables[0];
-
-            Session["DataTable"] = _dDataTable;
-
-
-
-            ddlPage.Items.Clear();
-            if (_recCount > 0)
-            {
-                //ViewState["RecCount"] = _recCount;
-                _totalPages = GetTotalPages(_recCount);
-
-                lblTotalPages.Text = GetTotalPages(_recCount).ToString();
-                for (int i = 1; i < Convert.ToInt32(lblTotalPages.Text) + 1; i++)
-                {
-                    ddlPage.Items.Add(new ListItem(i.ToString()));
-                }
-                ddlPage.SelectedValue = _currentPageNumber.ToString();
-            }
-
-            navigateButtons(_currentPageNumber);
-
-
-
-            if (null != _strSortExp &&
-                String.Empty != _strSortExp)
-            {
-                strSort = String.Format("{0} {1}", _strSortExp, (_SortDirection == SortDirection.Descending) ? "DESC" : "ASC");
-            }
-            DataView dv = new DataView(_dDataTable, String.Empty, strSort, DataViewRowState.CurrentRows);
-
-            grdShowMessages.DataSource = dv;
-            grdShowMessages.DataBind();
-
-
-            // Display the modal window on grid refresh, if the modal window was already displayed
-            if (ViewState["ShowModal"] != null && Timer1.Enabled == true)
-            {
-                divPopUp.Visible = true;
-                panelDragHandle.Visible = true;
-                ModalPopupExtender1.Show();
-            }
-            else
-            {
-                divPopUp.Visible = false;
-                panelDragHandle.Visible = false;
-                ModalPopupExtender1.Hide();
-            }
-
-            if (grdShowMessages.Rows.Count == 0)
-            {
-                Panel2.Visible = false;
-                lblInfo.Text = "";
-
-            }
-            else
-            {
-                Panel2.Visible = true;
-
-            }
-            if (ViewState["RowHighlightLabel"] == null)
-            {
-                lblInfo.Visible = false;
-            }
-            else
-            {
-                lblInfo.Visible = true;
-                lblInfo.Text = "(Highlighted row indicates error in processing the message)";
-            }
-            if (_recCount == 0)
-            {
-                lblTotalRecords.Visible = false;
-            }
-            else
-            {
-                lblTotalRecords.Visible = true;
-                lblTotalRecords.Text = "Total Number of Records: " + _recCount.ToString();
-            }
-
-
-        }
-
-        void navigateButtons(int currentPageNumber)
-        {
-            if (currentPageNumber == 1)
-            {
-                btnPrevious.Enabled = false;
-                btnPrevious.CssClass = "GridPagePreviousInactive";
-                btnFirst.Enabled = false;
-                btnFirst.CssClass = "GridPageFirstInactive";
-
-                if (lblTotalPages.Text != "")
-                {
-                    if (Int32.Parse(lblTotalPages.Text) > 1)
-                    {
-                        btnNext.Enabled = true;
-                        btnNext.CssClass = "GridPageNextActive";
-                        btnLast.Enabled = true;
-                        btnLast.CssClass = "GridPageLastActive";
-                    }
-                    else
-                    {
-                        btnNext.Enabled = false;
-                        btnNext.CssClass = "GridPageNextInactive";
-                        btnLast.Enabled = false;
-                        btnLast.CssClass = "GridPageLastInactive";
-                    }
-                }
-            }
-
-            else
-            {
-                btnPrevious.Enabled = true;
-                btnPrevious.CssClass = "GridPagePreviousActive";
-                btnFirst.Enabled = true;
-                btnFirst.CssClass = "GridPageFirstActive";
-
-                if (currentPageNumber == Int32.Parse(lblTotalPages.Text))
-                {
-                    btnNext.Enabled = false;
-                    btnNext.CssClass = "GridPageNextInactive";
-                    btnLast.Enabled = false;
-                    btnLast.CssClass = "GridPageLastInactive";
-                }
-                else
-                {
-                    btnNext.Enabled = true;
-                    btnNext.CssClass = "GridPageNextActive";
-                    btnLast.Enabled = true;
-                    btnLast.CssClass = "GridPageLastActive";
-                }
-            }
-
-        }
-        void setParams()
-        {
-            _dfromdate = DateTime.Parse(txtFromDate.Text, System.Globalization.CultureInfo.InvariantCulture);
-            _dtodate = DateTime.Parse(txtToDate.Text, System.Globalization.CultureInfo.InvariantCulture);
-            _sdropdownvalue = ddlMessageStatus.SelectedItem.Value;
-            if (chkShowCTC.Checked)
-            {
-                _hasCTC = true;
-            }
-            else
-            {
-                _hasCTC = false;
-            }
-            // _hasCTC = (_hasCTC == chkShowCTC.Checked) ? false : true;
-            //  _hasError = (_hasError == chkShowErrors.Checked) ? false : true;
-
-        }
-        protected void btnClose_Click(object sender, EventArgs e)
-        {
-            ViewState["ShowModal"] = null;
-            panelDragHandle.Visible = false;
-            ModalPopupExtender1.Hide();
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Timer1.Enabled = false; //disable the timer when search criteria is selected.
-                _sSearchString = txtSearchText.Text;
-                ViewState["ShowModal"] = null; //Reset the viewstate to null to prevent the display of the modal popup
-                setParams();
-                labelText();
-                populateGridView();
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-
-        void populateDropDownlist()
-        {
-
-            try
-            {
-                DataSet _dataset = _dbUtils.MessageStatus();
-                ddlMessageStatus.DataSource = _dataset;
-                ddlMessageStatus.DataValueField = _dataset.Tables[0].Columns[0].ColumnName;
-                ddlMessageStatus.DataTextField = _dataset.Tables[0].Columns[1].ColumnName;
-                ddlMessageStatus.DataBind();
-                ddlMessageStatus.Items.Insert(0, new ListItem("---Select----", String.Empty));
-            }
-
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-
-        }
-
-        //protected void grdShowMessages_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    try
-        //    {
-        //        ViewState["ShowModal"] = null; //Reset the viewstate to null to prevent the display of the modal popup
-        //        grdShowMessages.PageIndex = e.NewPageIndex;
-        //        _currentPageNumber = grdShowMessages.PageIndex;
-        //        setParams();
-        //        labelText();
-        //       populateGridView();
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw (ex);
-        //    }        
-        //}
-
-        protected void grdShowMessages_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            try
-            {
-                int _iRowIndex;
-                int _igrdRowIndex;
-
-                ViewState["SortExpr"] = null; // to reset the sorting on the grid
-
-                switch (e.CommandName)
-                {
-                    case "ClickMe":
-                        {
-                            ViewState["ShowModal"] = true; //Set the viewstate to display the modal popup
-                            _iRowIndex = Convert.ToInt32(ViewState["RowIndex"]);
-                            _igrdRowIndex = Convert.ToInt32(ViewState["GridRowIndex"]);
-
-                            ViewState["GridRowHighlight"] = null;
-
-                            populateAuditGrid(_igrdRowIndex, _iRowIndex);
-                            break;
-                        }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-
-
-
-
-        void highlightGridRow(GridViewRow _row)
-        {
-            //Check if the row created is a datarow and the row dataitem is not null
-            if (_row.RowType == DataControlRowType.DataRow && _row.DataItem != null)
-            {
-
-                //highlight the row that has errors in red.
-
-                if (DataBinder.Eval(_row.DataItem, "IsError").ToString().Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    _row.Style["color"] = "red";
-                    //set the viewstate value if the gridview row has an error
-                    if (ViewState["RowHighlightLabel"] == null)
-                    {
-                        ViewState["RowHighlightLabel"] = true;
-                    }
-                }
-
-            }
-        }
-        protected void grdShowMessages_RowCreated(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                if (String.Empty != _strSortExp)
-                {
-                    AddSortImage(e.Row, grdShowMessages);
-                }
-            }
-            highlightGridRow(e.Row);
-        }
-        protected void grdShowMessages_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            try
-            {
-                Timer1.Enabled = false;
-                ViewState["ShowModal"] = null; // Set the viewstate to null to prevent the modal window to showup on sorting
-
-                if (String.Empty != _strSortExp)
-                {
-                    if (String.Compare(e.SortExpression, _strSortExp, true) == 0)
-                    {
-                        _SortDirection = (_SortDirection == SortDirection.Ascending) ? SortDirection.Descending : SortDirection.Ascending;
-                    }
-                }
-
-                ViewState["SortDirection"] = _SortDirection;
-                ViewState["SortExp"] = _strSortExp = e.SortExpression;
-
-                setParams();
-                labelText();
-                populateGridView();
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-        //protected void grdShowAudit_RowCreated(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.Header)
-        //    {
-        //        if (String.Empty != _strSortExp)
-        //        {
-        //            AddSortImage(e.Row, grdShowMessages);
-        //        }
-        //    }
-        //}
-
-
-        protected void btnRefresh_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ViewState["ShowModal"] = null; //Reset the viewstate to null to prevent the display of the modal popup
-                _sSearchString = txtSearchText.Text;
-                Timer1.Enabled = true; //Enable the timer when the refresh button is clicked.
-                resetParams();
-                labelText();
-                populateGridView();
-            }
-            catch (Exception ex)
-            {
-                //LogUtil.log("Please check the event viewer or the log file for error message:", ex.InnerException);
-                throw (ex);
-            }
-        }
-
-
-        protected void btnShowDetails_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                int _iRowIndex;
-                int _igrdRowIndex;
-                GridViewRow _grdViewRow;
-                _sSearchString = txtSearchText.Text;
-                _grdViewRow = ((Button)sender).Parent.Parent as GridViewRow;
-                if (_grdViewRow.RowType == DataControlRowType.DataRow)
-                {
-                    _igrdRowIndex = _grdViewRow.RowIndex;
-                    ViewState["GridRowIndex"] = _igrdRowIndex;
-                    _iRowIndex = Convert.ToInt32(_grdViewRow.Cells[0].Text);
-                    ViewState["RowIndex"] = _iRowIndex;
-
-                }
+                DataSet _dataset = mdbUtils.MessageStatus();
+                rcbStatus.DataSource = _dataset;
+                rcbStatus.DataValueField = _dataset.Tables[0].Columns[0].ColumnName;
+                rcbStatus.DataTextField = _dataset.Tables[0].Columns[1].ColumnName;
+                rcbStatus.DataBind();
+                rcbStatus.Items.Insert(0, new RadComboBoxItem("---Select----", String.Empty));
             }
 
             catch (Exception ex)
@@ -663,100 +181,61 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             }
         }
 
-
-
-        void populateAuditGrid(int _rowindex, int _key)
+        protected void rapTranslations_OnAjaxRequest(object sender, EventArgs e)
         {
-            String strSort = String.Empty;
-            DataSet _dataset;
-            try
+            RadGrid2.Rebind();
+        }
+
+        private void SetUserCredentials()
+        {
+            if (meUserType == UserType.Approver)
             {
-                // check if the master grid has any records.
-                if (grdShowMessages.Rows.Count > 0)
-                {
-
-                    if (Session["DataTable"] != null)
-                    {
-
-                        _dDataTable = (DataTable)Session["DataTable"];
-                        _dDataTable.DefaultView.RowFilter = "ID=" + _key;
-
-
-                        grdShowDetails.DataSource = _dDataTable;
-                        grdShowDetails.DataBind();
-
-
-                    }
-                    //Assign the message details to the labels
-
-                    lblRequestValue.Text = grdShowMessages.Rows[_rowindex].Cells[0].Text;
-                    lblMessageValue.Text = grdShowMessages.Rows[_rowindex].Cells[1].Text;
-                    lblInterfaceValue.Text = grdShowMessages.Rows[_rowindex].Cells[2].Text;
-                    lblDescValue.Text = grdShowMessages.Rows[_rowindex].Cells[3].Text;
-                    lblCreateTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[6].Text;
-                    lblModifiedTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[7].Text;
-
-                    _dataset = _dbUtils.getAuditMessagesByRequest(_key);
-
-                    //if (null != _strSortExp && String.Empty != _strSortExp)
-                    //{
-                    //    strSort = String.Format("{0} {1}", _strSortExp, (_SortDirection == SortDirection.Descending) ? "DESC" : "ASC");
-                    //}
-                    DataView dv = new DataView(_dataset.Tables[0], String.Empty, strSort, DataViewRowState.CurrentRows);
-
-                    grdShowAudit.DataSource = dv;
-                    grdShowAudit.DataBind();
-
-                    if (dv.Table.Rows.Count == 0)
-                    {
-                        lblRecCount.Text = "No Audit details for Request: " + _key.ToString();
-                        lblAuditMessage.Visible = false;
-                        Panel4.Visible = false;
-                    }
-                    else
-                    {
-                        lblRecCount.Text = "";
-                        lblAuditMessage.Visible = true;
-                        Panel4.Visible = true;
-                    }
-                    divPopUp.Visible = true;
-                    panelDragHandle.Visible = true;
-                    ModalPopupExtender1.Show();
-                }
-                else
-                {
-                    divPopUp.Visible = false;
-                    panelDragHandle.Visible = false;
-                    ModalPopupExtender1.Hide();
-                    ViewState["ShowModal"] = null;
-                }
+                hfUserType.Value = UserType.Approver.ToString();
             }
-            catch (Exception ex)
+
+            if (meUserType == UserType.Reviewer)
             {
-                throw (ex);
+                hfUserType.Value = UserType.Reviewer.ToString();
+                //LabelValueGrid.Columns[5].
             }
         }
 
-        protected string HighlightText(string searchWord, string inputText)
+        protected void UpdateButton_OnClick(object sender, EventArgs e)
         {
+            string ReviewMode = "Review";
 
-            // Replace spaces by | for Regular Expressions  
+            //if (meUserType == UserType.Reviewer)
+            //{
+            //    strReviewMode = "Review";
+            //}
 
-            Regex expression = new Regex(_sSearchString, RegexOptions.IgnoreCase);
+            if (meUserType == UserType.Approver)
+            {
+                ReviewMode = "Approve";
+            }
 
-            return expression.Replace(inputText, new MatchEvaluator(ReplaceKeywords));
+            //foreach (GridDataItem item in LabelValueGrid.MasterTableView.Items)
+            foreach (GridDataItem row in RadGrid2.MasterTableView.Items)
+            {
+                if (((CheckBox)row.FindControl("UpdatedCheckBox")).Checked)
+                {
+                    //Boolean bReviewed = ((CheckBox)item.FindControl("ReviewedCheckBox")).Checked;
+                    //Boolean bApproved = ((CheckBox)item.FindControl("ApprovedCheckBox")).Checked;
 
+                    int RequestID = Convert.ToInt32(((GridDataItem)MessagesGrid.SelectedItems[0]).GetDataKeyValue("ID").ToString());
+                    string CTCCode = row.GetDataKeyValue("CTCCode").ToString();
+                    string ChineseChar = row.GetDataKeyValue("ChineseChar").ToString();
+                    string PinYin = "NEW";
+                    string NewTrans = ((RadTextBox)row.FindControl("NewTransTextBox")).Text.Trim();
+                    string ReviewOper = mstrUserName;
+                    bool Reviewed = ((CheckBox)row.FindControl("ReviewedCheckBox")).Checked;
+                    string ApproveOper = mstrUserName;
+                    bool Approved = ((CheckBox)row.FindControl("ApprovedCheckBox")).Checked;
+
+                    //mdbUtils.UpdateTranslations(Convert.ToInt32(item["id"].Text), ((RadTextBox)item.FindControl("NewTransTextBox")).Text.Trim(), bReviewed, bApproved, mstrUserName, strReviewMode);
+                    mdbUtils.UpdateTranslations(RequestID, CTCCode, ChineseChar, PinYin, ReviewMode, NewTrans, ReviewOper, Reviewed, ApproveOper, Approved);
+                }
+            }
         }
-
-        public string ReplaceKeywords(Match m)
-        {
-            return "<span class='highlight'>" + m.Value + "</span>";
-        }
-
-
-
     }
-
-
-
 }

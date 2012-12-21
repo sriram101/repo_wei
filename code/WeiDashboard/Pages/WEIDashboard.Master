@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WEIDashboard.master.cs" Inherits="WEI_Dashboard.Pages.WEIDashboard" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WEIDashboard.master.cs" Inherits="WeiDashboard.Pages.WEIDashboard" %>
 
 <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
 
@@ -24,7 +24,10 @@
             <div class="title">
                 <%--style="height: 60px; width: 123px; margin-top: 4px"--%>
                 <%--<asp:Label runat="server" ID="i1" Text=" WEI Dashboard" Font-Size="X-Large"></asp:Label>--%>
-                    <img src="../Images/WEI.GIF" style="height: 30px; width: 61px; margin-top: 2px" alt="" />
+                    <%--<img src="../Images/WEI.GIF" style="height: 30px; width: 61px; margin-top: 2px" alt="" />--%>
+                    <%--<img src="/Images/WEI.GIF" style="height: 30px; width: 61px; margin-top: 2px" alt="" />--%>
+                    <%--<img src="/../Images/WEI.GIF" style="height: 30px; width: 61px; margin-top: 2px" alt="" />--%>
+                    <img src="<%= Page.ResolveUrl("~")%>Images/WEI.GIF" style="height: 30px; width: 61px; margin-top: 2px" alt="" />
 
                     <asp:Label ID="lblCpation" runat="server" CssClass="LabelHeading"> WEI<sup class="Sup">TM</sup> Dashboard</asp:Label>
              </div>

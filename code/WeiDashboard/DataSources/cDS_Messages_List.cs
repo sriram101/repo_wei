@@ -131,16 +131,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard.DataSources
                         objCommand.CommandText = Generic.cStoredProcedureConstants.SP_Messages_List;
                         objCommand.Connection = objConnection;
 
-                        //objCommand.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = DateTime.Parse("Jan 01, 2011");
-                        //objCommand.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = DateTime.Now;
-                        //objCommand.Parameters.Add("@Status", SqlDbType.Int).Value = 2;
-                        //objCommand.Parameters.Add("@HasCTC", SqlDbType.Bit).Value = 1;
-                        //objCommand.Parameters.Add("@IsError", SqlDbType.Bit).Value = 1;
-                        //objCommand.Parameters.Add("@SearchText", SqlDbType.NVarChar).Value = "";
-                        //objCommand.Parameters.Add("@Sorting", SqlDbType.NVarChar).Value = "";
-                        //objCommand.Parameters.Add("@CurrentPage", SqlDbType.Int).Value = 1;
-
-                        //if (intStatus == -1) { intStatus = 2; }
                         if (strSearchText == null) { strSearchText = ""; }
 
                         objCommand.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = ConvertToDateTime(strStartDate);
@@ -204,7 +194,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard.DataSources
         {
             if (null != strValue && strValue.Length > 0)
             {
-                return (Convert.ToDateTime(strValue, CultureInfo.CreateSpecificCulture("en-US")));
+                //return (Convert.ToDateTime(strValue, CultureInfo.CreateSpecificCulture("en-US")));
+                return (Convert.ToDateTime(strValue));
             }
             else
             {

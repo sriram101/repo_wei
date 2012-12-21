@@ -365,5 +365,59 @@ namespace Resources {
                 return ResourceManager.GetString("LBL_Messages_ToCreateDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot select a day before then From Date!.
+        /// </summary>
+        internal static string MSG_DateCannotBeforeThenFromDate {
+            get {
+                return ResourceManager.GetString("MSG_DateCannotBeforeThenFromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot select a day later then To date!.
+        /// </summary>
+        internal static string MSG_DateCannotLaterThenToDate {
+            get {
+                return ResourceManager.GetString("MSG_DateCannotLaterThenToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot select a day later then today!.
+        /// </summary>
+        internal static string MSG_DateCannotLaterThenToday {
+            get {
+                return ResourceManager.GetString("MSG_DateCannotLaterThenToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From date should not be empty!.
+        /// </summary>
+        internal static string MSG_FromDateNotEmpty {
+            get {
+                return ResourceManager.GetString("MSG_FromDateNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status should not be empty!.
+        /// </summary>
+        internal static string MSG_StatusNotEmpty {
+            get {
+                return ResourceManager.GetString("MSG_StatusNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To date should not be empty!.
+        /// </summary>
+        internal static string MSG_ToDateNotEmpty {
+            get {
+                return ResourceManager.GetString("MSG_ToDateNotEmpty", resourceCulture);
+            }
+        }
     }
 }

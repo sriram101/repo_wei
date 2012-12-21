@@ -1,367 +1,334 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Messages1.aspx.cs" Inherits="Telavance.AdvantageSuite.Wei.WeiDashboard.Messages1" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/WEIDashboard.Master" AutoEventWireup="true" CodeBehind="Messages1.aspx.cs" Inherits="Telavance.AdvantageSuite.Wei.WeiDashboard.Pages.Messages1" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik"  %>
 
-
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-
-           
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="Styles/Generic.css" rel="Stylesheet" type="text/css" />
+    <link href="Styles/Messages.css" rel="Stylesheet" type="text/css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <style type="text/css">  
 
-   .highlight  
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    {  
+<telerik:RadScriptManager runat="server" ID="RadScriptManager1" >
+<Scripts>
+        <asp:ScriptReference Path="~/Scripts/Messages.js" />
+    </Scripts>
+</telerik:RadScriptManager>
 
-         background-Color:Yellow;  
+<telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+        <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="MessagesGrid">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="MessagesGrid"></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="RadGrid2" ></telerik:AjaxUpdatedControl>
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="RadGrid2">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="RadGrid2"></telerik:AjaxUpdatedControl>
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+        </AjaxSettings>
+    </telerik:RadAjaxManager>
 
-    }  
-    
- 
-    
-</style>
-    <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true" EnableScriptLocalization="true"  EnablePartialRendering="false"/>
-     
-     <br />
-    
-    <div>
-            <asp:Timer ID="Timer1"  OnTick="Timer1_Tick" runat="server"></asp:Timer>
-    </div>
-    <asp:Panel ID="Panel1" runat="server"  CssClass="Panel">
-  <script type="text/javascript">
-      function checkDate(sender, args) {
-          if (sender._selectedDate > new Date()) {
-              alert("You cannot select a day later than today!");
-              sender._selectedDate = new Date();
-              // set the date back to the current date
-              sender._textbox.set_Value(sender._selectedDate.format(sender._format))
-
-          }
-
-      }
-     
-    </script>
-   
-
-
-        <table id="table1" runat="server">
+<telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="" BackColor="#E0E0E0" Transparency="20">
+<table style="height: 100%; width: 100%" border="0">
         <tr>
-            <td>
-                <asp:Label ID="lblSearchParameters" Text="Search Criteria" runat="server" CssClass="LabelCaption"></asp:Label>
+            <td width="100%" align="center" valign="middle">
+                <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/48.gif" AlternateText="loading"></asp:Image>
             </td>
         </tr>
-        <tr>
-            <td>
-                &nbsp;
-            </td>
-        </tr>
-        <tr>
-        <td>
-       
-       
+    </table>
+</telerik:RadAjaxLoadingPanel>
 
-           <asp:Label ID="lblFromDate" Text="From Create Date:" runat="server" CssClass="Label"></asp:Label>
-                &nbsp;&nbsp; &nbsp;
-                <asp:TextBox ID="txtFromDate" runat="server" Width="200px" CssClass="TextBox" ></asp:TextBox>&nbsp;&nbsp;
-                <asp:Image ID="Image1" runat="server" ImageUrl="images/Calendar.png" ImageAlign="Middle"/>&nbsp
-            <asp:CalendarExtender ID="CalendarExtender1" runat="server"  EnableViewState="false" TargetControlID="txtFromDate" OnClientDateSelectionChanged="checkDate" PopupPosition="Right" PopupButtonID="Image1">
-            </asp:CalendarExtender>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblToDate" Text="To Create Date:" runat="server" CssClass="Label"></asp:Label>
-                &nbsp;&nbsp; &nbsp;
-                <asp:TextBox ID="txtToDate" runat="server" Width="200px" CssClass="TextBox" ></asp:TextBox>&nbsp;&nbsp;
-                <asp:Image ID="Image2" runat="server" ImageUrl="images/Calendar.png" ImageAlign="Middle" />&nbsp
-            <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtToDate" OnClientDateSelectionChanged="checkDate" PopupPosition="Right" PopupButtonID="Image2">
-            </asp:CalendarExtender>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <asp:Label ID="lblMessageStatus" runat="server" CssClass="Label" 
-                            Text="Status:"></asp:Label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:DropDownList ID="ddlMessageStatus" runat="server" CssClass="DropDownList" 
-                            Width="200px" >
-                        </asp:DropDownList>
-                
-            </td>
-         
-        </tr>
-            <caption>
-                &quot;
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="MSG_DateCannotLaterThenToday" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="MSG_DateCannotLaterThenToDate" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="MSG_DateCannotBeforeThenFromDate" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="MSG_FromDateNotEmpty" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="MSG_ToDateNotEmpty" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="MSG_StatusNotEmpty" />
+
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="hfSelectedLabelValueId" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="hfDisplayMessagesLabel" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="hfUserType" />
+<asp:HiddenField runat="server" ClientIDMode="Static" EnableViewState="true" Value="" ID="hfRequestsID" />
+
+<input runat="server" clientidmode="Static" type="hidden" enableviewstate="true" id="strPanelClientID" />
+
+<table cellpadding="0px" cellspacing="0px">
+    <tr>
+        <td colspan="2">
+            <div style="border: 1px solid; padding-left:80px; " >
+
+    <table class="Label">
                 <tr>
-                    <td>
-                        &nbsp;
+                    <td>                           
+                        <asp:Label runat="server" ID="SearchCriteriaLabel" CssClass="Label" Text="<%$ Resources:locStrings, LBL_Messages_SearchCriteria %>" ></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="lblSearchText" runat="server" CssClass="Label" 
-                            Text="Message Text:"></asp:Label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
-                           <asp:TextBox ID="txtSearchText" runat="server" Width="200px" CssClass="TextBox" ></asp:TextBox>&nbsp;&nbsp;   
-                        <asp:CheckBox ID="chkShowCTC" runat="server" Text="Messages with CTC" checked="true" CssClass="Checkbox" OnCheckedChanged="chkShowCTC_CheckChanged"/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       <asp:CheckBox ID="chkShowErrors" runat="server" Text="Messages with Errors" checked="false" CssClass="Checkbox" OnCheckedChanged="chkShowErrors_CheckChanged"/>
-                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                           <asp:Button ID="btnSearch" runat="server" CssClass="Button" Text="List" 
-                            onclick="btnSearch_Click"  />
-                       &nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="btnRefresh" runat="server" CssClass="Button" Text="Refresh Messages" 
-                            onclick="btnRefresh_Click"  />
-                    </td>  
+                        <asp:Label runat="server" ID="FromDateLabel" CssClass="Label" Text="<%$ Resources:locStrings, LBL_Messages_FromCreateDate %>" ></asp:Label>
+                    </td>
                     <td>
-                    
+                        <telerik:RadDatePicker runat="server" ID="FromDatePicker" ClientEvents-OnDateSelected="FromDatePicker_OnDateSelected" DateInput-DateFormat="MMM dd, yyyy" AutoPostBack="false" CssClass="Label" ClientIDMode="Static" Skin="Office2007" TabIndex="1" ></telerik:RadDatePicker>
+                    </td>
+                    <td colspan="2" style="padding-left:90px">
+                        <asp:Label runat="server" ID="Label1" CssClass="Label" Text="<%$ Resources:locStrings, LBL_Messages_MeaasgeText %>" ></asp:Label>
+                        <telerik:RadTextBox ID="MeaasgeTextBox" AutoPostBack="false" runat="server" CssClass="Label" Width="240px" Skin="Windows7"  TabIndex="3"></telerik:RadTextBox>
+                    </td>
+                    <td  style="padding-left:90px">
+                        <asp:Label runat="server" ID="StatusLabel" CssClass="Label" Text="<%$ Resources:locStrings, LBL_Messages_Status %>" ></asp:Label>
+                    </td>
+                    <td>
+                        <telerik:RadComboBox ID="rcbStatus" Runat="server" DropDownWidth="157px" Width="157px" Skin="Windows7" 
+                                HighlightTemplatedItems="True" MaxHeight="135px" AutoPostBack="false" ClientIDMode="Static"  TabIndex="6" > </telerik:RadComboBox>
                     </td>
                 </tr>
-                
-            </caption>
-        
-        </table>
-        <br />
-    </asp:Panel>
-    <br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblMessage" runat="server" CssClass="LabelValue"></asp:Label>
-    <br />
-    <br />
 
-    <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick"/>
-         </Triggers>
-        <ContentTemplate>
-            <table width="100%">
                 <tr>
-                <td>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID ="lblInfo" runat="server" CssClass="LabelItalics" Text = "" ></asp:Label> 
-                </td>
-                
+                    <td>
+                        <asp:Label runat="server" ID="ToDateLabel" CssClass="Label" Text="<%$ Resources:locStrings, LBL_Messages_ToCreateDate %>" ></asp:Label>
+                    </td>
+                    <td>
+                        <telerik:RadDatePicker runat="server" ID="ToDatePicker" ClientEvents-OnDateSelected="ToDatePicker_OnDateSelected" DateInput-DateFormat="MMM dd, yyyy" AutoPostBack="false" CssClass="Label" Skin="Office2007"  TabIndex="2" ></telerik:RadDatePicker>
+                    </td><%--ClientIDMode="Static"--%>
+                    <td style="padding-left:90px">
+                        <asp:CheckBox runat="server" AutoPostBack="false" ID="MessagesWithCTCCheckBox" CssClass="Label"  TabIndex="4" Text="<%$ Resources:locStrings, CHK_Messages_MessagesWithCTC %>" />
+                    </td>
+                    <td style="padding-left:40px">
+                        <asp:CheckBox runat="server" AutoPostBack="false" ID="MessagesWithErrorsCheckBox" CssClass="Label"  TabIndex="5" Text="<%$ Resources:locStrings, CHK_Messages_MessagesWithErrors %>" />
+                    </td>
+                    <td  style="padding-left:90px" colspan="2">
+                        <telerik:RadButton ID="ListButton" runat="server" Width="75px" Skin="Windows7" ClientIDMode="Static" AutoPostBack="false" OnClientClicked="ListButton_Click" CssClass="Label"  TabIndex="7" Text="<%$ Resources:locStrings, CMD_Messages_List %>" > </telerik:RadButton>
+                        <telerik:RadButton ID="RadButton1" runat="server" Skin="Windows7" ClientIDMode="Static" AutoPostBack="false" OnClientClicked="RefreshMessagesButton_Click" CssClass="Label"  TabIndex="8" Text="<%$ Resources:locStrings, CMD_Messages_RefreshMessages %>" > </telerik:RadButton>
+                    </td>
                 </tr>
             </table>
-            <br /> 
-            <asp:Panel ID="Panel2" runat="server" CssClass="Panel"  ScrollBars="Auto">
-                <asp:GridView ID="grdShowMessages" AutoGenerateColumns="False" GridLines="None" 
-                            AllowSorting="true"  Width="100%" 
-                    CssClass="GridViewStyle" Visible="true"  
-                    OnRowCommand="grdShowMessages_RowCommand"  
-                    OnRowCreated="grdShowMessages_RowCreated"  runat="server" 
-                    OnSorting="grdShowMessages_Sorting" >
-                
-                                 <HeaderStyle CssClass="HeaderStyle" />
-                                <PagerStyle CssClass="PagerStyle"/>
-                                <AlternatingRowStyle  CssClass="AltRowStyle" />
-                                <EditRowStyle CssClass="EditRowStyle" /> 
-                                <RowStyle CssClass="RowStyle" /> 
-                            
-                                <Columns>
-                                   <asp:BoundField HeaderText="ID" DataField="ID" SortExpression="ID" ItemStyle-Wrap="false" />
-                                    <asp:BoundField HeaderText="Message ID" DataField="Name" SortExpression="Name" ItemStyle-Wrap="false" />
-                                    <asp:BoundField HeaderText="Interface Name" DataField="InterfaceName" SortExpression="InterfaceName" ItemStyle-Wrap="false" />
-                                    <asp:BoundField HeaderText="Status" DataField="OFACStatus" SortExpression="OFACStatus"  ItemStyle-Wrap="false"/>
-                                    <asp:BoundField HeaderText="Error" DataField="IsErrors" Visible="false" ItemStyle-Wrap="false"/>
-                                    <asp:BoundField HeaderText="OFAC Violation" DataField="Description" SortExpression="Description" ItemStyle-Wrap="false"/>
-                                    <asp:BoundField HeaderText="Create Date" DataField="CreatedDateTime" SortExpression="CreatedDateTime" ItemStyle-Wrap="false"/>
-                                    <asp:BoundField HeaderText="Modified Date" DataField="ModifiedDateTime" SortExpression="ModifiedDateTime" ItemStyle-Wrap="false"/>
 
-                                    <asp:TemplateField>
-                                        <ItemTemplate>
-                                            <asp:Button ID="btnShowDetails" Text="Show Details" CssClass="Button" runat="server"  OnClick="btnShowDetails_Click" 
-                                            CommandName="ClickMe"/>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                               
-                                </Columns>
-                                                    
-                            
-             </asp:GridView>
-                <asp:UpdatePanel ID="upnlGrdPaging" runat="server">
-                    <ContentTemplate>
-                        <table border="0" cellpadding="0" cellspacing="0" >
-                           <tr style="height:20px;">
-                                <td width="20%">&nbsp;&nbsp;&nbsp;</td>
-                                <td >
-                                    <asp:Label ID="LblRows" runat="server" Text = "Rows Per Page:" CssClass="Label"></asp:Label>
-                                </td>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddlRows" runat="server" AutoPostBack="True" 
-                                        onselectedindexchanged="ddlRows_SelectedIndexChanged" CssClass="DropDownList1">
-                                    <asp:ListItem Selected="True">10</asp:ListItem>
-                                    <asp:ListItem>20</asp:ListItem>
-                                    <asp:ListItem>30</asp:ListItem>
-                                    <asp:ListItem>40</asp:ListItem>
-                                    <asp:ListItem>50</asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="btnFirst" runat="server" Text="First" CommandName="First" CssClass="GridPageFirstInactive"  OnCommand="GetPageIndex" ToolTip="First"/>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="btnPrevious" runat="server" Text="Previous" CommandName="Previous" CssClass="GridPagePreviousInactive" ToolTip="Previous"  OnCommand="GetPageIndex" />
-                                    
-                                </td>
-                                <td>
-                                        &nbsp;&nbsp;&nbsp;<asp:Label ID = "LblCurrPage" runat="server" Text="Page" CssClass="Label"></asp:Label>
-                                </td>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;<asp:DropDownList ID="ddlPage" CssClass="DropDownList1" runat="server" AutoPostBack="True" onselectedindexchanged="ddlPage_SelectedIndexChanged"></asp:DropDownList>
-                                    
-                                </td>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblOf" Text="of" runat="server" CssClass="Label"></asp:Label>
-                                </td>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblTotalPages" runat="server" CssClass="Label"></asp:Label>
+            </div>
+        </td>
+    </tr>
 
-                                </td>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="btnNext" runat="server" Text="Next" CommandName="Next" OnCommand="GetPageIndex" CssClass="GridPageNextInactive" ToolTip="Next"/>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <asp:Button ID="btnLast" runat="server" Text="Last" CommandName="Last"  OnCommand="GetPageIndex" CssClass="GridPageLastInactive" ToolTip="Last"/>
-                                </td>
-                                <td width="15%">
-                                &nbsp;
-                                </td>
-                                <td>
-                                    &nbsp;&nbsp;&nbsp;<asp:Label ID="lblTotalRecords" runat="server" CssClass="Label"></asp:Label>
-                                </td>
+
+    <tr>
+        <td style="padding: 7px 0px 7px">
+            <asp:Label runat="server" ID="DisplayMessagesLabel" CssClass="Label" ClientIDMode="Static" Text="<%$ Resources:locStrings, LBL_Messages_DisplayMessages %>" ></asp:Label>
+        </td>
+        <td style="padding: 7px 0px 7px; float:right">
+            <telerik:RadButton ID="ReleaseButton" runat="server" Skin="Windows7" ClientIDMode="Static" AutoPostBack="false" OnClientClicked="ReleaseButton_Click" CssClass="Label"  Text="<%$ Resources:locStrings, CMD_Messages_Release %>" Enabled="false" > </telerik:RadButton>
+        </td>
+    </tr>
+
+
+
+
+    <tr>
+    <td colspan="2" >
+    <telerik:RadAjaxPanel ID="MasterPanel" runat="server"  LoadingPanelID="RadAjaxLoadingPanel1" Width="100%" >
+
+    <telerik:RadGrid ID="MessagesGrid" runat="server" AllowPaging="true" PageSize="16" Height="350px" Width="100%" Skin="Office2007"
+        DataSourceID="objDsMessagesList" OnItemCommand="MessagesGrid_ItemCommand">
+
+        <ClientSettings AllowKeyboardNavigation="true" EnablePostBackOnRowClick="true">
+            <Selecting AllowRowSelect="true"></Selecting>
+            <ClientEvents OnGridCreated="MessagesGrid_OnGridCreated" />
+            <Scrolling AllowScroll="true" UseStaticHeaders="true" />
+        </ClientSettings>
+        <HeaderStyle HorizontalAlign="Center" />
+
+        <MasterTableView DataKeyNames="ID,OriginalMessage,TransilatedMessage,ModifiedMessage" ClientDataKeyNames="ID" AutoGenerateColumns="false">
+        <Columns>
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="ID" DataField="ID" UniqueName="ID" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_ID %>"> </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="status" DataField="status" UniqueName="status" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_Status %>"> </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="OFACViolation" DataField="OFACViolation" UniqueName="OFACViolation" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_OFACViolation %>"> </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="CreateDate" DataField="CreateDate" UniqueName="CreateDate" ItemStyle-HorizontalAlign="Center" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_CreateDate %>"> </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="ModifiedDate" DataField="ModifiedDate" UniqueName="ModifiedDate" ItemStyle-HorizontalAlign="Center" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_ModifiedDate %>"> </telerik:GridBoundColumn>
+                        
+                        <telerik:GridTemplateColumn UniqueName="TemplateColumn" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_Select %>" AllowFiltering="false" >
+                            <HeaderStyle Width="50px" />
+                            <ItemStyle HorizontalAlign="Center" Width="50px" />
+                            <ItemTemplate>
+                                <asp:CheckBox ID="MessagesCheckBox" runat="server" onClick="MessagesCheckBox_onClick(this)" ></asp:CheckBox>
+                            </ItemTemplate>
+                        </telerik:GridTemplateColumn>
+
+                        <telerik:GridBoundColumn DataField="OriginalMessage" UniqueName="OriginalMessage" Display="false" > </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="TransilatedMessage" UniqueName="TransilatedMessage" Display="false" > </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="ModifiedMessage" UniqueName="ModifiedMessage" Display="false" > </telerik:GridBoundColumn>
+                    </Columns>
+
+
+        <NestedViewTemplate>
+
+                        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" />
+                        <asp:Panel runat="server" ID="InnerContainer" CssClass="viewWrap" Visible="false">
+
+                        <asp:Label runat="server" ID="OriginalDetailsLabel" Text="<%$ Resources:locStrings, LBL_Messages_OriginalDetails %>" ></asp:Label>
+                        <br />
+
+                        <telerik:RadGrid ID="OriginalMessageGrid" runat="server" AllowMultiRowSelection="false" Skin="Office2007"
+                            OnNeedDataSource="OriginalMessageGrid_NeedDataSource" 
+                            onitemdatabound="OriginalMessageGrid_ItemDataBound" >
                                             
-                            </tr>
-                        </table>
-                                
-                        </ContentTemplate>
-                        </asp:UpdatePanel>
-         </asp:Panel>
-        <br />
+                            <ClientSettings>
+                                <Scrolling AllowScroll="true" UseStaticHeaders="true"  />
+                                <%--<ClientEvents OnRowSelected="OriginalMessageGrid_OnRowSelected" />--%>
+                                <Selecting AllowRowSelect="true" />
+                            </ClientSettings>                                
+                            <HeaderStyle HorizontalAlign="Center" />
+                            <ItemStyle CssClass="RowCSS" />
+                            <AlternatingItemStyle CssClass="RowCSS" />
 
-        <div  id="divPopUp" class="popUpStyle" runat="server">
-            <asp:Panel runat="Server" ID="panelDragHandle"  CssClass="drag">
-                <asp:Button runat="server" ID="btnShowModalPopup" style="display:none"/>
+                            <MasterTableView DataKeyNames="id" AutoGenerateColumns="false" >
+                                <Columns>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="col1" DataField="col1" UniqueName="col1" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_OriginalMessage %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="col2" DataField="col2" UniqueName="col2" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_TranslatedMessage %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="col3" DataField="col3" UniqueName="col3" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_ResponseMessage %>"> </telerik:GridBoundColumn>
 
-                <asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="btnShowModalPopup" PopupControlID="divPopUp" 
-                BackgroundCssClass="modalBackground" DropShadow="false"  />
-            
-                <br />
-                <table width="100%">
-                    <tr>
-                    <td align="center">
-                        <asp:Button ID="btnClose" runat="server"  Text="Close" CssClass="Button"   OnClick="btnClose_Click" />
-                    </td>
-                
-                    </tr>
-                
-                </table>
-                
-                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<asp:Label ID="lblMessageDetails" runat="server" CssClass="LabelCaption" Text="Message Details:"></asp:Label>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="id" DataField="id" UniqueName="id" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_ID %>" Visible="false"> </telerik:GridBoundColumn>
 
-                <br />
-                <br />
-               <asp:Panel ID="pnlSummary" runat="server" CssClass="Panel"  BackColor="white" Width="90%" Height="50px">
-                    <asp:label ID="lblRequestID" runat="server" Text="Request ID :" CssClass="Label"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblRequestValue" runat="server" CssClass="LabelValue"></asp:label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:label ID="lblMessageID" runat="server" Text="Message ID :" CssClass="Label"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblMessageValue" runat="server" CssClass="LabelValue"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblInterface" runat="server" Text="Interface Name" CssClass="Label"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblInterfaceValue" runat="server" CssClass="LabelValue"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblDescription" runat="server" Text="Current Status :" CssClass="Label"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblDescValue" runat="server" CssClass="LabelValue"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblCreateTime" runat="server" Text="Create Date :" CssClass="Label"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblCreateTimeValue" runat="server" CssClass="LabelValue"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblModifiedTime" runat="server" Text="Modified Date :" CssClass="Label"></asp:label> &nbsp;&nbsp;
-                    <asp:label ID="lblModifiedTimeValue" runat="server" CssClass="LabelValue"></asp:label> &nbsp;&nbsp;
-          
-                   
-	            </asp:Panel>
-                <br />
-                <asp:Panel ID="Panel3" runat="server" CssClass="Panel" Width="90%" ScrollBars="Vertical">
-	                <asp:GridView ID="grdShowDetails" runat="server" AutoGenerateColumns="False" AllowSorting="false" GridLines="None"
-	                     CssClass="GridViewStyle" Visible="true" Width="100%" >
-	                       
-                            
-	                        <HeaderStyle CssClass="HeaderStyle"  HorizontalAlign="Center"/>
-	                                   <PagerStyle CssClass="PagerStyle" />
-	                                   <AlternatingRowStyle  CssClass="AltRowStyle" />
-	                                   <EditRowStyle CssClass="EditRowStyle" /> 
-	                                   <RowStyle CssClass="RowStyle" HorizontalAlign="Left" /> 
-                            <Columns>
-                             <asp:TemplateField HeaderText="Original Message"  HeaderStyle-HorizontalAlign="Center">
-                            <ItemStyle HorizontalAlign="Left" />
-                            <ItemTemplate>
-                               <%# HighlightText(_sSearchString, (string) Eval("messagebody").ToString()).Replace("\r\n", "<br/>").Trim() %>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Translated Message" HeaderStyle-HorizontalAlign="Center">
-                            <ItemStyle HorizontalAlign="Left" />
-                            <ItemTemplate>
-                               <%# HighlightText(_sSearchString, (string)Eval("translatedmessage").ToString()).Replace("\r\n", "<br/>").Trim()%>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Response Message" HeaderStyle-HorizontalAlign="Center">
-                            <ItemStyle HorizontalAlign="Left" />
-                            <ItemTemplate>
-                               <%# HighlightText(_sSearchString, (string)Eval("responsemessage").ToString()).Replace("\r\n", "<br/>").Trim()%>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                            </Columns>
-                           
-	                   </asp:GridView>                          
-	            </asp:Panel>
-           
-             
-                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<asp:Label ID="lblRecCount" runat="server" Text='' CssClass="Label"></asp:Label>
-                    <br />   <br />
-                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<asp:Label ID="lblAuditMessage" runat="server" Text='Audit Details:' CssClass="LabelCaption"></asp:Label>
-                <br />
-                <br />
-                <asp:Panel ID="Panel4" runat="server" CssClass="Panel" Width="90%" ScrollBars="Vertical">  
-                    <asp:GridView ID="grdShowAudit" runat="server" AutoGenerateColumns="False" GridLines="None"
-                                    Width="100%" 
-                        CssClass="GridViewStyle" Visible="true" >
-                
-                         <HeaderStyle  HorizontalAlign="Center" CssClass="HeaderStyle" />
-                                    <PagerStyle CssClass="PagerStyle" />
-                                    <AlternatingRowStyle  CssClass="AltRowStyle" />
-                                    <EditRowStyle CssClass="EditRowStyle" /> 
-                                    <RowStyle CssClass="RowStyle" /> 
-                        <Columns>
-                             <asp:TemplateField HeaderText="ID"  HeaderStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
-                            <ItemStyle HorizontalAlign="Center" />
-                            <ItemTemplate>
-                               <%# Eval("ID").ToString().Trim() %>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Audit Status" HeaderStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            <ItemTemplate>
-                               <%# Eval("description").ToString().Trim()%>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Level" HeaderStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            <ItemTemplate>
-                               <%# Eval("Level").ToString().Trim()%>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Create Date" HeaderStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            <ItemTemplate>
-                               <%# Eval("CreatedDateTime").ToString().Trim()%>
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Audit Message" HeaderStyle-HorizontalAlign="Center" >
-                            <ItemStyle HorizontalAlign="Center" />
-                            <ItemTemplate>
-                               <%# Eval("Message").ToString().Trim()%>
-                            </ItemTemplate>
-                            </asp:TemplateField>
+                                </Columns>
+                            </MasterTableView>
+                        </telerik:RadGrid>
 
-                            </Columns>
-                    </asp:GridView>                          
-                </asp:Panel>
-           </asp:Panel>
-        </div>
-      </ContentTemplate>
+                        <asp:Label runat="server" ID="AuditDetailsLabel" Text="<%$ Resources:locStrings, LBL_Messages_AuditDetails %>" ></asp:Label>
+                        <br />
 
-   </asp:UpdatePanel>     
-        
-        
-        
+                        <telerik:RadGrid ID="AuditGrid" runat="server" AllowPaging="true" PageSize="6" Skin="Office2007"
+                            AllowMultiRowSelection="false"
+                            OnNeedDataSource="AuditGrid_NeedDataSource" >
+                        
+                            <ClientSettings>
+                                <Selecting AllowRowSelect="true" />
+                                <Scrolling AllowScroll="true" UseStaticHeaders="true"  />
+                            </ClientSettings>
+                            <HeaderStyle HorizontalAlign="Center" />
+                            <ItemStyle CssClass="RowCSS" />
+                            <AlternatingItemStyle CssClass="RowCSS" />
+
+                            <MasterTableView DataKeyNames="id" AutoGenerateColumns="false">
+                                <Columns>
+                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="ID" DataField="ID" UniqueName="ID" HeaderStyle-Width="85px" ItemStyle-Width="85px" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_ID %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="Description" DataField="Description" UniqueName="Description" HeaderStyle-Width="225px" ItemStyle-Width="225px" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_AuditStatus %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="Level" DataField="Level" UniqueName="Level" HeaderStyle-Width="175px" ItemStyle-Width="175px" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_Level %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="CreatedDateTime" DataField="CreatedDateTime" ItemStyle-HorizontalAlign="Center" UniqueName="CreatedDateTime" HeaderStyle-Width="150px" ItemStyle-Width="150px"  HeaderText="<%$ Resources:locStrings, GV_COL_Messages_CreateDate %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="message" DataField="message" UniqueName="message" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_AuditMessage %>"> </telerik:GridBoundColumn>
+                                </Columns>
+                            </MasterTableView>
+
+                        </telerik:RadGrid>
+
+                        </asp:Panel>
+                    </NestedViewTemplate>  
+
+        </MasterTableView>
+
+    </telerik:RadGrid>
+
+    </telerik:RadAjaxPanel>
+
+    </td>
+    </tr>
+
+    <tr>
+    <td colspan="2" style="padding: 4px 0px 0px" >
+
+    <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server"  LoadingPanelID="RadAjaxLoadingPanel1" Width="100%" >
+
+    <telerik:RadGrid ID="RadGrid2" ShowStatusBar="true" runat="server" Height="105px" Width="100%"
+        Skin="Office2007"
+        DataSourceID="SqlDSTranslations">
+
+        <ClientSettings>
+            <Selecting AllowRowSelect="true" />
+            <Scrolling AllowScroll="true" UseStaticHeaders="true" />
+            <ClientEvents OnGridCreated="RadGrid1_OnGridCreated" />
+        </ClientSettings>
+
+        <MasterTableView  AutoGenerateColumns="False" DataKeyNames="id,CTCCode,ChineseChar" DataSourceID="SqlDSTranslations">
+
+            <Columns>                        
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="CTCCode" DataField="CTCCode" UniqueName="CTCCode" HeaderText="<%$ Resources:locStrings, GV_COl_Messages_CTCCode %>"> </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="ChineseChar" DataField="ChineseChar" UniqueName="ChineseChar" HeaderText="<%$ Resources:locStrings, GV_COl_Messages_ChineseChar %>"> </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="OldTrans" DataField="OldTrans" UniqueName="OldTrans" HeaderText="<%$ Resources:locStrings, GV_COl_Messages_OldTrans %>"> </telerik:GridBoundColumn>
+                        
+                        <telerik:GridTemplateColumn HeaderText="<%$ Resources:locStrings, GV_COl_Messages_NewTrans %>" UniqueName="value">
+                            <ItemTemplate>
+                                <telerik:RadTextBox runat="server" Text='<%# Eval("NewTrans") %>' ID="NewTransTextBox" Width="99%" ClientEvents-OnValueChanged="NewTransTextBox_OnValueChanged" > </telerik:RadTextBox>
+                            </ItemTemplate>
+                        </telerik:GridTemplateColumn>
+
+                        <telerik:GridTemplateColumn UniqueName="ReviewColumn" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_Review %>" AllowFiltering="false" >
+                            <HeaderStyle Width="55px" />
+                            <ItemStyle HorizontalAlign="Center" Width="55px" />
+                            <ItemTemplate>
+                                <asp:CheckBox ID="ReviewedCheckBox" runat="server" Checked='<%# Eval("Reviewed") %>' onClick="ReviewedCheckBox_onClick(this)"></asp:CheckBox>
+                            </ItemTemplate>
+                        </telerik:GridTemplateColumn>
+
+                        <telerik:GridTemplateColumn UniqueName="ApproveColumn" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_Approve %>" AllowFiltering="false" >
+                            <HeaderStyle Width="60px" />
+                            <ItemStyle HorizontalAlign="Center" Width="60px" />
+                            <ItemTemplate>
+                                <asp:CheckBox ID="ApprovedCheckBox" runat="server" Checked='<%# Eval("Approved") %>' onClick="ApprovedCheckBox_onClick(this)"></asp:CheckBox>
+                            </ItemTemplate>
+                        </telerik:GridTemplateColumn>
+
+                        <telerik:GridTemplateColumn UniqueName="UpdatedColumn" AllowFiltering="false" Display="false" >
+                            <ItemTemplate>
+                                <asp:CheckBox ID="UpdatedCheckBox" runat="server" ></asp:CheckBox>
+                            </ItemTemplate>
+                        </telerik:GridTemplateColumn>
+
+                        <telerik:GridBoundColumn DataField="id" UniqueName="id" Display="false">  </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="NewTrans" UniqueName="NewTrans1" Display="false" > </telerik:GridBoundColumn>
+                    </Columns>
+
+        </MasterTableView>
+
+        <ClientSettings AllowKeyboardNavigation="true" EnablePostBackOnRowClick="true">
+            <Selecting AllowRowSelect="true"></Selecting>
+        </ClientSettings>
+
+        <PagerStyle Mode="NextPrevAndNumeric"></PagerStyle>
+
+    </telerik:RadGrid>
+
+    </telerik:RadAjaxPanel>
+
+    </td>
+    </tr>
+
+        <tr>
+        <td colspan="2" style="float:right; padding-top:4px">
+            <telerik:RadButton ID="UpdateButton" runat="server" Width="75px" Skin="Windows7" ClientIDMode="Static" OnClick="UpdateButton_OnClick" CssClass="Label"   Text="<%$ Resources:locStrings, CMD_Messages_Update %>" > </telerik:RadButton>
+        </td>
+    </tr>
+
+    </table>
+
+
+<asp:ObjectDataSource runat="server" ID="objDsMessagesList" TypeName="Telavance.AdvantageSuite.Wei.WeiDashboard.DataSources.cDS_Messages_ListDataSource"
+                    SelectCountMethod="GetTotalRecords" SelectMethod="GetList" EnablePaging="true"
+                    StartRowIndexParameterName="startIndex" MaximumRowsParameterName="pageSize" SortParameterName="sortExpression"
+                    OnSelecting="DataSourceSelecting" >
+
+<SelectParameters>
+    <asp:ControlParameter Name="strStartDate"   ControlID="FromDatePicker"              PropertyName="SelectedDate" Type="String"   DefaultValue="" />
+    <asp:ControlParameter Name="strEndDate"     ControlID="ToDatePicker"                PropertyName="SelectedDate" Type="String"   DefaultValue="" />
+    <asp:ControlParameter Name="intStatus"      ControlID="rcbStatus"                   PropertyName="SelectedValue" Type="Int32"   DefaultValue="1" />
+    <asp:ControlParameter Name="bHasCTC"        ControlID="MessagesWithCTCCheckBox"     PropertyName="Checked"      Type="Boolean"  DefaultValue="0" />
+    <asp:ControlParameter Name="bIsError"       ControlID="MessagesWithErrorsCheckBox"  PropertyName="Checked"      Type="Boolean"  DefaultValue="0" />
+    <asp:ControlParameter Name="strSearchText"  ControlID="MeaasgeTextBox"              PropertyName="Text"         Type="String"   DefaultValue="" />
+</SelectParameters>
+
+</asp:ObjectDataSource>
+
+<asp:SqlDataSource OnSelecting="SqlDSTranslations_OnSelecting"  ID="SqlDSTranslations" runat="server"   
+                    SelectCommand="Wei_GetTranslations" SelectCommandType="StoredProcedure" DataSourceMode="DataSet"  >
+    <SelectParameters>
+        <asp:Parameter Name="RequestsID" Type="Int32" DefaultValue="0" />
+    </SelectParameters>
+</asp:SqlDataSource>
+
 </asp:Content>
-
