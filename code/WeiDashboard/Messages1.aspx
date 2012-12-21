@@ -115,7 +115,7 @@
             <asp:Label runat="server" ID="DisplayMessagesLabel" CssClass="Label" ClientIDMode="Static" Text="<%$ Resources:locStrings, LBL_Messages_DisplayMessages %>" ></asp:Label>
         </td>
         <td style="padding: 7px 0px 7px; float:right">
-            <telerik:RadButton ID="ReleaseButton" runat="server" Skin="Windows7" ClientIDMode="Static" AutoPostBack="false" OnClientClicked="ReleaseButton_Click" CssClass="Label"  Text="<%$ Resources:locStrings, CMD_Messages_Release %>" Enabled="false" > </telerik:RadButton>
+            <telerik:RadButton ID="ReleaseButton" runat="server" Skin="Windows7" ClientIDMode="Static" OnClientClicked="ReleaseButton_Click" OnClick="ReleaseButton_OnClick"  CssClass="Label"  Text="<%$ Resources:locStrings, CMD_Messages_Release %>" Enabled="false" > </telerik:RadButton>
         </td>
     </tr>
 

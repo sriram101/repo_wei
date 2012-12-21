@@ -198,5 +198,27 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
                 throw ex;
             }
         }
+
+        public void AddAudit(int RequestId, int AuditLevel, string Message, string CreatedOper)
+        {
+            try
+            {
+                string sStoreProcName = "Wei_AddAudit";
+                DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
+
+                _weidb.AddInParameter(dbCommand, "@RequestID", DbType.Int32, RequestId);
+                _weidb.AddInParameter(dbCommand, "@AuditLevel", DbType.Int32, AuditLevel);
+                _weidb.AddInParameter(dbCommand, "@Message", DbType.String, Message);
+                _weidb.AddInParameter(dbCommand, "@CreatedOper", DbType.String, CreatedOper);
+
+                _weidb.ExecuteDataSet(dbCommand);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }

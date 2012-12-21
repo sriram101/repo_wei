@@ -237,5 +237,20 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard.Pages
                 }
             }
         }
+
+        protected void ReleaseButton_OnClick(object sender, EventArgs e)
+        {
+
+            foreach (GridDataItem row in MessagesGrid.MasterTableView.Items)
+            {
+                if (((CheckBox)row.FindControl("MessagesCheckBox")).Checked)
+                {
+                    int RequestID = Convert.ToInt32(row.GetDataKeyValue("ID").ToString());
+                    string ReviewOper = mstrUserName;
+
+                    mdbUtils.AddAudit(RequestID, 1, "User released request to OFAC check", ReviewOper);
+                }
+            }
+        }
     }
 }
