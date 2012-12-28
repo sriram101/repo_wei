@@ -4,13 +4,31 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>Telavance WEI Dashboard</title>
     <link href="../Styles/MasterPage.css" rel="Stylesheet" type="text/css" />
+    
 
 <asp:ContentPlaceHolder ID="head" runat="server">    
 </asp:ContentPlaceHolder>
+
+<%--<script type="text/javascript">
+    function SupportLinkButton_OnClientClick() {
+        var Page = "Support.aspx";
+        var Settings = "title.text:'Support';titlebar:0;center:yes;resizable:no;dialogWidth:345px;dialogHeight:210px;status:no;scroll:no;";
+        var objReturn = window.showModalDialog(Page, "", Settings);
+    }
+
+    function AboutLinkButton_OnClientClick() {
+        debugger;
+        var Page = "About.aspx";
+        var Settings = "title.text:'About';titlebar:0;center:yes;resizable:no;dialogWidth:575px;dialogHeight:350px;status:no;scroll:no;";
+        var objReturn = window.showModalDialog(Page, "", Settings);
+    }
+
+</script>--%>
 
 </head>
 
@@ -35,9 +53,9 @@
              <div class="menu">
                 <table>
                     <tr>
-                        <td style="width:80px"> <asp:LinkButton runat="server" ID="SupportLinkButton" Text="Support" ></asp:LinkButton></td>
-                        <td style="width:80px"> <asp:LinkButton runat="server" ID="LinkButton1" Text="About" ></asp:LinkButton></td>
-                        <td style="width:80px"> <asp:LinkButton runat="server" ID="LinkButton3" Text="Close" ></asp:LinkButton></td>
+                        <td style="width:80px"> <asp:LinkButton runat="server" ID="SupportLinkButton" Text="Support" OnClientClick="SupportLinkButton_OnClientClick()" ></asp:LinkButton></td>
+                        <td style="width:80px"> <asp:LinkButton runat="server" ID="AboutLinkButton" Text="About" OnClientClick="AboutLinkButton_OnClientClick()" ></asp:LinkButton></td>
+                        <td style="width:80px"> <asp:LinkButton runat="server" ID="CloseLinkButton" OnClientClick="window.close()" Text="Close" ></asp:LinkButton></td>
                     </tr>
                 </table>
                 <%--<asp:LinkButton runat="server" ID="LinkButton2" Text="Support" ></asp:LinkButton>

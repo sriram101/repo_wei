@@ -58,7 +58,7 @@
       <HintPath>..\..\ReferenceDLLs\Microsoft_Enterprise_Library\5.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\..\Enteprise Library\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>Enteprise_Library\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -115,9 +115,12 @@
     <Content Include="Messages1.aspx" />
     <Content Include="myAccel.xml" />
     <Content Include="PageNotFound.aspx" />
+    <Content Include="Pages\CustomErrorPage.aspx" />
+    <Content Include="Pages\Logout.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\MasterPage.js" />
     <Content Include="Scripts\Messages.js" />
     <Content Include="Styles\Generic.css" />
     <Content Include="Styles\MasterPage.css" />
@@ -177,6 +180,20 @@
     <Compile Include="PageNotFound.aspx.designer.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CustomErrorPage.aspx.cs">
+      <DependentUpon>CustomErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CustomErrorPage.aspx.designer.cs">
+      <DependentUpon>CustomErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WEIDashboard.Master.cs">
       <DependentUpon>WEIDashboard.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -229,6 +246,7 @@
       <LastGenOutput>locStrings.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

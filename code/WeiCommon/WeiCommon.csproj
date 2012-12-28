@@ -65,6 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\ADConfiguration.cs" />
+    <Compile Include="Config\ADConfigurationHandler.cs" />
     <Compile Include="Config\BypassConfigElement.cs" />
     <Compile Include="Config\BypassConfigElementCollection.cs" />
     <Compile Include="Config\CredentialConfigElement.cs" />

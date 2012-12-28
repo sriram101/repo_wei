@@ -49,22 +49,22 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard.Pages {
         protected global::System.Web.UI.WebControls.LinkButton SupportLinkButton;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// AboutLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton AboutLinkButton;
         
         /// <summary>
-        /// LinkButton3 control.
+        /// CloseLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.LinkButton CloseLinkButton;
         
         /// <summary>
         /// ContentPlaceHolder1 control.
