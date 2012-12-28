@@ -42,12 +42,13 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
+using System.Linq;
 using System.Diagnostics;
+using System.Web.Security;
 using System.Web.SessionState;
+using System.Security.Principal;
+using System.Collections.Generic;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
 
 namespace Telavance.AdvantageSuite.Wei.WeiDashboard
@@ -79,14 +80,23 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 
             }
 
-            Server.Transfer("CustomErrorPage.aspx");
+            Server.Transfer("/pages/CustomErrorPage.aspx");
 
         }
 
         void Session_Start(object sender, EventArgs e)
         {
             // Code that runs when a new session is started
+            //Cookie set for 20 minutes
 
+            HttpCookieCollection CookieColl = Request.Cookies;
+            if (Request.Cookies["WEI"] == null)
+            {
+                HttpCookie WEICookie = new HttpCookie("WEI");
+                WEICookie["user"] = WindowsIdentity.GetCurrent().Name;
+                WEICookie.Expires = DateTime.Now.AddMinutes(20);
+                Response.Cookies.Add(WEICookie);
+            }
         }
 
         void Session_End(object sender, EventArgs e)

@@ -7,18 +7,18 @@ var ClientID = "";
 
 var objUserType = { "Reviewer": "Reviewer", "Approver": "Approver" }
 
-Sys.Application.add_init(application_init);
+//Sys.Application.add_init(application_init);
 
-function application_init() {
-    var prm = Sys.WebForms.PageRequestManager.getInstance();
-    prm.add_endRequest(prm_endRequest);
-}
+//function application_init() {
+//    var prm = Sys.WebForms.PageRequestManager.getInstance();
+//    prm.add_endRequest(prm_endRequest);
+//}
 
-function prm_endRequest() {
-    if (null != mMessagesMTV && null != mRadGrid1MTV) {
-        //mRadGrid1MTV.rebind();
-    }
-}
+//function prm_endRequest() {
+////    if (null != mMessagesMTV && null != mRadGrid1MTV) {
+////        mRadGrid1MTV.rebind();
+////    }
+//}
 
 function pageLoad() {
     //$find("FromDatePicker").get_dateInput().focus();
@@ -32,7 +32,7 @@ function pageLoad() {
     }
 
     ClientID = document.getElementById("strPanelClientID").value;
-    prm_endRequest();
+    //prm_endRequest();
 }
 
 function ListButton_Click() {
@@ -76,6 +76,11 @@ function ListButton_Click() {
 
 function MessagesGrid_OnGridCreated(sender, eventArgs) {
     mMessagesMTV = sender.get_masterTableView();
+//    if (null != mMessagesMTV.get_selectedItems()) {
+//        if (null != mMessagesMTV && null != mRadGrid1MTV) {
+//            mRadGrid1MTV.rebind();
+//        }
+//    }
 }
 
 function LabelValueGrid_OnGridCreated(sender, eventArgs) {
@@ -115,8 +120,8 @@ function RefreshMessagesButton_Click() {
 function MessagesGrid_OnRowSelected(sender, eventArgs) {
     document.getElementById("hfRequestsID").value = eventArgs.getDataKeyValue("id");
 
-    //    if (null != mLabelValueMTV) { mLabelValueMTV.rebind(); }
-    //if (null != mRadGrid1MTV) { mRadGrid1MTV.rebind(); }
+    //if (null != mLabelValueMTV) { mLabelValueMTV.rebind(); }
+    if (null != mRadGrid1MTV) { mRadGrid1MTV.rebind(); }
 
     if ($find(document.getElementById("strPanelClientID").value)) {
         $find(document.getElementById("strPanelClientID").value).ajaxRequest(document.getElementById("hfRequestsID").value);

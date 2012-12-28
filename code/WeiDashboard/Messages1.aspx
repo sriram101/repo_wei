@@ -11,6 +11,7 @@
 <telerik:RadScriptManager runat="server" ID="RadScriptManager1" >
 <Scripts>
         <asp:ScriptReference Path="~/Scripts/Messages.js" />
+        <asp:ScriptReference Path="~/Scripts/MasterPage.js" />
     </Scripts>
 </telerik:RadScriptManager>
 
@@ -127,7 +128,7 @@
     <telerik:RadAjaxPanel ID="MasterPanel" runat="server"  LoadingPanelID="RadAjaxLoadingPanel1" Width="100%" >
 
     <telerik:RadGrid ID="MessagesGrid" runat="server" AllowPaging="true" PageSize="16" Height="350px" Width="100%" Skin="Office2007"
-        DataSourceID="objDsMessagesList" OnItemCommand="MessagesGrid_ItemCommand">
+        DataSourceID="objDsMessagesList" OnItemCommand="MessagesGrid_ItemCommand" OnItemDataBound="MessagesGrid_OnItemDataBound">
 
         <ClientSettings AllowKeyboardNavigation="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true"></Selecting>
@@ -236,8 +237,7 @@
     <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server"  LoadingPanelID="RadAjaxLoadingPanel1" Width="100%" >
 
     <telerik:RadGrid ID="RadGrid2" ShowStatusBar="true" runat="server" Height="105px" Width="100%"
-        Skin="Office2007"
-        DataSourceID="SqlDSTranslations">
+        Skin="Office2007" DataSourceID="SqlDSTranslations" OnItemDataBound="RadGrid2_OnItemDataBound">
 
         <ClientSettings>
             <Selecting AllowRowSelect="true" />
