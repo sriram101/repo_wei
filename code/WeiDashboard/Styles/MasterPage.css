@@ -1,67 +1,67 @@
-﻿.page
-{
-    width: 1160px;
-    background-color: #fff;
-    margin: 0px auto 0px auto;    
-}
-
-.header
-{
-    position: relative;
-    margin: 0px;
-    padding: 0px;
-    width: 100%;
-    border: 1px solid black;
-}
-
-
-.title
-{
-    display: block;
-    float: left;
-    text-align: left;
-    width: auto;
-    padding: 5px 5px 5px 5px;    
-}
-
-.menu
-{
-	float:right;
-	padding: 10px;
-	font-size: 1.1em;
-	font-family: Calibri;
-	font-size: 13px;
-}
-
-.loginDisplay
-{
-    font-size: 1.1em;
-    display: block;
-    text-align: right;
-    padding: 10px;
-    color: White;
-}
-
-.main
-{
-    /*padding: 0px 12px;*/
-    margin-top: 2px;
-    min-height: 420px;
-    /*border: 1px solid #496077;*/
-}
-
-.LabelHeading
-{
-	padding-right: 6px;
-	outline-color:Blue;
-	vertical-align:top;
-	text-transform: capitalize;
-	width: 145px;
-	font-family: Arial, Helvetica, Verdana, sans-serif;
-	height: 20px;
-	text-align: left;
-	white-space:nowrap;
-	font-weight:bold;
-	font-size:24px;
-	color:Navy;
+﻿.page
+{
+    width: 1160px;
+    background-color: #fff;
+    margin: 0px auto 0px auto;    
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+    padding: 5px 5px 5px 5px;    
+}
+
+.menu
+{
+	float:right;
+	padding: 10px;
+	font-size: 1.1em;
+	font-family: Calibri;
+	font-size: 13px;
+}
+
+.loginDisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    color: White;
+}
+
+.main
+{
+    /*padding: 0px 12px;*/
+    margin-top: 2px;
+    min-height: 420px;
+    /*border: 1px solid #496077;*/
+}
+
+.LabelHeading
+{
+	padding-right: 6px;
+	outline-color:Blue;
+	vertical-align:top;
+	text-transform: capitalize;
+	width: 145px;
+	font-family: Arial, Helvetica, Verdana, sans-serif;
+	height: 20px;
+	text-align: left;
+	white-space:nowrap;
+	font-weight:bold;
+	font-size:24px;
+	color:Navy;
 }
