@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head id="Head1" runat="server">
 <meta http-equiv="content-type" content="text/html;charset=gb2312" /> 
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
 <asp:ContentPlaceHolder ID="HeadContent" runat="server">
 </asp:ContentPlaceHolder>
     <title>Telavance WEI Dashboard</title>
@@ -29,8 +30,8 @@
         function open_win(url_add) {
             window.open(url_add, 'Popup', 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no,height=400px,width=550px');
         }
-       
-       
+
+        
     
     </script>
     <link href="Styles/Style.css" rel="stylesheet" type="text/css" />
@@ -40,6 +41,7 @@
              <div class="page">
         
              <asp:Panel ID="Panel1" runat="server" CssClass="Panel">
+                
                  <table id="tblHeader">
                      <tr>
                          <td>
@@ -48,19 +50,39 @@
                          <td class="style1">
                              <asp:Label ID="lblCpation" runat="server" CssClass="LabelHeading"> WEI<sup class="Sup">TM</sup> Dashboard</asp:Label>
                          </td>
-                         <td align="right" class="style3">
+                         <td align="center" class="style2">
                             <asp:LinkButton ID="lnkSupport" CssClass="HyperLink" runat="server">Support</asp:LinkButton>
                              
                          </td>
-                         <td align="right" class="style2">
+                         <td align="center" class="style2">
                             <asp:LinkButton ID="lnkAbout" CssClass="HyperLink" runat="server">About</asp:LinkButton>
                              
                          </td>
-                         <td align="right" class="style2">
+                         <td align="center" class="style2">
+                            <asp:LinkButton ID="lnkSignOut" CssClass="HyperLink" runat="server" OnClick="LinkButton_Click" >Sign Out</asp:LinkButton>
+                             
+                         </td>
+                         <td align="center" class="style2">
                             <asp:LinkButton ID="lnkClose" CssClass="HyperLink" runat="server" OnClientClick="window.close()">Close</asp:LinkButton>
                              
                          </td>
     
+                     </tr>
+                     
+                     <tr>
+                        <td colspan="2">&nbsp;</td>
+                        <td align="right">
+                            <asp:Label ID="lblWelcome" runat="server" CssClass="LabelCaption">Welcome:</asp:Label>
+                        </td>
+                        <td align="right">
+                            <asp:Label ID="lblUser" runat="server" CssClass="Label"></asp:Label>
+                        </td>
+                        <td align="right">
+                            <asp:Label ID="lblRoleName" runat="server" CssClass="LabelCaption">Role:</asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="lblUserRole" runat="server" CssClass="Label"></asp:Label>
+                        </td>
                      </tr>
                  </table>
              </asp:Panel>

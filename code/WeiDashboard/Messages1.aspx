@@ -11,7 +11,6 @@
 <telerik:RadScriptManager runat="server" ID="RadScriptManager1" >
 <Scripts>
         <asp:ScriptReference Path="~/Scripts/Messages.js" />
-        <asp:ScriptReference Path="~/Scripts/MasterPage.js" />
     </Scripts>
 </telerik:RadScriptManager>
 
@@ -116,7 +115,7 @@
             <asp:Label runat="server" ID="DisplayMessagesLabel" CssClass="Label" ClientIDMode="Static" Text="<%$ Resources:locStrings, LBL_Messages_DisplayMessages %>" ></asp:Label>
         </td>
         <td style="padding: 7px 0px 7px; float:right">
-            <telerik:RadButton ID="ReleaseButton" runat="server" Skin="Windows7" ClientIDMode="Static" OnClientClicked="ReleaseButton_Click" OnClick="ReleaseButton_OnClick"  CssClass="Label"  Text="<%$ Resources:locStrings, CMD_Messages_Release %>" Enabled="false" > </telerik:RadButton>
+            <telerik:RadButton ID="ReleaseButton" runat="server" Skin="Windows7" ClientIDMode="Static" AutoPostBack="false" OnClientClicked="ReleaseButton_Click" CssClass="Label"  Text="<%$ Resources:locStrings, CMD_Messages_Release %>" Enabled="false" > </telerik:RadButton>
         </td>
     </tr>
 
@@ -128,7 +127,7 @@
     <telerik:RadAjaxPanel ID="MasterPanel" runat="server"  LoadingPanelID="RadAjaxLoadingPanel1" Width="100%" >
 
     <telerik:RadGrid ID="MessagesGrid" runat="server" AllowPaging="true" PageSize="16" Height="350px" Width="100%" Skin="Office2007"
-        DataSourceID="objDsMessagesList" OnItemCommand="MessagesGrid_ItemCommand" OnItemDataBound="MessagesGrid_OnItemDataBound">
+        DataSourceID="objDsMessagesList" OnItemCommand="MessagesGrid_ItemCommand">
 
         <ClientSettings AllowKeyboardNavigation="true" EnablePostBackOnRowClick="true">
             <Selecting AllowRowSelect="true"></Selecting>
@@ -209,11 +208,11 @@
 
                             <MasterTableView DataKeyNames="id" AutoGenerateColumns="false">
                                 <Columns>
-                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="ID" DataField="ID" UniqueName="ID" HeaderStyle-Width="85px" ItemStyle-Width="85px" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_ID %>"> </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="Description" DataField="Description" UniqueName="Description" HeaderStyle-Width="225px" ItemStyle-Width="225px" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_AuditStatus %>"> </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="Level" DataField="Level" UniqueName="Level" HeaderStyle-Width="175px" ItemStyle-Width="175px" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_Level %>"> </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="CreatedDateTime" DataField="CreatedDateTime" ItemStyle-HorizontalAlign="Center" UniqueName="CreatedDateTime" HeaderStyle-Width="150px" ItemStyle-Width="150px"  HeaderText="<%$ Resources:locStrings, GV_COL_Messages_CreateDate %>"> </telerik:GridBoundColumn>
-                                    <telerik:GridBoundColumn HeaderButtonType="TextButton" SortExpression="message" DataField="message" UniqueName="message" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_AuditMessage %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="ID" DataField="ID" UniqueName="ID" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_ID %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="Description" DataField="Description" UniqueName="Description" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_AuditStatus %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="Level" DataField="Level" UniqueName="Level" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_Level %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="CreatedDateTime" DataField="CreatedDateTime" ItemStyle-HorizontalAlign="Center" UniqueName="CreatedDateTime" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_CreateDate %>"> </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="message" DataField="message" UniqueName="message" HeaderText="<%$ Resources:locStrings, GV_COL_Messages_AuditMessage %>"> </telerik:GridBoundColumn>
                                 </Columns>
                             </MasterTableView>
 
@@ -237,7 +236,8 @@
     <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server"  LoadingPanelID="RadAjaxLoadingPanel1" Width="100%" >
 
     <telerik:RadGrid ID="RadGrid2" ShowStatusBar="true" runat="server" Height="105px" Width="100%"
-        Skin="Office2007" DataSourceID="SqlDSTranslations" OnItemDataBound="RadGrid2_OnItemDataBound">
+        Skin="Office2007"
+        DataSourceID="SqlDSTranslations">
 
         <ClientSettings>
             <Selecting AllowRowSelect="true" />
@@ -245,7 +245,7 @@
             <ClientEvents OnGridCreated="RadGrid1_OnGridCreated" />
         </ClientSettings>
 
-        <MasterTableView  AutoGenerateColumns="False" DataKeyNames="id,CTCCode,ChineseChar" DataSourceID="SqlDSTranslations">
+        <MasterTableView  AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDSTranslations">
 
             <Columns>                        
                         <telerik:GridBoundColumn HeaderStyle-Width="20%" HeaderButtonType="TextButton" SortExpression="CTCCode" DataField="CTCCode" UniqueName="CTCCode" HeaderText="<%$ Resources:locStrings, GV_COl_Messages_CTCCode %>"> </telerik:GridBoundColumn>

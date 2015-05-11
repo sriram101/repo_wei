@@ -13,13 +13,22 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
     public partial class Messages {
         
         /// <summary>
-        /// objScriptManager control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager objScriptManager;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// Timer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer Timer1;
         
         /// <summary>
         /// Panel1 control.
@@ -85,42 +94,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
         
         /// <summary>
-        /// lblSearchText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSearchText;
-        
-        /// <summary>
-        /// txtSearchText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchText;
-        
-        /// <summary>
-        /// lblMessageStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessageStatus;
-        
-        /// <summary>
-        /// ddlMessageStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMessageStatus;
-        
-        /// <summary>
         /// lblToDate control.
         /// </summary>
         /// <remarks>
@@ -155,6 +128,42 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        
+        /// <summary>
+        /// lblMessageStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessageStatus;
+        
+        /// <summary>
+        /// ddlMessageStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMessageStatus;
+        
+        /// <summary>
+        /// lblSearchText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchText;
+        
+        /// <summary>
+        /// txtSearchText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchText;
         
         /// <summary>
         /// chkShowCTC control.
@@ -202,15 +211,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
-        
-        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -238,31 +238,13 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.WebControls.Button btnProcessError;
         
         /// <summary>
-        /// Timer1 control.
+        /// Panel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
-        
-        /// <summary>
-        /// ParentPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel ParentPanel;
-        
-        /// <summary>
-        /// grdPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel grdPanel;
+        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
         /// grdShowMessages control.
@@ -382,6 +364,33 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.WebControls.Label lblTotalRecords;
         
         /// <summary>
+        /// upnlGrdPaging control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upnlGrdPaging;
+        
+        /// <summary>
+        /// divPopUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPopUp;
+        
+        /// <summary>
+        /// panelDragHandle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelDragHandle;
+        
+        /// <summary>
         /// btnShowModalPopup control.
         /// </summary>
         /// <remarks>
@@ -400,31 +409,22 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
         
         /// <summary>
-        /// divPopup control.
+        /// btnClose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPopup;
+        protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
-        /// panelDragHandle control.
+        /// lblMessageDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelDragHandle;
-        
-        /// <summary>
-        /// upPopUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upPopUp;
+        protected global::System.Web.UI.WebControls.Label lblMessageDetails;
         
         /// <summary>
         /// pnlSummary control.
@@ -452,6 +452,24 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRequestValue;
+        
+        /// <summary>
+        /// lblMessageID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessageID;
+        
+        /// <summary>
+        /// lblMessageValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessageValue;
         
         /// <summary>
         /// lblInterface control.
@@ -526,67 +544,40 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.WebControls.Label lblModifiedTimeValue;
         
         /// <summary>
-        /// lblNote control.
+        /// Panel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNote;
+        protected global::System.Web.UI.WebControls.Panel Panel3;
         
         /// <summary>
-        /// lblNoteValue control.
+        /// grdShowDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoteValue;
+        protected global::System.Web.UI.WebControls.GridView grdShowDetails;
         
         /// <summary>
-        /// tbContainer control.
+        /// lblRecCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer tbContainer;
+        protected global::System.Web.UI.WebControls.Label lblRecCount;
         
         /// <summary>
-        /// tbTranslations control.
+        /// lblAuditMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tbTranslations;
-        
-        /// <summary>
-        /// Panel6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel6;
-        
-        /// <summary>
-        /// grdShowTranslations control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdShowTranslations;
-        
-        /// <summary>
-        /// tbOriginalMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tbOriginalMessage;
+        protected global::System.Web.UI.WebControls.Label lblAuditMessage;
         
         /// <summary>
         /// Panel4 control.
@@ -598,69 +589,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.WebControls.Panel Panel4;
         
         /// <summary>
-        /// lblOriginalMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOriginalMessage;
-        
-        /// <summary>
-        /// lblTranslatedMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTranslatedMessage;
-        
-        /// <summary>
-        /// txtMessagebody control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMessagebody;
-        
-        /// <summary>
-        /// txtTranslatedmessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTranslatedmessage;
-        
-        /// <summary>
-        /// tbAudit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel tbAudit;
-        
-        /// <summary>
-        /// ChildControl2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel ChildControl2;
-        
-        /// <summary>
-        /// pnlAudit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAudit;
-        
-        /// <summary>
         /// grdShowAudit control.
         /// </summary>
         /// <remarks>
@@ -668,77 +596,5 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdShowAudit;
-        
-        /// <summary>
-        /// panEmpty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panEmpty;
-        
-        /// <summary>
-        /// btnFirstRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFirstRequest;
-        
-        /// <summary>
-        /// btnPreviousRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPreviousRequest;
-        
-        /// <summary>
-        /// btnNextRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNextRequest;
-        
-        /// <summary>
-        /// btnLastRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLastRequest;
-        
-        /// <summary>
-        /// lblMsgTranslations control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsgTranslations;
-        
-        /// <summary>
-        /// btnProcessReview control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProcessReview;
-        
-        /// <summary>
-        /// btnClose control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
     }
 }

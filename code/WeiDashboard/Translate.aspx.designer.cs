@@ -76,21 +76,39 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.WebControls.Label lblChineseValue;
         
         /// <summary>
-        /// lblEnglish control.
+        /// lblOldTrans control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEnglish;
+        protected global::System.Web.UI.WebControls.Label lblOldTrans;
         
         /// <summary>
-        /// lblEnglishValue control.
+        /// lblOldTransValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEnglishValue;
+        protected global::System.Web.UI.WebControls.Label lblOldTransValue;
+        
+        /// <summary>
+        /// lblNewTrans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNewTrans;
+        
+        /// <summary>
+        /// lblNewTransValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNewTransValue;
     }
 }

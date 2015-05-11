@@ -67,7 +67,7 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
         public DataSet getMessages(DateTime fromDate, DateTime toDate, string status, bool hasCTC, bool hasErrors, string searchText, string sorting, int currentPage, int pageSize, out double totalRecords)
         {
             //, int currentPage, int pageSize, out int totalRecords
-             string sStoreProcName = "Wei_GetMessagesVSS";
+             string sStoreProcName = "Wei_GetMessages";
                 DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
 
                 _weidb.AddInParameter(dbCommand, "@StartDate", DbType.DateTime, fromDate);
@@ -99,13 +99,84 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
                 return _weidb.ExecuteDataSet(dbCommand);
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex; 
+                throw; 
             }
             
         }
+        public Boolean AddAuditForErrorProcess(Int32 requestID,String userID)
+        {
+            try
+            {
+                DbCommand cmd = _weidb.GetStoredProcCommand("Wei_AddAuditForErrorProcess");
 
+                _weidb.AddInParameter(cmd, "@Requestid", DbType.Int32, requestID);
+                _weidb.AddInParameter(cmd, "@CreatedOper", DbType.String, userID);
+
+                int retRowCount = _weidb.ExecuteNonQuery(cmd);
+                if (retRowCount > 0)
+                    return true;
+
+            }
+                
+            catch (Exception)
+            {
+                throw;
+            }
+            return false;
+        }
+
+        public Boolean AddAuditForReview(Int32 requestID, String userID)
+        {
+            try
+            {
+                DbCommand cmd = _weidb.GetStoredProcCommand("Wei_AddAuditForReview");
+
+                _weidb.AddInParameter(cmd, "@Requestid", DbType.Int32, requestID);
+                _weidb.AddInParameter(cmd, "@CreatedOper", DbType.String, userID);
+
+                int retRowCount = _weidb.ExecuteNonQuery(cmd);
+                if (retRowCount > 0)
+                    return true;
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+            return false;
+        }
+        public Boolean UpdateTranslations(Int32 iTranID, Int32 iRequestID, String sNewTrans, String sReviewMode, 
+                String sReviewOper, bool bReviewed, String sApproveOper, bool bApproved)
+        {
+            try
+            {
+                DbCommand cmd = _weidb.GetStoredProcCommand("Wei_UpdateTranslations");
+
+                _weidb.AddInParameter(cmd, "@ID", DbType.Int32, iTranID);
+                _weidb.AddInParameter(cmd, "@Requestid", DbType.Int32, iRequestID);
+                _weidb.AddInParameter(cmd, "@NewTrans", DbType.String, sNewTrans);
+                _weidb.AddInParameter(cmd, "@ReviewMode", DbType.String, sReviewMode);
+                _weidb.AddInParameter(cmd, "@ReviewOper", DbType.String, sReviewOper);
+                _weidb.AddInParameter(cmd, "@Reviewed", DbType.Boolean, bReviewed);
+                _weidb.AddInParameter(cmd, "@ApproveOper", DbType.String, sApproveOper);
+                _weidb.AddInParameter(cmd, "@Approved", DbType.Boolean, bApproved);
+
+                int retRowCount = _weidb.ExecuteNonQuery(cmd);
+                if (retRowCount > 0)
+                    return true;
+
+            }
+
+                
+            catch (Exception)
+            {
+                throw;
+            }
+            return false;
+        }
         public DataSet getAuditMessagesByRequest(Int32 requestID)
         {
             try
@@ -118,107 +189,28 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
                 return _weidb.ExecuteDataSet(dbCommand);
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
+
         }
-
-        //public DataSet getTranslations(string strCTCCodes)
-        //{
-        //    try
-        //    {
-        //        string sStoreProcName = "Wei_GetTranslations";
-        //        DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
-
-        //        _weidb.AddInParameter(dbCommand, "@CTCCodes", DbType.String, strCTCCodes);
-
-        //        return _weidb.ExecuteDataSet(dbCommand);
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-        //}
-
-        public DataSet getTranslations(int intRequestsID)
+        public DataSet getTranslations(Int32 requestID)
         {
             try
             {
                 string sStoreProcName = "Wei_GetTranslations";
                 DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
 
-                _weidb.AddInParameter(dbCommand, "@RequestsID", DbType.Int32, intRequestsID);
+                _weidb.AddInParameter(dbCommand, "@RequestsID", DbType.Int32, requestID);
 
                 return _weidb.ExecuteDataSet(dbCommand);
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-
-        }
-        
-        //public void UpdateTranslations(int intId, string strNewTrans, Boolean bReviewed, Boolean bApproved, string strOperatorName, string strReviewMode)
-        public void UpdateTranslations(int RequestID, string CTCCode, string ChineseChar, string PinYin, string ReviewMode, string NewTrans, 
-                                        string ReviewOper, Boolean Reviewed, string ApproveOper, Boolean Approved)
-        {
-            try
-            {
-                string sStoreProcName = "Wei_UpdateTranslations";
-                DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
-
-                //_weidb.AddInParameter(dbCommand, "@ID", DbType.Int32, intId);
-                //_weidb.AddInParameter(dbCommand, "@NewTrans", DbType.String, strNewTrans);
-                //_weidb.AddInParameter(dbCommand, "@Reviewed", DbType.Boolean, bReviewed);
-                //_weidb.AddInParameter(dbCommand, "@Approved", DbType.Boolean, bApproved);
-                //_weidb.AddInParameter(dbCommand, "@OperatorName", DbType.String, strOperatorName);
-                //_weidb.AddInParameter(dbCommand, "@ReviewMode", DbType.String, strReviewMode);
-
-                _weidb.AddInParameter(dbCommand, "@RequestID", DbType.Int32, RequestID);
-                _weidb.AddInParameter(dbCommand, "@CTCCode", DbType.String, CTCCode);
-                _weidb.AddInParameter(dbCommand, "@ChineseChar", DbType.String, ChineseChar);
-                _weidb.AddInParameter(dbCommand, "@NewTrans", DbType.String, NewTrans);
-                _weidb.AddInParameter(dbCommand, "@ReviewMode", DbType.String, ReviewMode);
-                _weidb.AddInParameter(dbCommand, "@PinYin", DbType.String, PinYin);
-                _weidb.AddInParameter(dbCommand, "@ReviewOper", DbType.String, ReviewOper);
-                _weidb.AddInParameter(dbCommand, "@Reviewed", DbType.Boolean, Reviewed);
-                _weidb.AddInParameter(dbCommand, "@ApproveOper", DbType.String, ApproveOper);
-                _weidb.AddInParameter(dbCommand, "@Approved", DbType.Boolean, Approved);
-
-                //return _weidb.ExecuteDataSet(dbCommand);
-                _weidb.ExecuteDataSet(dbCommand);
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void AddAudit(int RequestId, int AuditLevel, string Message, string CreatedOper)
-        {
-            try
-            {
-                string sStoreProcName = "Wei_AddAudit";
-                DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
-
-                _weidb.AddInParameter(dbCommand, "@RequestID", DbType.Int32, RequestId);
-                _weidb.AddInParameter(dbCommand, "@AuditLevel", DbType.Int32, AuditLevel);
-                _weidb.AddInParameter(dbCommand, "@Message", DbType.String, Message);
-                _weidb.AddInParameter(dbCommand, "@CreatedOper", DbType.String, CreatedOper);
-
-                _weidb.ExecuteDataSet(dbCommand);
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
         }
     }
 }

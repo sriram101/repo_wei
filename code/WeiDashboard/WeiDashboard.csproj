@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -13,6 +14,15 @@
     <RootNamespace>Telavance.AdvantageSuite.Wei.WeiDashboard</RootNamespace>
     <AssemblyName>WeiDashboard</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,7 +40,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PackageAsSingleFile>true</PackageAsSingleFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=4.1.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
@@ -58,12 +67,15 @@
       <HintPath>..\..\ReferenceDLLs\Microsoft_Enterprise_Library\5.0\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>Enteprise_Library\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\..\ReferenceDLLs\Microsoft_Enterprise_Library\5.0\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -75,26 +87,20 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="Telerik.Web.Design, Version=2012.2.724.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Telerik\RadControls for ASP.NET AJAX Q2 2012 SP1\Bin40\Telerik.Web.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Web.UI">
-      <HintPath>C:\Program Files\Telerik\RadControls for ASP.NET AJAX Q2 2012 SP1\Bin40\Telerik.Web.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>C:\Program Files\Telerik\RadControls for ASP.NET AJAX Q2 2012 SP1\Bin40\Telerik.Web.UI.Skins.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Accelerator.htm" />
+    <Compile Include="Config\ProviderConfigElementCollection.cs" />
     <Content Include="CustomErrorPage.aspx" />
-    <Content Include="Images\48.gif" />
     <Content Include="Images\Calendar.png" />
     <Content Include="Images\collapse.jpg" />
     <Content Include="Images\expand.jpg" />
+    <Content Include="Images\gridminus.gif" />
+    <Content Include="Images\gridplus.gif" />
     <Content Include="Images\HeaderWhiteChrome.jpg" />
+    <Content Include="Images\minus.gif" />
+    <Content Include="Images\minus.png" />
     <Content Include="Images\PaginFirst.gif" />
     <Content Include="Images\PaginFirstInactive.gif" />
     <Content Include="Images\PaginLast.gif" />
@@ -103,6 +109,8 @@
     <Content Include="Images\PaginNextInactive.gif" />
     <Content Include="Images\PaginPre.gif" />
     <Content Include="Images\PaginPreInactive.gif" />
+    <Content Include="Images\plus.gif" />
+    <Content Include="Images\plus.png" />
     <Content Include="Images\sort_asc.gif" />
     <Content Include="Images\sort_desc.gif" />
     <Content Include="Images\sort_none.gif" />
@@ -112,14 +120,10 @@
     <Content Include="Images\YahooSprite.gif" />
     <Content Include="Messages.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Messages1.aspx" />
     <Content Include="myAccel.xml" />
     <Content Include="PageNotFound.aspx" />
-    <Content Include="Pages\CustomErrorPage.aspx" />
+    <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Logout.aspx" />
-    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.4.1.js" />
-    <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\MasterPage.js" />
     <Content Include="Scripts\Messages.js" />
     <Content Include="Styles\Generic.css" />
@@ -140,11 +144,11 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\locStrings.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>locStrings.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Config\MapFileConfigElement.cs" />
+    <Compile Include="Config\MapFileConfigElementCollection.cs" />
+    <Compile Include="Config\ProviderConfigElement.cs" />
+    <Compile Include="Config\TranslateConfigElement.cs" />
+    <Compile Include="Config\WeiConfiguration.cs" />
     <Compile Include="CustomErrorPage.aspx.cs">
       <DependentUpon>CustomErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -152,10 +156,7 @@
     <Compile Include="CustomErrorPage.aspx.designer.cs">
       <DependentUpon>CustomErrorPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DataSources\cDS_Messages_List.cs" />
     <Compile Include="DBUtil.cs" />
-    <Compile Include="Generic\cGeneric.cs" />
-    <Compile Include="Generic\cStoredProcedureConstants.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,13 +167,6 @@
     <Compile Include="Messages.aspx.designer.cs">
       <DependentUpon>Messages.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Messages1.aspx.cs">
-      <DependentUpon>Messages1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Messages1.aspx.designer.cs">
-      <DependentUpon>Messages1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="PageNotFound.aspx.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,12 +174,9 @@
     <Compile Include="PageNotFound.aspx.designer.cs">
       <DependentUpon>PageNotFound.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CustomErrorPage.aspx.cs">
-      <DependentUpon>CustomErrorPage.aspx</DependentUpon>
+    <Compile Include="Pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\CustomErrorPage.aspx.designer.cs">
-      <DependentUpon>CustomErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -209,6 +200,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="Status.cs" />
     <Compile Include="Support.aspx.cs">
       <DependentUpon>Support.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -223,11 +215,17 @@
     <Compile Include="Translate.aspx.designer.cs">
       <DependentUpon>Translate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WeiDashboardConfiguration.cs" />
+    <Compile Include="WeiMonitoring.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{6408DCFC-747A-457B-BDAF-E4CB71F8F59F}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WeiCommon\WeiCommon.csproj">
       <Project>{3B42C132-55A9-4AC9-B272-3157C110DE8B}</Project>
       <Name>WeiCommon</Name>
@@ -238,24 +236,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\WEIDashboard.Master" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\locStrings.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>locStrings.designer.cs</LastGenOutput>
-    </Content>
+    <Content Include="Pages\WEIDashboard.Master" />
   </ItemGroup>
-  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1832</DevelopmentServerPort>
+          <DevelopmentServerPort>1291</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
