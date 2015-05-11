@@ -6,9 +6,12 @@ using System.Configuration.Install;
 using System.Linq;
 using System.IO;
 
+[assembly: CLSCompliant(true)]
 namespace Telavance.AdvantageSuite.Wei.MQDriver
 {
     [RunInstaller(true)]
+    
+
     public partial class CustomInstallAction : System.Configuration.Install.Installer
     {
         public CustomInstallAction()
@@ -21,6 +24,13 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
             base.Install(stateSaver);
 
             string dir = this.Context.Parameters["installdir"].ToString();
+
+            FileInfo info = new FileInfo(dir);
+            if (info.Exists == false)
+            {
+                throw new InstallException("File " + dir + " does not exist");
+            }
+            
             dir = dir.Substring(0, dir.Length - 1).Replace('\\', '/');
 
             StreamWriter writer = new StreamWriter(dir + "/sql/MQDriver.sql");
@@ -40,9 +50,9 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                 if (File.Exists(dir + "/sql/MQDriver.sql"))
                     File.Delete(dir + "/sql/MQDriver.sql");
             }
-            catch (Exception e)
+            catch (FileNotFoundException)
             {
-                //swallow the error
+                throw;
             }
         }
     }

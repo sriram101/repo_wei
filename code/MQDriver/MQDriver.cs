@@ -50,6 +50,7 @@ using Telavance.AdvantageSuite.Wei.WeiCommon;
 
 using IBM.WMQ;
 
+
 namespace Telavance.AdvantageSuite.Wei.MQDriver
 {
     public delegate void HandleMessage(MQMessage message, OfacStatus status);
@@ -72,12 +73,14 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
         private MQQueueManager _mqManagerOkQueue = null;
         private MQQueueManager _mqManagerConfirmQueue = null;
         private MQQueueManager _mqManagerErrorQueue = null;
-
+        //Added a new Queue for Review Queue
+        private MQQueueManager _mqManagerReviewQueue = null;
 
         private MQQueue _inQueue;
         private MQQueue _okQueue;
         private MQQueue _confirmQueue;
         private MQQueue _errorQueue;
+        private MQQueue _reviewQueue;
 
         private MQQueueManager _mqManagerOfacInQueue = null;
         private MQQueueManager _mqManagerOfacOkQueue = null;
@@ -91,6 +94,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
         private readonly object syncOkQueueLock = new object();
         private readonly object syncConfirmQueueLock = new object();
         private readonly object syncErrorQueueLock = new object();
+        private readonly object syncReviewQueueLock = new object();
 
 
         private int maxNoOfMessagesToProcess;
@@ -119,7 +123,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
             LogUtil.logInfo("config:" + config.ToString());
 
             if (!config.isValid())
-                throw new Exception("Config for the driver is incomplete");
+                throw new Exception("Configuration for the driver is incomplete");
             lock (syncLock)
             {
 
@@ -136,6 +140,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                         _mqManagerOkQueue = new MQQueueManager(config.queueManager, config.channelName, config.connectionName);
                         _mqManagerConfirmQueue = new MQQueueManager(config.queueManager, config.channelName, config.connectionName);
                         _mqManagerErrorQueue = new MQQueueManager(config.queueManager, config.channelName, config.connectionName);
+                        _mqManagerReviewQueue = new MQQueueManager(config.queueManager, config.channelName, config.connectionName);
                         _mqManagerOfacInQueue = new MQQueueManager(config.queueManager, config.channelName, config.connectionName);
                         _mqManagerOfacOkQueue = new MQQueueManager(config.queueManager, config.channelName, config.connectionName);
                         _mqManagerOfacConfirmQueue = new MQQueueManager(config.queueManager, config.channelName, config.connectionName);
@@ -146,6 +151,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                         _mqManagerOkQueue = new MQQueueManager(config.queueManager);
                         _mqManagerConfirmQueue = new MQQueueManager(config.queueManager);
                         _mqManagerErrorQueue = new MQQueueManager(config.queueManager);
+                        _mqManagerReviewQueue = new MQQueueManager(config.queueManager);
                         _mqManagerOfacInQueue = new MQQueueManager(config.queueManager);
                         _mqManagerOfacOkQueue = new MQQueueManager(config.queueManager);
                         _mqManagerOfacConfirmQueue = new MQQueueManager(config.queueManager);
@@ -163,7 +169,8 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                     LogUtil.logInfo("Succesully connected to the queue:" + config.confirmQueue);
                     _errorQueue = _mqManagerErrorQueue.AccessQueue(config.errorQueue, openOutputOptions);
                     LogUtil.logInfo("Succesully connected to the queue:" + config.errorQueue);
-
+                    _reviewQueue = _mqManagerReviewQueue.AccessQueue(config.reviewQueue, openOutputOptions);
+                    LogUtil.logInfo("Succesully connected to the queue:" + config.reviewQueue);
                     _ofacInQueue = _mqManagerOfacInQueue.AccessQueue(config.ofacInputQueue, openOutputOptions);
                     LogUtil.logInfo("Succesully connected to the queue:" + config.ofacInputQueue);
                     _ofacOkQueue = _mqManagerOfacOkQueue.AccessQueue(config.ofacOkQueue, openInputOptions);
@@ -193,6 +200,8 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                         _confirmQueue.Close();
                     if (_errorQueue != null && _errorQueue.OpenStatus)
                         _errorQueue.Close();
+                    if (_reviewQueue != null && _reviewQueue.OpenStatus)
+                        _reviewQueue.Close();
 
                     if (_ofacInQueue != null && _ofacInQueue.OpenStatus)
                         _ofacInQueue.Close();
@@ -209,6 +218,9 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                         _mqManagerConfirmQueue.Close();
                     if (_mqManagerErrorQueue != null && _mqManagerErrorQueue.OpenStatus)
                         _mqManagerErrorQueue.Close();
+                    if (_mqManagerReviewQueue != null && _mqManagerReviewQueue.OpenStatus)
+                        _mqManagerReviewQueue.Close();
+
                     if (_mqManagerOfacInQueue != null && _mqManagerOfacInQueue.OpenStatus)
                         _mqManagerOfacInQueue.Close();
                     if (_mqManagerOfacOkQueue != null && _mqManagerOfacOkQueue.OpenStatus)
@@ -310,6 +322,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                     LogUtil.log("Error when getting message from the " +queueName+" queue", e);
                     manager.Backout();
                     Thread.Sleep(30000);
+                    throw;
                 }
             }
 
@@ -459,6 +472,13 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
         }
 
+        public bool moveToReview(Request request)
+        {
+            RequestHeader header = RequestHeader.getRequestHeader(request.Header);
+            return sendMessage(config.reviewQueue, request.RequestId, _reviewQueue, _mqManagerReviewQueue, request.Name, request.MessageBody, header.correlationId, syncReviewQueueLock);
+
+        }
+
         private bool sendMessage(string queueName, int requestId, MQQueue queue, MQQueueManager manager, string messageId, string message, string correlationId, Object lockObject)
         {
             lock (lockObject)
@@ -476,7 +496,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                     queue.Put(mqMessage, pmo);
                     manager.Commit();
                     sentMessage = true;
-                    LogUtil.logInfo("Sent requestid " +requestId+" to " + queueName);
+                    LogUtil.logInfo("Sent message " +requestId+" to " + queueName);
                 }
                 catch (Exception e)
                 {
@@ -510,6 +530,10 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
         public bool shouldMoveToError()
         {
             return config.shouldMoveToError;
+        }
+        public bool shouldMoveToReview()
+        {
+            return config.shouldMoveToReview;
         }
     }
 }
