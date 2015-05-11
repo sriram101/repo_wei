@@ -73,68 +73,58 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             lnkAbout.Attributes.Add("onClick","open_win('About.aspx'); return false;");
             lnkSupport.Attributes.Add("onClick","open_win('Support.aspx'); return false;");
            //lnkSignOut.Attributes.Add("onClick", "NavigateURL(); return false");
-
+            
             _strUser = WindowsIdentity.GetCurrent().Name;
 
             //SMU: Feb 05, 2013
             //setUser(_strUser);
 
-            //if (IsPostBack) //SMU: Feb 07, 2013
-            //{
+            if (null != Request.Cookies["WEIRole"] && Request.Cookies["WEIRole"]["WEIReviewer"] == "Y") //SMU: Feb 12, 2013
+            {
+                setUser(_strUser);
+            }
 
-            //    if (null != Request.Cookies["WEIRole"] && Request.Cookies["WEIRole"].Expires.CompareTo(DateTime.Now) > 0)
-            //    {
-            //        setUser(_strUser);
-            //    }
-            //    else
-            //    {
-            //        setUser("");
+            else
+            {
+                setUser("");
+            }
 
-            //        //SMU: Feb 07, 2013
-            //        lblUserRole.Text = "";
-            //        lblUserRole.Visible = false;
-            //        lblUser.Text = "";
-            //        lblUser.Visible = false;
-            //        Server.Transfer("~/Pages/LogOut.aspx", false);
-            //        //EU: Feb 07, 2013
-            //    }
-            //    //EU: Feb 05, 2013
-            //}
-            setUser(_strUser);
+
         }
 
         protected void LinkButton_Click(object sender, EventArgs e)
         {
+            Request.Cookies["WEIRole"]["WEIReviewer"] = "N"; //SMU: Feb 12, 2013
             lblUserRole.Text = "";
             lblUserRole.Visible = false;
             lblUser.Text = "";
             lblUser.Visible = false;
-            Server.Transfer("~/Pages/LogOut.aspx",false);
+            Server.Transfer("LogOut.aspx",false);
         }
         public void setUser(string strUserName)
         {
 
             if (strUserName != string.Empty)
             {
-                lblUser.Text = strUserName;
+            lblUser.Text = strUserName;
                 lblWelcome.Visible = true;
                 lblRoleName.Visible = true;
-                lblUser.Visible = true;
-                lblUserRole.Visible = true;
-                //lblRole.Text =
-                var httpCookie = Request.Cookies["WEIRole"];
-                if (httpCookie != null)
+            lblUser.Visible = true;
+            lblUserRole.Visible = true;
+            //lblRole.Text =
+            var httpCookie = Request.Cookies["WEIRole"];
+            if (httpCookie != null)
+            {
+                if (httpCookie["WEIReviewer"] == "Y")
                 {
-                    if (httpCookie["WEIReviewer"] == "Y")
-                    {
-                        lblUserRole.Text = "Reviewer";
-                    }
-                    if (httpCookie["WEIApprover"] == "Y")
-                    {
-                        lblUserRole.Text = "Approver";
-                    }
+                    lblUserRole.Text = "Reviewer";
                 }
-            }
+                if (httpCookie["WEIApprover"] == "Y")
+                {
+                    lblUserRole.Text = "Approver";
+                }
+             }
+         }
             else
             {
                 lblWelcome.Visible = false;
@@ -143,5 +133,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 lblRoleName.Visible = false;
             }
          }     
+
+     
     }
 }

@@ -409,15 +409,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPopup;
         
         /// <summary>
-        /// panelDragHandle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel panelDragHandle;
-        
-        /// <summary>
         /// upPopUp control.
         /// </summary>
         /// <remarks>
@@ -641,15 +632,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel tbAudit;
-        
-        /// <summary>
-        /// ChildControl2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel ChildControl2;
         
         /// <summary>
         /// pnlAudit control.

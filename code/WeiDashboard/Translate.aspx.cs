@@ -80,8 +80,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 DbUtil _dataAccess;
                 _dataAccess = EnterpriseLibraryContainer.Current.GetInstance<DbUtil>(); 
                 
-                from = "CTC";
-                text = "1159 5646 7456 2609 2139 4098 2345";
+                //from = "CTC";
+                //text = "1159 5646 7456 2609 2139 4098 2345";
                 DataTable _dataTable;
 
                 if (text != "")

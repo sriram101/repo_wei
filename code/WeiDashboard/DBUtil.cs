@@ -43,11 +43,11 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using System.Data.Common;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
@@ -149,7 +149,7 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
             return false;
         }
         public Boolean UpdateTranslations(Int32 iTranID, Int32 iRequestID, String sNewTrans, String sReviewMode, 
-                String sReviewOper, bool bReviewed, String sApproveOper, bool bApproved)
+                String sReviewOper, bool bReviewed, String sApproveOper, bool bApproved, string sCTCCode)
         {
             try
             {
@@ -163,6 +163,7 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
                 _weidb.AddInParameter(cmd, "@Reviewed", DbType.Boolean, bReviewed);
                 _weidb.AddInParameter(cmd, "@ApproveOper", DbType.String, sApproveOper);
                 _weidb.AddInParameter(cmd, "@Approved", DbType.Boolean, bApproved);
+                _weidb.AddInParameter(cmd, "@CTCCode", DbType.String, sCTCCode);
 
                 int retRowCount = _weidb.ExecuteNonQuery(cmd);
                 if (retRowCount > 0)
@@ -203,6 +204,42 @@ namespace Telavance.AdvantageSuite.Wei.DBUtils
                 DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
 
                 _weidb.AddInParameter(dbCommand, "@RequestsID", DbType.Int32, requestID);
+
+                return _weidb.ExecuteDataSet(dbCommand);
+            }
+
+            catch (Exception)
+            {
+                throw ;
+            }
+        }
+
+        public DataSet getTranslationsByCTC(String sCTCCode)
+        {
+            try
+            {
+                string sStoreProcName = "WEI_GetTranslationByCTCCode";
+                DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
+
+                _weidb.AddInParameter(dbCommand, "@CTCCode", DbType.String, sCTCCode);
+
+                return _weidb.ExecuteDataSet(dbCommand);
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataSet getOriginalMessages(Int32 requestID)
+        {
+            try
+            {
+                string sStoreProcName = "Wei_GetOriginalMessages";
+                DbCommand dbCommand = _weidb.GetStoredProcCommand(sStoreProcName);
+
+                _weidb.AddInParameter(dbCommand, "@RequestID", DbType.Int32, requestID);
 
                 return _weidb.ExecuteDataSet(dbCommand);
             }
