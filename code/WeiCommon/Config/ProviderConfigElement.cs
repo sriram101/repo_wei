@@ -113,5 +113,18 @@ namespace Telavance.AdvantageSuite.Wei.WeiCommon
                 this["version"] = value;
             }
         }
+
+        [ConfigurationProperty("uri", IsRequired = true)]
+        public string Uri
+        {
+            get
+            {
+                return (string)this["uri"];
+            }
+            set
+            {
+                this["uri"] = value;
+            }
+        }
     }
 }

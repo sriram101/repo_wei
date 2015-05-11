@@ -85,6 +85,18 @@ namespace Telavance.AdvantageSuite.Wei.WeiCommon
 
         }
 
+        public void audit(AuditLevel auditLevel, String message)
+        {
+            
+            DbCommand cmd = _weidb.GetStoredProcCommand("Wei_AddAudit");
+
+            _weidb.AddInParameter(cmd, "@requestid", DbType.Int32, null);
+            _weidb.AddInParameter(cmd, "@auditLevel", DbType.Int32, auditLevel);
+            _weidb.AddInParameter(cmd, "@message", DbType.String, message);
+
+            _weidb.ExecuteScalar(cmd);
+
+        }
         public static AuditUtil getInstance()
         {
             if(_instance==null)
