@@ -5,3 +5,39 @@ C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\TranslationT
 C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\TranslationTester.Properties.Resources.resources
 C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\GenerateResource.read.1.tlog
 C:\Telavance\Development\Wei\code\TranslationTester\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\TranslationTester.exe.config
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\TranslationTester.exe
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\TranslationTester.pdb
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.dll
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\WeiCommon.dll
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\WeiService.exe
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\WeiTranslator.dll
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\WeiCommon.pdb
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\WeiTranslator.pdb
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\bin\Release\WeiService.pdb
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\TranslationTester.Form2.resources
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\TranslationTester.Form1.resources
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\TranslationTester.Properties.Resources.resources
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\TranslationTester.exe
+C:\Telavance\Development\Wei\Development\Source\TranslationTester\obj\x86\Release\TranslationTester.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\TranslationTester.exe.config
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\TranslationTester.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\TranslationTester.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\WeiCommon.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\WeiService.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\WeiTranslator.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\WeiCommon.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\WeiTranslator.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\bin\Release\WeiService.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\TranslationTester.Form2.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\TranslationTester.Form1.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\TranslationTester.Properties.Resources.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\TranslationTester.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\TranslationTester\obj\x86\Release\TranslationTester.pdb
