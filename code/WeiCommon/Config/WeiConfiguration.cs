@@ -74,16 +74,29 @@ namespace Telavance.AdvantageSuite.Wei.WeiCommon
             }
         }
 
-        [ConfigurationProperty("CustomName", IsRequired = true)]
-        public string CustomName
+        [ConfigurationProperty("customName", IsRequired = true)]
+        public string customName
         {
             get
             {
-                return (string)this["CustomName"];
+                return (string)this["customName"];
             }
             set
             {
-                this["CustomName"] = value;
+                this["customName"] = value;
+            }
+        }
+
+        [ConfigurationProperty("requiresReview", IsRequired = true)]
+        public bool requiresReview
+        {
+            get
+            {
+                return (bool)this["requiresReview"];
+            }
+            set
+            {
+                this["requiresReview"] = value;
             }
         }
 
