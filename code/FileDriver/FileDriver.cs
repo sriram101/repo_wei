@@ -38,6 +38,7 @@
 -------------|----------|------------------------------------------------------
 
 12/30/2010       RL        Inital version
+12/01/2012                 Changes to the code to include review folder
 */
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,7 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
         private DBUtil _dbUtils;
 
         private FileSystemWatcher _inputFileWatcher;
+        private FileSystemWatcher _reviewFileWatcher;
         private FileSystemWatcher _ofacOkFileWatcher;
         private FileSystemWatcher _ofacConfirmFileWatcher;
 
@@ -125,6 +127,7 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
         public void stopThread()
         {
             _inputFileWatcher.EnableRaisingEvents = false;
+            _reviewFileWatcher.EnableRaisingEvents = false;
             _ofacOkFileWatcher.EnableRaisingEvents = false;
             _ofacConfirmFileWatcher.EnableRaisingEvents = false;
 
@@ -162,6 +165,7 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
                 {
 
                     _inputFileWatcher.Created += new FileSystemEventHandler(inputFileWatcher_Created);
+                   
                     _inputFileWatcher.Error += new ErrorEventHandler(inputFileWatcher_Error);
                     _inputFileWatcher.EnableRaisingEvents = true;
                 }
@@ -525,6 +529,7 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
             catch (Exception e)
             {
                 LogUtil.log("Cannot send response for requestid:" + request.RequestId, e);
+                throw (e);
             }
 
             return retValue;
@@ -553,12 +558,44 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
             }
             catch (Exception e)
             {
+                LogUtil.log("Cannot move the file to Error folder for requestid:" + request.RequestId, e);
+                throw (e);
             }
 
             return retValue;
 
         }
+        //added to move the message to review folder
+        public bool moveToReview(Request request)
+        {
+            bool retValue = false;
 
+
+
+            try
+            {
+
+                string outputDirectory = config.reviewFolder;
+
+                FileInfo fi = new FileInfo(request.Name);
+                int index = fi.Name.LastIndexOf('.');
+                String filename = fi.Name.Substring(0, index);
+                string extension = fi.Name.Substring(index + 1);
+
+                StreamWriter sw = getResponseStreamWriter(outputDirectory, filename, extension);
+                sw.Write(request.MessageBody);
+                sw.Close();
+                retValue = true;
+            }
+            catch (Exception e)
+            {
+                LogUtil.log("Cannot move the message to Review folder for requestid:" + request.RequestId, e);
+                throw (e);
+            }
+
+            return retValue;
+
+        }
         public string getStatistics()
         {
             StringBuilder builder = new StringBuilder();
@@ -584,6 +621,9 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
             return config.shouldMoveToError;
         }
 
-
+        public bool shouldMoveToReview()
+        {
+            return config.shouldMoveToReview;
+        }
     }
 }

@@ -64,6 +64,9 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
         [XmlElement(ElementName = "confirmFolder")]
         public String confirmFolder;
 
+        [XmlElement(ElementName = "reviewFolder")]
+        public String reviewFolder;
+
         [XmlElement(ElementName = "errorFolder")]
         public String errorFolder;
 
@@ -81,6 +84,9 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
 
         [XmlElement(ElementName = "shouldMoveToError")]
         public bool shouldMoveToError = true;
+
+        [XmlElement(ElementName = "shouldMoveToReview")]
+        public bool shouldMoveToReview = true;
 
         public bool isValid()
         {
@@ -104,10 +110,11 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
             sb.Append(";confirmFolder:");
             sb.Append(confirmFolder);
 
+            sb.Append(";reviewFolder:");
+            sb.Append(reviewFolder);
+
             sb.Append(";errorFolder:");
             sb.Append(errorFolder);
-
-            
 
             sb.Append(";ofacInputFolder:");
             sb.Append(ofacInputFolder);
@@ -124,7 +131,9 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
             sb.Append(";shouldMoveToError:");
             sb.Append(shouldMoveToError);
 
-            
+
+            sb.Append(";shouldMoveToReview:");
+            sb.Append(shouldMoveToReview);
 
             return sb.ToString();
         }
