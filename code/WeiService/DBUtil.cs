@@ -45,9 +45,11 @@ using System.Linq;
 using System.Text;
 
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using System.Data;
 using System.Data.Common;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
+using Telavance.AdvantageSuite.Wei.DataAccess;
 
 namespace Telavance.AdvantageSuite.Wei.WeiService
 {
@@ -56,10 +58,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         private Database _weidb;
         private int _maxLockRetryCount = 10;
         private int _waitTimeBetweenRetries = 10000; //10 sec
+        private DbUtil _dataAccess;
 
         public DBUtil(/*[Dependency("WeiDB")]*/Database db)
         {
             _weidb = db;
+            _dataAccess = EnterpriseLibraryContainer.Current.GetInstance<DbUtil>();
         }
 
         public void addRequest(Request request)
@@ -117,7 +121,15 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
             return false;
         }
+        public int getStatusByRequest(int requestId)
+        {
+            int iStatus;
+            DbCommand cmd = _weidb.GetStoredProcCommand("Wei_GetStatusByRequestId");
 
+            _weidb.AddInParameter(cmd, "@requestid", DbType.Int32, requestId);
+            iStatus = Convert.ToInt32(_weidb.ExecuteScalar(cmd));
+            return iStatus;
+        }
         public void changeStatus(Request request)
         {
             changeStatus(request.RequestId, request.Status, request.IsError, request.OfacStatus);

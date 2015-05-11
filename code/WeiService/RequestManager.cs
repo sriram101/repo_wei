@@ -38,6 +38,7 @@
 -------------|----------|------------------------------------------------------
 
 12/30/2010       RL        Inital version
+12/10/2012                 Code Changes for Review of Messages
 */
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,7 @@ using System.Text;
 
 using System.Configuration;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Telavance.AdvantageSuite.Wei.WeiTranslator;
 
 
@@ -58,6 +60,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         private IMessageParser _fallBackParser;
         private int _maxTranslateRetryCount;
         private int _waitTimeBetweenRetries = 10000; //10 sec
+        bool _bReview = false;
+        private bool _brequiresReview;
 
         private Translator translator;
 
@@ -67,6 +71,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             this._dbUtils = dbUtils;
 
             WeiConfiguration weiConfig = (WeiConfiguration)ConfigurationManager.GetSection("Wei");
+            _brequiresReview = weiConfig.requiresReview;
 
             int threadPoolSize = 0;
             try
@@ -75,8 +80,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
             catch (Exception e)
             {
-                LogUtil.log("Cannot parse ThreadPoolSize. ThreadPoolSize is configured as:" + weiConfig.ThreadPoolSize, e);
-                throw new Exception("Invalid ThreadPoolSize in the config file");
+                LogUtil.log("Cannot parse ThreadPoolSize attribute. ThreadPoolSize is configured as:" + weiConfig.ThreadPoolSize, e);
+                throw new Exception("Invalid ThreadPoolSize attribute specified in the configuration file");
             }
 
             System.Threading.ThreadPool.SetMaxThreads(threadPoolSize, threadPoolSize);
@@ -87,10 +92,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
             catch (Exception e)
             {
-                LogUtil.log("Cannot parse NoOfRetries. NoOfRetries is configured as:" + weiConfig.TranslatorSetting.NoOfRetries, e);
-                throw new Exception("Invalid NoOfRetries in the config file");
+                LogUtil.log("Cannot parse NoOfRetries attribute. NoOfRetries is configured as:" + weiConfig.TranslatorSetting.NoOfRetries, e);
+                throw new Exception("Invalid NoOfRetries attribute in the configuration file");
             }
             translator = new Translator(weiConfig);
+
             _fallBackParser = new DefaultParser(translator);
             _parsers.Add("SWIFT", new SwiftParser(translator, weiConfig.SwiftSetting));
             foreach (ParserConfigElement parserConfig in weiConfig.Parsers)
@@ -106,9 +112,55 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
         }
 
+        public void processMessageForOFACCheck(Request request)
+        {
+            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Started processing the message");
+            bool bLocked = false;
+            int iStatus =0;
+            Boolean bSuccess;
+            Interface i = InterfaceManager.getInterface(request.InterfaceId);
+
+            try
+            {
+                bLocked = _dbUtils.acquireLock(request.RequestId);
+                if (bLocked)
+                {
+                    iStatus = _dbUtils.getStatusByRequest(request.RequestId);
+                    if (iStatus == Convert.ToInt32(Status.Review))
+                    {
+                        bSuccess = i.Driver.sendForOfacCheck(request);
+                        if (bSuccess)
+                        {
+                            request.Status = Status.SentForOfacCheck;
+                            request.IsError = false;
+                            _dbUtils.changeStatus(request);
+                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message sent for watchlist filtering check");
+                        }
+                    }
+                }
+                else
+                {
+                    LogUtil.logError("Cannot acquire lock for message :" + request.RequestId + ". Translation incomplete");
+                    AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Abort processing. Cannot acquire lock");
+                }
+
+            }
+            catch (Exception e)
+            {
+                LogUtil.log("Error while sending the message for OFAC check:" + request.RequestId, e);
+                AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error while sending the message for OFAC check");
+            }
+            finally
+            {
+                if (bLocked)
+                {
+                    _dbUtils.releaseLock(request.RequestId);
+                }
+            }
+        }
         public void process(Request request)
         {
-            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Started processing the request");
+            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Started processing the message");
             bool bLocked = false;
             bool bSuccess = false;
 
@@ -122,7 +174,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                 if (bLocked)
                 {
                     bSuccess = translateRequest(request, i);
-                    if (bSuccess)
+                    //If translation was success and the review flag is false
+                    if (bSuccess && !_bReview)
                     {
                         bSuccess = i.Driver.sendForOfacCheck(request);
                         if (bSuccess)
@@ -130,29 +183,29 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                             request.Status = Status.SentForOfacCheck;
                             request.IsError = false;
                             _dbUtils.changeStatus(request);
-                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Sent for OFAC check");
+                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message sent for watchlist filtering check");
                         }
                         else
                         {
                             request.Status = Status.Translated;
                             request.IsError = true;
                             _dbUtils.changeStatus(request);
-                            LogUtil.logError("Cannot send for OFAC check for requestid:" + request.RequestId);
-                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error sending for ofac check");
+                            LogUtil.logError("Error sending the message - " + request.RequestId + " for watchlist filtering check");
+                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error sending the message for watchlist filtering check");
                         }
                     }
                 }
                 else
                 {
-                    LogUtil.logError("Cannot acquire lock for requestId:" + request.RequestId + ". Translation incomplete");
+                    LogUtil.logError("Cannot acquire lock for message :" + request.RequestId + ". Translation incomplete");
                     AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Abort processing. Cannot acquire lock");
                 }
 
             }
             catch (Exception e)
             {
-                LogUtil.log("Error when processing requestid:" + request.RequestId, e);
-                AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error processing request");
+                LogUtil.log("Error processing the message:" + request.RequestId, e);
+                AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error processing the message");
             }
             finally
             {
@@ -177,7 +230,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             String message = "";
             try
             {
-                AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Translation started for the request");
+                AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Translation started for the message");
                 message = i.Handler.getMessageForTranslation(request.MessageBody);
                 IList<IMessageParser> currentParsers = new List<IMessageParser>();
 
@@ -205,7 +258,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
                             if (bTranslate)
                             {
-                                LogUtil.logInfo("Request id:" + request.RequestId + " is processed by an instance of " + currentParsers[currentParserCount].GetType().FullName);
+                                LogUtil.logInfo("Message:" + request.RequestId + " is processed by an instance of " + currentParsers[currentParserCount].GetType().FullName);
                             }
                             currentParserCount++;
                         }
@@ -215,7 +268,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                             bTranslate = _fallBackParser.translate(request, message);
                             if (bTranslate)
                             {
-                                LogUtil.logInfo("Request id:" + request.RequestId + " is processed by an instance of " + _fallBackParser.GetType().FullName);
+                                LogUtil.logInfo("Message:" + request.RequestId + " is processed by an instance of " + _fallBackParser.GetType().FullName);
                             }
 
 
@@ -233,11 +286,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                     catch (AbortTranslationException e)
                     {
                         bAbort = true;
-                        LogUtil.log("Error when translating requestid:" + request.RequestId, e);
+                        LogUtil.log("Error translating the message:" + request.RequestId, e);
                     }
                     catch (Exception e)
                     {
-                        LogUtil.log("Error when translating requestid:" + request.RequestId, e);
+                        LogUtil.log("Error translating the message:" + request.RequestId, e);
                     }
                 }
 
@@ -246,13 +299,31 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                     request.Status = Status.Translated;
                     request.IsError = false;
                     i.Handler.getRepackagedTranslatedString(request, message);
+                    
                     _dbUtils.addTranslatedMessage(request);
                     if(request.HasCTC)
-                        AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message Has CTC");
+                        AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message has telegraphic codes");
                     else
-                        AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message doesn't have CTC");
+                        AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message doesn't have telegraphic codes");
 
                     AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Translation complete");
+
+                    //If Requires Review flag is set to true then move the message to Review Queue
+                    if (_brequiresReview)
+                    {
+                        if (i.Driver.shouldMoveToReview())
+                        {
+                            //send it to review Queue
+                            i.Driver.moveToReview(request);
+                            _bReview = true;
+                            //change status and log and audit and return
+                            request.Status = Status.Review;
+                            request.IsError = false;
+                           _dbUtils.changeStatus(request);
+                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message moved to Review Queue for verification of translation");
+                        }
+                    }
+
                 }
                 else
                 {
@@ -260,15 +331,15 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                     request.Status = Status.Unprocessed;
                     request.IsError = true;
                     _dbUtils.changeStatus(request);
-                    LogUtil.logError("Cannot translate requestid:" + request.RequestId);
-                    AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error Translating the request");
+                    LogUtil.logError("Cannot translate message:" + request.RequestId);
+                    AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error translating the message");
                 }
             }
             catch (Exception e)
             {
                 bTranslate = false;
-                LogUtil.log("Error when translating requestid:" + request.RequestId, e);
-                AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error Translating the request");
+                LogUtil.log("Error when translating message:" + request.RequestId, e);
+                AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error translating the message");
             }
 
             return bTranslate;
@@ -292,13 +363,13 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
                     if (request == null)
                     {
-                        LogUtil.logError("Cannot retrieve the request with requestid:" + requestId);
+                        LogUtil.logError("Cannot retrieve the message:" + requestId);
                         return;
                     }
 
                     if (request.Status != Status.SentForOfacCheck)
                     {
-                        LogUtil.logError("Cannot process response for the request :" + requestId + " . Current status is " + request.Status + ". Expecting " + Status.SentForOfacCheck);
+                        LogUtil.logError("Cannot process response for the message :" + requestId + " . Current status is " + request.Status + ". Expecting " + Status.SentForOfacCheck);
                         return;
                     }
 
@@ -319,7 +390,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
                         _dbUtils.addResponseMessage(request);
                         bSuccess = true;
-                        AuditUtil.getInstance().audit(requestId, AuditLevel.Info, "Sent response for the request ");
+                        AuditUtil.getInstance().audit(requestId, AuditLevel.Info, "Sent response for the message ");
                     }
 
 
@@ -328,8 +399,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             catch (Exception e)
             {
                 bSuccess = false;
-                LogUtil.log("Cannot process response for the request :" + requestId, e);
-                AuditUtil.getInstance().audit(requestId, AuditLevel.Error, "Error processing response for the request ");
+                LogUtil.log("Cannot process response for the message :" + requestId, e);
+                AuditUtil.getInstance().audit(requestId, AuditLevel.Error, "Error processing response for the message ");
             }
             finally
             {
@@ -349,7 +420,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                 }
                 catch (Exception e)
                 {
-                    LogUtil.log("Exception when trying to backout of another exception for requestId:" + requestId, e);
+                    LogUtil.log("Exception when trying to backout of another exception for message:" + requestId, e);
                 }
             }
         }

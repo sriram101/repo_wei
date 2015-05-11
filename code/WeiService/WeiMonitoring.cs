@@ -84,5 +84,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             Request request = WeiService.instance.DBUtil.getRequest(requestId);
             WeiService.instance.RequestManager.process(request);
         }
+
+        public void processMessageForOFACCheck(int requestId)
+        {
+            Request request = WeiService.instance.DBUtil.getRequest(requestId);
+            WeiService.instance.RequestManager.processMessageForOFACCheck(request);
+        }
     }
 }

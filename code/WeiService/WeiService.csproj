@@ -15,6 +15,10 @@
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
     <PublishUrl>http://localhost/ServiceManager/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -40,6 +44,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -151,6 +156,9 @@
     </None>
     <None Include="data\simplified chinese.ctc.map" />
     <None Include="data\traditional chinese.ctc.map" />
+    <None Include="WeiServiceConfig.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="WeiService_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +189,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{6408DCFC-747A-457B-BDAF-E4CB71F8F59F}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WeiCommon\WeiCommon.csproj">
       <Project>{3B42C132-55A9-4AC9-B272-3157C110DE8B}</Project>
       <Name>WeiCommon</Name>
@@ -195,8 +207,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir $(TargetDir)\data
-copy  $(ProjectDir)data\*.* $(TargetDir)\data</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
