@@ -9,8 +9,8 @@ using System.Windows.Forms;
 
 using System.Configuration;
 
-using Wei.Config;
-using WeiTranslator;
+using Telavance.AdvantageSuite.Wei.WeiCommon;
+using Telavance.AdvantageSuite.Wei.WeiTranslator;
 
 namespace TranslationTester
 {
