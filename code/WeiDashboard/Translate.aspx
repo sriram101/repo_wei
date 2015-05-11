@@ -16,8 +16,10 @@
     <asp:Label ID="lblCTCValue" runat="server" CssClass="LabelValue"></asp:Label><br /><br />
     <asp:Label ID="lblChinese" runat="server" Text="Chinese:" CssClass="Label"></asp:Label> &nbsp;&nbsp;&nbsp;
     <asp:Label ID="lblChineseValue" runat="server" CssClass="LabelValue"></asp:Label><br /><br />
-    <asp:Label ID="lblEnglish" runat="server" Text="English:" CssClass="Label"></asp:Label> &nbsp;&nbsp;&nbsp;
-    <asp:Label ID="lblEnglishValue" runat="server" CssClass="LabelValue"></asp:Label><br /><br />
+    <asp:Label ID="lblOldTrans" runat="server" Text="Old Translation:" CssClass="Label"></asp:Label> &nbsp;&nbsp;&nbsp;
+    <asp:Label ID="lblOldTransValue" runat="server" CssClass="LabelValue"></asp:Label><br /><br />
+    <asp:Label ID="lblNewTrans" runat="server" Text="New Translation:" CssClass="Label"></asp:Label> &nbsp;&nbsp;&nbsp;
+    <asp:Label ID="lblNewTransValue" runat="server" CssClass="LabelValue"></asp:Label><br /><br />
     
     </asp:Panel>
     </div>

@@ -38,10 +38,12 @@
 
 01/07/2011       RP        Initial Version
 04/23/2011       RP        Added Close link button to close the webpage
+11/30/2012                 Added a SignOut Link button. Label to display the user name and the role
 */
 
 
 using System;
+using System.Security.Principal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -52,12 +54,94 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 {
     public partial class Site : System.Web.UI.MasterPage
     {
+        private string _strUser;
+
+        public string Username
+        {
+
+            get
+            {
+                return _strUser;
+            }
+            set
+            {
+                _strUser = value;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             lnkAbout.Attributes.Add("onClick","open_win('About.aspx'); return false;");
             lnkSupport.Attributes.Add("onClick","open_win('Support.aspx'); return false;");
+           //lnkSignOut.Attributes.Add("onClick", "NavigateURL(); return false");
+
+            _strUser = WindowsIdentity.GetCurrent().Name;
+
+            //SMU: Feb 05, 2013
+            //setUser(_strUser);
+
+            //if (IsPostBack) //SMU: Feb 07, 2013
+            //{
+
+            //    if (null != Request.Cookies["WEIRole"] && Request.Cookies["WEIRole"].Expires.CompareTo(DateTime.Now) > 0)
+            //    {
+            //        setUser(_strUser);
+            //    }
+            //    else
+            //    {
+            //        setUser("");
+
+            //        //SMU: Feb 07, 2013
+            //        lblUserRole.Text = "";
+            //        lblUserRole.Visible = false;
+            //        lblUser.Text = "";
+            //        lblUser.Visible = false;
+            //        Server.Transfer("~/Pages/LogOut.aspx", false);
+            //        //EU: Feb 07, 2013
+            //    }
+            //    //EU: Feb 05, 2013
+            //}
+            setUser(_strUser);
         }
 
-     
+        protected void LinkButton_Click(object sender, EventArgs e)
+        {
+            lblUserRole.Text = "";
+            lblUserRole.Visible = false;
+            lblUser.Text = "";
+            lblUser.Visible = false;
+            Server.Transfer("~/Pages/LogOut.aspx",false);
+        }
+        public void setUser(string strUserName)
+        {
+
+            if (strUserName != string.Empty)
+            {
+                lblUser.Text = strUserName;
+                lblWelcome.Visible = true;
+                lblRoleName.Visible = true;
+                lblUser.Visible = true;
+                lblUserRole.Visible = true;
+                //lblRole.Text =
+                var httpCookie = Request.Cookies["WEIRole"];
+                if (httpCookie != null)
+                {
+                    if (httpCookie["WEIReviewer"] == "Y")
+                    {
+                        lblUserRole.Text = "Reviewer";
+                    }
+                    if (httpCookie["WEIApprover"] == "Y")
+                    {
+                        lblUserRole.Text = "Approver";
+                    }
+                }
+            }
+            else
+            {
+                lblWelcome.Visible = false;
+                lblUser.Visible = false;
+                lblUserRole.Visible = false;
+                lblRoleName.Visible = false;
+            }
+         }     
     }
 }

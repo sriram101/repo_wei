@@ -42,13 +42,13 @@
 */
 
 using System;
-using System.Web;
-using System.Linq;
-using System.Diagnostics;
-using System.Web.Security;
-using System.Web.SessionState;
-using System.Security.Principal;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Security.Principal;
+using System.Diagnostics;
+using System.Web.SessionState;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
 
 namespace Telavance.AdvantageSuite.Wei.WeiDashboard
@@ -80,7 +80,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 
             }
 
-            Server.Transfer("/pages/CustomErrorPage.aspx");
+            Server.Transfer("CustomErrorPage.aspx");
 
         }
 
@@ -89,7 +89,21 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             // Code that runs when a new session is started
             //Cookie set for 20 minutes
 
+            HttpContext context = HttpContext.Current;
             HttpCookieCollection CookieColl = Request.Cookies;
+            HttpCookieCollection cookies = context.Request.Cookies;
+            
+            
+            if (cookies["starttime"] == null)
+            {
+                HttpCookie cookie = new HttpCookie("starttime", DateTime.Now.ToString());
+                cookie.Path = "/";
+                context.Response.Cookies.Add(cookie);
+            }
+            else
+            {
+                context.Response.Redirect("LogOut.aspx");
+            }
             if (Request.Cookies["WEI"] == null)
             {
                 HttpCookie WEICookie = new HttpCookie("WEI");
@@ -97,6 +111,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 WEICookie.Expires = DateTime.Now.AddMinutes(20);
                 Response.Cookies.Add(WEICookie);
             }
+             
         }
 
         void Session_End(object sender, EventArgs e)

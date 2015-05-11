@@ -76,6 +76,15 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         protected global::System.Web.UI.WebControls.LinkButton lnkAbout;
         
         /// <summary>
+        /// lnkSignOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSignOut;
+        
+        /// <summary>
         /// lnkClose control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,42 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkClose;
+        
+        /// <summary>
+        /// lblWelcome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblWelcome;
+        
+        /// <summary>
+        /// lblUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUser;
+        
+        /// <summary>
+        /// lblRoleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRoleName;
+        
+        /// <summary>
+        /// lblUserRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserRole;
         
         /// <summary>
         /// MainContent control.
