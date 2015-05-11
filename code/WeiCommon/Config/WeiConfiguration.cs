@@ -100,6 +100,32 @@ namespace Telavance.AdvantageSuite.Wei.WeiCommon
             }
         }
 
+        [ConfigurationProperty("searchString", IsRequired = true)]
+        public string searchString
+        {
+            get
+            {
+                return (string) this["searchString"];
+            }
+            set
+            {
+                this["searchString"] = value;
+            }
+        }
+
+        [ConfigurationProperty("replaceString", IsRequired = true)]
+        public string replaceString
+        {
+            get
+            {
+                return (string)this["replaceString"];
+            }
+            set
+            {
+                this["replaceString"] = value;
+            }
+        }
+
         [ConfigurationProperty("Translator")]
         public TranslateConfigElement TranslatorSetting
         {
