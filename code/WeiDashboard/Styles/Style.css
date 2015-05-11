@@ -125,8 +125,7 @@ body
 }
 .divGrid
 {
-    width:1070px;
-	overflow:auto;
+    overflow:auto;
 	white-space:nowrap;
 	
 }
