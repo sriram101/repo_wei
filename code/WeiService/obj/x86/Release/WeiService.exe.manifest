@@ -145,41 +145,41 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Vjxl5Tisht/vWuu45jCncZKRzmc=</dsig:DigestValue>
+        <dsig:DigestValue>YEC2eNyphwREc1ROv6GRfaQ5t3g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeiService.exe" size="32768">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeiService.exe" size="33280">
       <assemblyIdentity name="WeiService" version="2.0.0.1" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>ox3nUKVjxD7vDJ6x7wk/G8pHZWM=</dsig:DigestValue>
+        <dsig:DigestValue>csfdsHsLNb6rW97Eq/hVREgmuHE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeiTranslator.dll" size="17920">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WeiTranslator.dll" size="19968">
       <assemblyIdentity name="WeiTranslator" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>raYfvhIu46HtUSP+9Tn0mZU7VsU=</dsig:DigestValue>
+        <dsig:DigestValue>AGe/EkSyEtJAQ40dNHQDs4/dw9I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="WeiService.exe.config" size="8953">
+  <file name="WeiService.exe.config" size="9065">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>FEBEBlK925oVRdZX+SKmx9dJdas=</dsig:DigestValue>
+      <dsig:DigestValue>0yxV+FZxACXq53WGD3BDPqJvSMM=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

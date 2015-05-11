@@ -15,6 +15,8 @@ using System.ServiceModel;
 using System.Threading;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
 
+[assembly:CLSCompliant(true)]
+
 namespace Telavance.AdvantageSuite.Wei.WeiService
 {
     public partial class WeiService : ServiceBase
@@ -62,7 +64,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
             if (!File.Exists(fileName))
             {
-                throw new Exception("Missing config file. Expecting file @" + fileName);
+                throw new Exception("Missing configuration file. Expecting file @" + fileName);
             }
 
             LogUtil.logInfo("Starting Wei Service");

@@ -52,10 +52,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         bool sendForOfacCheck(Request request);
         bool sendResponse(Request request, string ofacResponseIdentifier);
         bool moveToError(Request request);
+        bool moveToReview(Request request);
 
         void stop();
         DriverStatus getStatus();
         string getStatistics();
         bool shouldMoveToError();
+        bool shouldMoveToReview();
     }
 }

@@ -43,21 +43,26 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             sw.Close();*/
 
             var assemblyPath = this.Context.Parameters["assemblypath"];
+            FileInfo info = new FileInfo(assemblyPath);
 
+            if (info.Exists == false)
+            {
+                throw new InstallException("File " + assemblyPath + " does not exist");
+            }
 
             StreamReader reader = new StreamReader(assemblyPath+".config");
             string content = reader.ReadToEnd();
-            reader.Close();
+            reader.Dispose();
             string dir = this.Context.Parameters["installdir"].ToString();
             dir = dir.Substring(0, dir.Length - 1).Replace('\\','/');
             
-            string searchText = "C:/wei/Code/WeiService/bin/Release/";
-            content = Regex.Replace(content, searchText, dir);
-            content = Regex.Replace(content, "key=\".*\"", "key=\"Enter Key\"");
+            //string searchText = "C:/wei/Code/WeiService/bin/Release/";
+            //content = Regex.Replace(content, searchText, dir);
+            //content = Regex.Replace(content, "key=\".*\"", "key=\"Enter Key\"");
 
             StreamWriter writer = new StreamWriter(assemblyPath + ".config");
             writer.Write(content);
-            writer.Close();
+            writer.Dispose();
 
             //couldnt use the below code because configelements are in a differnt dll. Ahhhhhh
 
@@ -78,6 +83,18 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             config.Save(ConfigurationSaveMode.Modified);*/
 
 
+        }
+        public override void Commit(IDictionary savedState)
+        {
+            base.Commit(savedState);
+        }
+        public override void Uninstall(IDictionary savedState)
+        {
+            base.Uninstall(savedState);
+        }
+        public override void Rollback(IDictionary savedState)
+        {
+            base.Rollback(savedState);
         }
     }
 }

@@ -69,10 +69,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                     }
                 }
             }
-            catch (XmlException e)
+            catch (XmlException)
             {
                 //may be this is not a valid xml
                 document = null;
+                throw;
             }
             return document;
         }
@@ -121,9 +122,10 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
                 return true;
             }
-            catch (XmlException e)
+            catch (XmlException)
             {
                 //may be this is not a valid xml
+                throw;
             }
 
             return false;

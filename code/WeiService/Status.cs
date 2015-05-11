@@ -37,6 +37,7 @@
 -------------|----------|------------------------------------------------------
 
 12/30/2010       RL        Inital version
+12/01/2012                  Added a status code for Review
 */
 using System;
 using System.Collections.Generic;
@@ -65,9 +66,10 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
     {
         Unprocessed=1,
         Translated=2,
-        SentForOfacCheck=3,
-        OfacResponseReceived=4,
-        Processed=5
+        Review = 3,
+        SentForOfacCheck=4,
+        OfacResponseReceived=5,
+        Processed=6
     }
 
     public enum OfacStatus : int
