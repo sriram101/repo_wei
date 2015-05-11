@@ -71,7 +71,7 @@ namespace Telavance.AdvantageSuite.Wei.PrimeHandler
             }
             catch (Exception e)
             {
-                //dont log
+                throw (e);
             }
 
             //else return the full message
