@@ -1,54 +1,78 @@
-C:\Telavance\Development\Wei\code\MQDriver\obj\Release\ResolveAssemblyReference.cache
-C:\Telavance\Development\Wei\code\MQDriver\obj\Release\MQDriver.dll
-C:\Telavance\Development\Wei\code\MQDriver\obj\Release\MQDriver.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\MQDriver.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\MQDriver.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiCommon.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiService.exe
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiTranslator.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.dll
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiCommon.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiService.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiTranslator.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.pdb
-C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\MQDriver.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\MQDriver.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\amqmdnet.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\WeiCommon.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\WeiService.exe
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\WeiTranslator.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\amqmdxcs.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\WeiCommon.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\WeiService.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\WeiTranslator.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\obj\Release\ResolveAssemblyReference.cache
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\obj\Release\MQDriver.dll
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\MQDriver\obj\Release\MQDriver.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\MQDriver.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\MQDriver.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiCommon.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiService.exe
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiTranslator.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiCommon.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiService.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\WeiTranslator.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Telavance\Development\Wei\code\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Telavance\Development\Wei\code\MQDriver\obj\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\code\MQDriver\obj\Release\MQDriver.dll
+C:\Telavance\Development\Wei\code\MQDriver\obj\Release\MQDriver.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\MQDriver.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\MQDriver.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\WeiCommon.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\WeiService.exe
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\WeiTranslator.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\WeiCommon.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\WeiService.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\WeiTranslator.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Telavance\Development\Wei\Development\Source\MQDriver\obj\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\Development\Source\MQDriver\obj\Release\MQDriver.dll
+C:\Telavance\Development\Wei\Development\Source\MQDriver\obj\Release\MQDriver.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\MQDriver.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\MQDriver.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\WeiCommon.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\WeiService.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\WeiTranslator.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\WeiCommon.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\WeiService.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\WeiTranslator.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\obj\Release\ResolveAssemblyReference.cache
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\obj\Release\MQDriver.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\MQDriver\obj\Release\MQDriver.pdb

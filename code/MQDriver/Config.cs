@@ -79,6 +79,9 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
         [XmlElement(ElementName = "errorQueue")]
         public String errorQueue;
 
+        [XmlElement(ElementName = "reviewQueue")]
+        public String reviewQueue;
+
         [XmlElement(ElementName = "ofacInputQueue")]
         public String ofacInputQueue;
 
@@ -90,6 +93,9 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
         [XmlElement(ElementName = "shouldMoveToError")]
         public bool shouldMoveToError = true;
+
+        [XmlElement(ElementName = "shouldMoveToReview")]
+        public bool shouldMoveToReview = true;
 
         public bool isRemote()
         {
@@ -132,6 +138,9 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
             sb.Append(";errorQueue:");
             sb.Append(errorQueue);
+
+            sb.Append(";reviewQueue:");
+            sb.Append(reviewQueue);
 
             sb.Append(";ofacInputQueue:");
             sb.Append(ofacInputQueue);
