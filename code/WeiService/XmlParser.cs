@@ -25,6 +25,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         public void configure(Translator translator, string param1, string param2, string param3, string param4, string param5)
         {
             this._translator = translator;
+
             string[] tags = param1.Split(',');
             foreach (string tag in tags)
             {
@@ -80,6 +81,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
         public bool translate(Request request, String message)
         {
+            _translator.RequestId = request.RequestId;
             if (rootNodeToAppend != null)
             {
                 message = "<" + rootNodeToAppend + ">" + message + "</" + rootNodeToAppend + ">";

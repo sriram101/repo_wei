@@ -112,7 +112,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                         processFooter(translatedText,currentTag,line);
                         break;
                     case ":":
-                        bool retValue = processTag(translatedText,currentTag);
+                        bool retValue = processTag(request.RequestId,translatedText,currentTag);
                         if (!hasCTC)
                             hasCTC = retValue;
                         currentTag.Append(line);
@@ -132,7 +132,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         void processHeader(StringBuilder translatedText, StringBuilder currentTag, String currentLine)
         {
 
-            processTag(translatedText, currentTag);
+            processTag(0,translatedText, currentTag);
             translatedText.Append(currentLine);
             translatedText.Append("\r\n");
         }
@@ -140,12 +140,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         void processFooter(StringBuilder translatedText, StringBuilder currentTag, String currentLine)
         {
 
-            processTag(translatedText, currentTag);
+            processTag(0,translatedText, currentTag);
             translatedText.Append(currentLine);
             translatedText.Append("\r\n");
         }
 
-        bool processTag(StringBuilder translatedText, StringBuilder currentTag)
+        bool processTag(int requestId,StringBuilder translatedText, StringBuilder currentTag)
         {
             bool bTranslate = false;
             if (currentTag.Length > 0)
@@ -164,7 +164,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                     tag = tagText.Substring(1, tagIndexEnd - 1);
                     if (translateAllTags || _tagsToTranslate.Contains(tag))
                     {
-                        string translatedTagContents = _translator.convertAndTranslate(tagContents, false);
+                        //string translatedTagContents = _translator.convertAndTranslate(tagContents, false);
+                        string translatedTagContents = translate(requestId, tagContents);
                         translatedText.Append(translatedTagContents);
                         bTranslate = !tagContents.Equals(translatedTagContents);
                     }
@@ -175,6 +176,28 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                 currentTag.Clear();                
             }
             return bTranslate;
+        }
+
+        private string translate(int requestId, string text)
+        {
+            StringBuilder output = new StringBuilder();
+
+            while (text != null)
+            {
+                int index = text.IndexOf("*");
+                string tag = index == -1 ? text : text.Substring(0, index);
+                text = index == -1 ? null : text.Substring(index + 1);
+                _translator.RequestId = requestId;
+                string translatedTagContents = _translator.convertAndTranslate(tag, false, null);
+                output.Append(translatedTagContents);
+                if (text != null)
+                {
+                    output.Append("*");
+                }
+
+            }
+
+            return output.ToString();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             InitializeComponent();
         }
 
+
         private void serviceProcessInstaller1_AfterInstall(object sender, InstallEventArgs e)
         {
 

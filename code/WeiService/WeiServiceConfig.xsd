@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="configSections">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="section">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="xs:string" use="required" />
+                  <xs:attribute name="requirePermission" type="xs:boolean" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Chips">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Tags">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Tag">
+                      <xs:complexType>
+                        <xs:attribute name="id" type="xs:unsignedShort" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="translateAllTags" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="loggingConfiguration">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="listeners">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="add">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="listenerDataType" type="xs:string" use="required" />
+                        <xs:attribute name="source" type="xs:string" use="optional" />
+                        <xs:attribute name="formatter" type="xs:string" use="required" />
+                        <xs:attribute name="log" type="xs:string" use="optional" />
+                        <xs:attribute name="machineName" type="xs:string" use="optional" />
+                        <xs:attribute name="traceOutputOptions" type="xs:string" use="optional" />
+                        <xs:attribute name="filter" type="xs:string" use="optional" />
+                        <xs:attribute name="fileName" type="xs:string" use="optional" />
+                        <xs:attribute name="footer" type="xs:string" use="optional" />
+                        <xs:attribute name="header" type="xs:string" use="optional" />
+                        <xs:attribute name="rollInterval" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="formatters">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="add">
+                      <xs:complexType>
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="template" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="categorySources">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="add">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="listeners">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="add">
+                                  <xs:complexType>
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="switchValue" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="specialSources">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="allEvents">
+                      <xs:complexType>
+                        <xs:attribute name="switchValue" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="notProcessed">
+                      <xs:complexType>
+                        <xs:attribute name="switchValue" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="errors">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="listeners">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="add">
+                                  <xs:complexType>
+                                    <xs:attribute name="name" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="switchValue" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="tracingEnabled" type="xs:boolean" use="required" />
+            <xs:attribute name="defaultCategory" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dataConfiguration">
+          <xs:complexType>
+            <xs:attribute name="defaultDatabase" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="connectionStrings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="add">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="connectionString" type="xs:string" use="required" />
+                  <xs:attribute name="providerName" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Wei">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Translator">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="MapFiles">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="MapFile">
+                            <xs:complexType>
+                              <xs:attribute name="description" type="xs:string" use="required" />
+                              <xs:attribute name="language" type="xs:string" use="required" />
+                              <xs:attribute name="path" type="xs:string" use="required" />
+                              <xs:attribute name="keyindex" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="valueindex" type="xs:unsignedByte" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Providers">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Provider">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                              <xs:attribute name="className" type="xs:string" use="required" />
+                              <xs:attribute name="maxLength" type="xs:unsignedShort" use="optional" />
+                              <xs:attribute name="version" type="xs:decimal" use="required" />
+                              <xs:attribute name="key" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TranslationExceptions">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="TranslationException">
+                            <xs:complexType>
+                              <xs:attribute name="id" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="expression" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="currentTranslationProvider" type="xs:string" use="required" />
+                  <xs:attribute name="currentLanguage" type="xs:string" use="required" />
+                  <xs:attribute name="ctcDeterminingCount" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="noOfRetries" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="ctcAllowedChars" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Parsers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Parser">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="className" type="xs:string" use="required" />
+                        <xs:attribute name="param1" type="xs:string" use="optional" />
+                        <xs:attribute name="param2" type="xs:string" use="optional" />
+                        <xs:attribute name="param4" type="xs:string" use="optional" />
+                        <xs:attribute name="dllName" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Swift">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Tags">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Tag">
+                            <xs:complexType>
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="translateAllTags" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="threadPoolSize" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="applyCustomName" type="xs:boolean" use="required" />
+            <xs:attribute name="customName" type="xs:string" use="required" />
+            <xs:attribute name="requiresReview" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system.serviceModel">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="services">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="service">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="endpoint">
+                            <xs:complexType>
+                              <xs:attribute name="address" type="xs:string" use="required" />
+                              <xs:attribute name="binding" type="xs:string" use="required" />
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                              <xs:attribute name="contract" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="host">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="baseAddresses">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="add">
+                                        <xs:complexType>
+                                          <xs:attribute name="baseAddress" type="xs:string" use="required" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="behaviorConfiguration" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="behaviors">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="serviceBehaviors">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="behavior">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="serviceMetadata">
+                                  <xs:complexType>
+                                    <xs:attribute name="httpGetEnabled" type="xs:boolean" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="serviceDebug">
+                                  <xs:complexType>
+                                    <xs:attribute name="includeExceptionDetailInFaults" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="startup">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="supportedRuntime">
+                <xs:complexType>
+                  <xs:attribute name="version" type="xs:string" use="required" />
+                  <xs:attribute name="sku" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

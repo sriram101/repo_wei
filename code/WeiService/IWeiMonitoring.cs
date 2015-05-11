@@ -32,6 +32,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         void reprocess(int requestId);
 
         [OperationContract]
-        void processMessageForOFACCheck(int requestId);
+        bool processMessageForOFACCheck(int requestId);
     }
 }
