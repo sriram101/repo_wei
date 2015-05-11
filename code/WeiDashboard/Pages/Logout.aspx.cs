@@ -16,6 +16,20 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             {
                 if (Request.Cookies["WEI"] == null)
                 {
+                    //SMU: Feb 05, 2013 Added the following blocks
+                    if (Request.Cookies["WEIRole"] != null)
+                    {
+                        HttpCookie weiCookie = new HttpCookie("WEIRole");
+                        weiCookie.Expires = DateTime.Now.AddDays(-1d);
+                        Response.Cookies.Add(weiCookie);
+                    }
+                    if (Request.Cookies["starttime"] != null)
+                    {
+                        HttpCookie weiCookie = new HttpCookie("starttime");
+                        weiCookie.Expires = DateTime.Now.AddDays(-1d);
+                        Response.Cookies.Add(weiCookie);
+                    }
+
                     lblsignout.Text = "Your session has timed out. Please click here to";
                     HyperLink1.Text = "sign in";
                     HyperLink1.NavigateUrl = "Login.aspx";
@@ -24,10 +38,33 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 {
                     //force logout
                     Response.Cookies["WEI"].Expires = DateTime.Now.AddDays(-1);
+
+                    //SMU: Feb 01, 2013 Added the following block
+                    //ref: http://msdn.microsoft.com/en-us/library/ms178195%28v=vs.100%29.aspx
+                    HttpCookie weiCookie = new HttpCookie("WEI");
+                    weiCookie.Expires = DateTime.Now.AddDays(-1d);
+                    Response.Cookies.Add(weiCookie);
+
+
                     lblsignout.Text = "Sign out successful. Click here to";
                     HyperLink1.Text = "sign in";
                     HyperLink1.NavigateUrl = "Login.aspx";
                 }
+
+                //SMU: Feb 01, 2013 Added the following blocks
+                if (Request.Cookies["WEIRole"] != null)
+                {
+                    HttpCookie weiCookie = new HttpCookie("WEIRole");
+                    weiCookie.Expires = DateTime.Now.AddDays(-1d);
+                    Response.Cookies.Add(weiCookie);
+                }
+                if (Request.Cookies["starttime"] != null)
+                {
+                    HttpCookie weiCookie = new HttpCookie("starttime");
+                    weiCookie.Expires = DateTime.Now.AddDays(-1d);
+                    Response.Cookies.Add(weiCookie);
+                }
+               
             }
             catch (Exception ex)
             {

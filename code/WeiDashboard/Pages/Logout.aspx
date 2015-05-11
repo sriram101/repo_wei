@@ -4,6 +4,9 @@
 
 <script language="javascript" type="text/javascript">
 
+    function pageLoad() {
+    }
+
     function SupportLinkButton_OnClientClick() {
     }
 
