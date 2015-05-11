@@ -1,24 +1,36 @@
-C:\Telavance\Development\Wei\code\WeiMonitor\bin\Release\ServiceManager.exe.config
-C:\Telavance\Development\Wei\code\WeiMonitor\bin\Release\ServiceManager.exe
-C:\Telavance\Development\Wei\code\WeiMonitor\bin\Release\ServiceManager.pdb
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.MainForm.resources
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.Properties.Resources.resources
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\GenerateResource.read.1.tlog
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\GenerateResource.write.1.tlog
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\ServiceManager.exe
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\ServiceManager.pdb
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.NewForm.resources
-C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.ShowRequestsWithErrors.resources
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\bin\Release\ServiceManager.exe.config
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\bin\Release\ServiceManager.exe
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\bin\Release\ServiceManager.pdb
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.MainForm.resources
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.NewForm.resources
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.Properties.Resources.resources
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.ShowRequestsWithErrors.resources
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\GenerateResource.read.1.tlog
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\GenerateResource.write.1.tlog
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\ServiceManager.exe
-C:\Users\Sriram\Documents\Work\Development\Telavance\WEI\20121111\Wei\code\WeiMonitor\obj\x86\Release\ServiceManager.pdb
+C:\Telavance\Development\Wei\code\WeiMonitor\bin\Release\ServiceManager.exe.config
+C:\Telavance\Development\Wei\code\WeiMonitor\bin\Release\ServiceManager.exe
+C:\Telavance\Development\Wei\code\WeiMonitor\bin\Release\ServiceManager.pdb
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.MainForm.resources
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.NewForm.resources
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.Properties.Resources.resources
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.ShowRequestsWithErrors.resources
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\ServiceManager.exe
+C:\Telavance\Development\Wei\code\WeiMonitor\obj\x86\Release\ServiceManager.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\bin\Release\ServiceManager.exe.config
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\bin\Release\ServiceManager.exe
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\bin\Release\ServiceManager.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.MainForm.resources
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.NewForm.resources
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.Properties.Resources.resources
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.ShowRequestsWithErrors.resources
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\ServiceManager.exe
+C:\Telavance\Development\Wei\Development\Source\WeiMonitor\obj\x86\Release\ServiceManager.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\bin\Release\ServiceManager.exe.config
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\bin\Release\ServiceManager.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\bin\Release\ServiceManager.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.MainForm.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.NewForm.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.Properties.Resources.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\Telavance.AdvantageSuite.Wei.ServiceManager.ShowRequestsWithErrors.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\ServiceManager.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiMonitor\obj\x86\Release\ServiceManager.pdb
