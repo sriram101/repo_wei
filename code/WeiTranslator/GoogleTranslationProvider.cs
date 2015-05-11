@@ -44,17 +44,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Configuration;
 using System.Net;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
 
 namespace Telavance.AdvantageSuite.Wei.WeiTranslator
 {
+
     class GoogleTranslationProvider : AbstractWebUrlTranslator
     {
-        //private string uri = "http://ajax.googleapis.com/ajax/services/language/translate";
-        private string uri = "https://www.googleapis.com/language/translate/v2";
 
+        WeiConfiguration weiConfig = (WeiConfiguration)ConfigurationManager.GetSection("Wei");
+        
+
+        //private string uri = "http://ajax.googleapis.com/ajax/services/language/translate";
+        //private string uri = "https://www.googleapis.com/language/translate/v2";
+        private string uri;
+
+        
+        
         //private String messageFormat = "v=1.0&key={0}&q={1}&langpair={2}%7C{3}";
 
         private String messageFormat = "key={0}&q={1}&source={2}&target={3}";
@@ -67,6 +75,15 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
 
         public override string getURL(String message, string fromLanguage, string toLanguage)
         {
+            TranslateConfigElement config = weiConfig.TranslatorSetting;
+            foreach (ProviderConfigElement provider in config.Providers)
+            {
+                if (provider.Name == weiConfig.TranslatorSetting.CurrentTranslationProvider)
+                {
+                    uri = provider.Uri;
+                }
+            }
+
             return uri;//string.Format(uri, key, message, fromLanguage, toLanguage);
         }
 

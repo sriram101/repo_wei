@@ -42,6 +42,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Configuration;
+using Telavance.AdvantageSuite.Wei.WeiCommon;
 
 
 using System.Net;
@@ -50,11 +52,14 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
 {
     class BingTranslationProvider : AbstractWebUrlTranslator
     {
-        private string uri = "http://api.microsofttranslator.com/V2/Http.svc/Translate";
+        //private string uri = "http://api.microsofttranslator.com/V2/Http.svc/Translate";
+        //private string uri = "http://api.microsofttranslator.com/v2/Http.svc/Translate";
+        private string uri;
+        WeiConfiguration weiConfig = (WeiConfiguration)ConfigurationManager.GetSection("Wei");
 
         private String messageFormat = "appId={0}&text={1}&from={2}&to={3}";
 
-
+        
         public override string getMessage(String message, string fromLanguage, string toLanguage)
         {
             return string.Format(messageFormat, key, message, fromLanguage, toLanguage);
@@ -62,6 +67,14 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
 
         public override string getURL(String message, string fromLanguage, string toLanguage)
         {
+            TranslateConfigElement config = weiConfig.TranslatorSetting;
+            foreach (ProviderConfigElement provider in config.Providers)
+            {
+                if (provider.Name == weiConfig.TranslatorSetting.CurrentTranslationProvider)
+                {
+                    uri = provider.Uri;
+                }
+            }
             return uri;
         }
 

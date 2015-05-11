@@ -82,13 +82,13 @@
     <Compile Include="Translator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\WeiCommon\WeiCommon.csproj">
       <Project>{3B42C132-55A9-4AC9-B272-3157C110DE8B}</Project>
       <Name>WeiCommon</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

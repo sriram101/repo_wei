@@ -90,10 +90,24 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
         private bool _applyCustomName;
         private string _sCustomName;
         private bool _requiresReview;
-
+        private int _requestId;
+        private bool _bTranslateCTCOnly = false;
         
+        public int RequestId
+        {
+            get
+            {
+                return _requestId;
+            }
+            set
+            {
+                _requestId = value;
+            }
+        }
+        [CLSCompliant(true)]
         public Translator(WeiConfiguration weiConfig)
         {
+
 
             TranslateConfigElement config = weiConfig.TranslatorSetting;
             _applyCustomName = weiConfig.applyCustomName;
@@ -177,6 +191,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
             }
         }
 
+        
+
         public String convertAndTranslate(String message, bool translateOnlyCTC)
         {
             return convertAndTranslate(message, translateOnlyCTC, null);
@@ -189,7 +205,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
 
         public String convertAndTranslate(String srcLanguage, String message, bool translateOnlyCTC, Preprocess handler)
         {
-            return convertAndTranslate(srcLanguage, message, _currentTranslationProvider, translateOnlyCTC, handler);
+            return convertAndTranslate( srcLanguage, message, _currentTranslationProvider, translateOnlyCTC, handler);
         }
         public String convertAndTranslate(String srcLanguage, String message, String translationProvider, bool translateOnlyCTC, Preprocess handler)
         {
@@ -197,7 +213,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
             String converted = convert(srcLanguage, message, translateOnlyCTC, handler);
             if (converted != null)
             {
-                if (translateOnlyCTC)
+                if (_bTranslateCTCOnly)
+                //if (translateOnlyCTC)
                     //as it is already translated
                     return converted;
                 String translated = translate(srcLanguage, converted);
@@ -218,7 +235,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
 
         public String convert(String message, bool translateOnlyCTC, Preprocess handler)
         {
-            return convert(_currentLanguage, message, translateOnlyCTC, handler);
+            return convert( _currentLanguage, message, translateOnlyCTC, handler);
         }
 
         public String convert(String srcLanguage, String message, bool translateOnlyCTC, Preprocess handler)
@@ -230,6 +247,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
             if (mapFile != null)
             {
                 string originalMessage = message;
+                //Commented
                 message = " " + message + " ";
                 if (Regex.IsMatch(message, hasCTCpattern))
                 {
@@ -243,7 +261,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
                             return null;
                         }
                     }
-
+                    LogUtil.logInfo("Convert Method in Translator Class");
+                    
                     message = message.Substring(1, message.Length-2);
                     message = convert(srcLanguage, message, mapFile, translateOnlyCTC);
                 }
@@ -299,7 +318,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
                     chr = Convert.ToChar(chrint);
                     if (Char.IsWhiteSpace(chr))
                     {
-                        if(currentWord.Length>0)
+                        //Commented
+                        if (currentWord.Length > 0)
+
+                            
+
                             processWord(srcLanguage, mapFile, sb, possibleCtcs, currentWord, false, translateOnlyCTC);
 
                         if (possibleCtcs.Count > 0)
@@ -317,9 +340,9 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw new Exception("Error identifying CTC:" , e);
             }
             //process any remaining characters
             processWord(srcLanguage, mapFile, sb, possibleCtcs, currentWord, true, translateOnlyCTC);
@@ -332,89 +355,122 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
         {
             bool bProcessed = false;
             string sCTCCode = "";
+            int requestId = _requestId;
 
-            if (currentWord.Length >= 4)
+            try
             {
-                //could be a ctc. Let us check
-
-                String strWord = currentWord.ToString();
-                Match match = singleCTCpatternRegex.Match(strWord);
-                if (match.Success && match.Groups.Count == 2)
+                if (currentWord.Length >= 4)
                 {
-                    Word word = new Word();
-                    word.ctcCode = match.Groups[1].Value;
-                    if (currentWord.Length > 4)
+                    //could be a ctc. Let us check
+
+                    String strWord = currentWord.ToString();
+                    Match match = singleCTCpatternRegex.Match(strWord);
+                    if (match.Success && match.Groups.Count == 2)
                     {
-                        int index = strWord.IndexOf(word.ctcCode);
-                        if (index > 0)
+                        Word word = new Word();
+                        word.ctcCode = match.Groups[1].Value;
+                        if (currentWord.Length > 4)
                         {
-                            word.precedingChars.Append(strWord.Substring(0, index));
+                            int index = strWord.IndexOf(word.ctcCode);
+                            if (index > 0)
+                            {
+                                word.precedingChars.Append(strWord.Substring(0, index));
+                            }
+                            if ((index + 4) < strWord.Length)
+                            {
+                                word.succeedingChars.Append(strWord.Substring(index + 4));
+                            }
                         }
-                        if ((index + 4) < strWord.Length)
-                        {
-                            word.succeedingChars.Append(strWord.Substring(index + 4));
-                        }
+
+                        possibleCtcs.Add(word);
+                        bProcessed = true;
                     }
 
-                    possibleCtcs.Add(word);
-                    bProcessed = true;
+
+
+                    //it is a 4 digit integer. So lets us convert
+                    //sb.Append(getTranslatedCTCCode(mapFile, currentWord.ToString()));
+
                 }
 
 
-
-                //it is a 4 digit integer. So lets us convert
-                //sb.Append(getTranslatedCTCCode(mapFile, currentWord.ToString()));
-
-            }
-
-
-            if (!bProcessed || bFinish)
-            {
-                if (possibleCtcs.Count > 0)
+                if (!bProcessed || bFinish)
                 {
-                    bool bConvert = possibleCtcs.Count >= _determiningCTCCount;
-                    StringBuilder currentConvertedWord = new StringBuilder();
-                    StringBuilder OriginalWord = new StringBuilder();
-                    foreach (Word word in possibleCtcs)
+                    if (possibleCtcs.Count > 0)
                     {
-                        currentConvertedWord.Append(word.precedingChars.ToString());
-                        currentConvertedWord.Append(bConvert ? getTranslatedCTCCode(mapFile, word.ctcCode) : word.ctcCode);
-                        currentConvertedWord.Append(word.succeedingChars.ToString());
-
-                        OriginalWord.Append(word.precedingChars.ToString());
-                        OriginalWord.Append(word.ctcCode);
-                        OriginalWord.Append(word.succeedingChars.ToString());
-                        sCTCCode = sCTCCode + " " + word.ctcCode;
-                    }
-                    possibleCtcs.Clear();
-
-                    if (bConvert && translateOnlyCTC)
-                    {
-                        string translated;
-                        translated = "";
-                        
-                        //Check if the translation exists in the translations table
-                        translated = _dbutils.getCTCTranslations(sCTCCode.Trim());
-                        if (translated == null)
+                        bool bConvert = possibleCtcs.Count >= _determiningCTCCount;
+                        StringBuilder currentConvertedWord = new StringBuilder();
+                        StringBuilder OriginalWord = new StringBuilder();
+                        foreach (Word word in possibleCtcs)
                         {
-                            //Add the translation to the translations table if it does not exist
-                            translated = translate(srcLanguage, currentConvertedWord.ToString());
-                            _dbutils.addTranslation(sCTCCode.Trim(), currentConvertedWord.ToString(), "", translated);
-                            LogUtil.logInfo("New translation added to Translations table for the telegraphic code: " + sCTCCode.Trim());
+                            currentConvertedWord.Append(word.precedingChars.ToString());
+                            currentConvertedWord.Append(bConvert ? getTranslatedCTCCode(mapFile, word.ctcCode) : word.ctcCode);
+                            currentConvertedWord.Append(word.succeedingChars.ToString());
+
+                            OriginalWord.Append(word.precedingChars.ToString());
+                            OriginalWord.Append(word.ctcCode);
+                            OriginalWord.Append(word.succeedingChars.ToString());
+                            sCTCCode = sCTCCode + " " + word.ctcCode;
+
+                            translateOnlyCTC = true;
+                            _bTranslateCTCOnly = translateOnlyCTC;
+                        }
+                        possibleCtcs.Clear();
+
+                        if (bConvert && translateOnlyCTC)
+                        {
+                            string translated;
+                            translated = "";
+
+                            //Add the requestid and CTC codes in the CTCrequests table
+                            if (_dbutils == null)
+                            {
+                                throw new Exception();
+
+                            }
+                           
+
+                            _dbutils.addCTCRequest(RequestId, sCTCCode.ToString().Trim());
+
+                            LogUtil.logInfo("ProcessWord");
+                            LogUtil.logInfo(RequestId.ToString());
+                            LogUtil.logInfo(sCTCCode.ToString());
+
+                            //Check if the translation exists in the translations table
+                            translated = _dbutils.getCTCTranslations(sCTCCode.Trim());
+                            if (translated == null)
+                            {
+                                //Add the translation to the translations table if it does not exist
+                                translated = translate(srcLanguage, currentConvertedWord.ToString());
+                                _dbutils.addTranslation(sCTCCode.Trim(), currentConvertedWord.ToString(), "", translated);
+                                LogUtil.logInfo("New translation added to Translations table for the telegraphic code: " + sCTCCode.Trim());
+                                AuditUtil.getInstance().audit(requestId, AuditLevel.Info, "New translation added to Translations table for the telegraphic code: " + sCTCCode.Trim());
+
+                            }
+                            else
+                            {
+                                
+                                LogUtil.logInfo("Translation already exists for telegraphic Code:" + sCTCCode.Trim());
+                                AuditUtil.getInstance().audit(requestId, AuditLevel.Info, "Translation already exists for telegraphic Code:" + sCTCCode.Trim());
+                            }
+                            sb.Append(formattedTranslatedString(OriginalWord.ToString(), translated));
 
                         }
-                        LogUtil.logInfo("Translation already exists for telegraphic Code:" + sCTCCode.Trim());
-                        sb.Append(formattedTranslatedString(OriginalWord.ToString(), translated));
+                        else
+                        {
+                            sb.Append(currentConvertedWord.ToString());
+                        }
                     }
-                    else
-                    {
-                        sb.Append(currentConvertedWord.ToString());
-                    }
+                    if (!bProcessed)
+                        sb.Append(currentWord);
                 }
-                if(!bProcessed)
-                    sb.Append(currentWord);
+                currentWord.Clear();
             }
-            currentWord.Clear();
+            catch (Exception e)
+            {
+                LogUtil.log("Error during translation:" , e);
+                throw new Exception("Error during translation:", e);
+            }
 
         }
         private String getTranslatedCTCCode(MapFile mapFile, String ctcCode)
@@ -422,7 +478,9 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
             if (mapFile.Dictionary[ctcCode] == null)
             {
                 LogUtil.logInfo("Cannot find the value for " + ctcCode + " in the mapfile:" + mapFile.MapFileName);
-                return ctcCode;
+                //Commented - if CTC code is not found in the map file return empty
+                //return ctcCode;
+                return "";
             }
             return mapFile.Dictionary[ctcCode].ToString();
         }
