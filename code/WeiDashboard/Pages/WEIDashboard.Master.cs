@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Telavance.AdvantageSuite.Wei.WeiDashboard.Pages
+namespace Telavance.AdvantageSuite.Wei.WeiDashboard.LogOut
 {
     public partial class WEIDashboard : System.Web.UI.MasterPage
     {

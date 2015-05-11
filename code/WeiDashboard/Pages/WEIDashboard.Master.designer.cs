@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Telavance.AdvantageSuite.Wei.WeiDashboard.Pages {
+namespace Telavance.AdvantageSuite.Wei.WeiDashboard.LogOut {
     
     
     public partial class WEIDashboard {
