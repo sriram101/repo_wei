@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -25,6 +25,10 @@
     <PreviousProjectVersion>4.0</PreviousProjectVersion>
     <AllowServerObjects>False</AllowServerObjects>
     <AllowDatabaseObjects>True</AllowDatabaseObjects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>.\sql\release\</OutputPath>
@@ -128,81 +132,226 @@
     <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql">
       <SubType>Code</SubType>
     </PostDeploy>
+    <PropertiesFile Include="Properties\Database.sqlcmdvars">
+      <SubType>PropertiesFile</SubType>
+    </PropertiesFile>
   </ItemGroup>
   <ItemGroup>
     <BuildContributorArgument Include="OutDir=$(OutDir)" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Handlers.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetStatusByRequestId.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_GetHandlers.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddAuditForReview.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Drivers.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_OfacResponses_CreatedDateTime.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Interfaces.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Requests_iserror.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_GetInterfaces.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Requests_hasctc.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Requests.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Requests_CreatedDateTime.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Audit.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Translations_Review.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_GetLock.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Translations_Approved.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_ReleaseLock.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Audit_CreatedDateTime.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_ChangeStatus.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Constraints\DF_Status_ShowStatus.defconst.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="OfacResponses.table.sql">
+    <Build Include="Schema Objects\Database Level Objects\Storage\Files\WEI_log.sqlfile.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_AddOfacResponse.proc.sql">
+    <Build Include="Schema Objects\Database Level Objects\Storage\Files\WEI.sqlfile.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_GetRequest.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_Interfaces_Handler.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_AddResponseMessage.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_OfacResponses_RequestId.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_MarkRequestError.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_Requests_ID.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_AddAudit.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_Audit_RequestId.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Status.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_Audit_Status.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_GetRequestWithError.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\IX_Requests_CreatedDatetime.index.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="WEI_GetAuditMessages.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\IX_Translations.index.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_AddRequest.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\IX_Audit_RequestId.index.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Wei_AddTranslatedMessage.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Interfaces_Id.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-  </ItemGroup>
-  <ItemGroup>
-    <NotInBuild Include="Wei_GetMessages.Proc..sql">
-      <SubType>NotInBuild</SubType>
-    </NotInBuild>
-    <NotInBuild Include="Wei_GetAuditMessagesByRequest.sql">
-      <SubType>NotInBuild</SubType>
-    </NotInBuild>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK__OfacResponses__014935CB.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Requests__Id.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Options_Code.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_ObjectType_Code.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Audit_ID.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Status_ID.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Drivers_Id.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\PK_Handlers_Id.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetStatusByRequestId.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddAuditForReview.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\WEI_UpdateTranslations.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetMessages1.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_ChangeStatus.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetLock.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\WEI_GetTranslationByCTCCode.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_ReleaseLock.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetRequest.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddResponseMessage.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_MarkRequestError.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetInterfaces.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddOfacResponse.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddRequest.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetOptions.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddTranslatedMessage.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddAudit.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetHandlers.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetMessages.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\WEI_AddTranslation.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetMessageStatus.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetAuditMessagesByRequest.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_AddAuditForErrorProcess.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_UpdateTranslations1.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetTranslations.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetMessagesVSS.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetRequestWithError.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Wei_GetAuditMessages.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\UQ_Options_Description.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\UQ_ObjectType_Description.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\UQ_Status_Description.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Interfaces.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\OfacResponses.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Requests.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Options.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ObjectType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Translations.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Audit.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Status.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Drivers.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Handlers.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Service Broker\Routes\AutoCreatedLocal.route.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
 </Project>

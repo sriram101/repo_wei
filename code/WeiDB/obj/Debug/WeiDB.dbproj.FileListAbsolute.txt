@@ -1,16 +1,32 @@
-c:\wei\Wei\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
-c:\wei\Wei\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
-c:\wei\Wei\WeiDB\sql\debug\Wei_Database.sqlsettings
-c:\wei\Wei\WeiDB\sql\debug\Wei_Database.sqldeployment
-c:\wei\Wei\WeiDB\sql\debug\Wei_Database.sqlcmdvars
-c:\wei\Wei\WeiDB\sql\debug\WeiDB.deploymanifest
-c:\wei\Wei\WeiDB\sql\debug\WeiDB.dbschema
-c:\wei\Wei\WeiDB\obj\Debug\WeiDB.dbschema
-C:\wei\code\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
-C:\wei\code\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
-C:\wei\code\WeiDB\sql\debug\Wei_Database.sqlsettings
-C:\wei\code\WeiDB\sql\debug\Wei_Database.sqldeployment
-C:\wei\code\WeiDB\sql\debug\Wei_Database.sqlcmdvars
-C:\wei\code\WeiDB\sql\debug\WeiDB.deploymanifest
-C:\wei\code\WeiDB\sql\debug\WeiDB.dbschema
-C:\wei\code\WeiDB\obj\Debug\WeiDB.dbschema
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\sql\debug\Wei_Database.sqlsettings
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\sql\debug\Wei_Database.sqldeployment
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\sql\debug\Wei_Database.sqlcmdvars
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\sql\debug\WeiDB.deploymanifest
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\sql\debug\WeiDB.dbschema
+C:\Telavance\ProductDevelopment\Wei\MAIN\Source\WeiDB\obj\Debug\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\sql\debug\Wei_Database.sqlsettings
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\sql\debug\Wei_Database.sqldeployment
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\sql\debug\Wei_Database.sqlcmdvars
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\sql\debug\WeiDB.deploymanifest
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\sql\debug\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source - 012013\WeiDB\obj\Debug\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\debug\Wei_Database.sqlsettings
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\debug\Wei_Database.sqldeployment
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\debug\Wei_Database.sqlcmdvars
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\debug\WeiDB.deploymanifest
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\debug\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\obj\Debug\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\sql\debug\Wei_Script.PreDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\sql\debug\Wei_Script.PostDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\sql\debug\Wei_Database.sqlsettings
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\sql\debug\Wei_Database.sqldeployment
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\sql\debug\Wei_Database.sqlcmdvars
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\sql\debug\WeiDB.deploymanifest
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\sql\debug\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013 - 2013-01-29\WeiDB\obj\Debug\WeiDB.dbschema
