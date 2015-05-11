@@ -44,7 +44,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-
+using System.Security.Principal;
 using Telavance.AdvantageSuite.Wei.WeiService;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
 
@@ -109,6 +109,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
         private Boolean isInputThreadRunning = false;
         private Boolean isthreadOkOfacRunning = false;
         private Boolean isthreadConfirmOfacRunning = false;
+        
 
         public void initialize(int interfaceId, String configStr, RequestManager manager, DBUtil dbUtils)
         {
@@ -156,27 +157,32 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                         _mqManagerOfacOkQueue = new MQQueueManager(config.queueManager);
                         _mqManagerOfacConfirmQueue = new MQQueueManager(config.queueManager);
                     }
-                    LogUtil.logInfo("Succesully connected to the queue manager:" + config.queueManager);
+                    LogUtil.logInfo("Successfully connected to the queue manager:" + config.queueManager);
 
-                    int openInputOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_FAIL_IF_QUIESCING;
-                    int openOutputOptions = MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_OUTPUT;
+                    int openInputOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_INQUIRE;
+                    int openOutputOptions = MQC.MQOO_FAIL_IF_QUIESCING | MQC.MQOO_OUTPUT | MQC.MQOO_INPUT_SHARED;
+                    int openInputOutputOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_FAIL_IF_QUIESCING  |
+                                                 MQC.MQOO_OUTPUT ;
 
                     _inQueue = _mqManagerInQueue.AccessQueue(config.inputQueue, openInputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.inputQueue);
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.inputQueue);
                     _okQueue = _mqManagerOkQueue.AccessQueue(config.okQueue, openOutputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.okQueue);
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.okQueue);
                     _confirmQueue = _mqManagerConfirmQueue.AccessQueue(config.confirmQueue, openOutputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.confirmQueue);
-                    _errorQueue = _mqManagerErrorQueue.AccessQueue(config.errorQueue, openOutputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.errorQueue);
-                    _reviewQueue = _mqManagerReviewQueue.AccessQueue(config.reviewQueue, openOutputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.reviewQueue);
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.confirmQueue);
+                    _errorQueue = _mqManagerErrorQueue.AccessQueue(config.errorQueue, openInputOutputOptions);
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.errorQueue);
+                   // _reviewQueue = _mqManagerReviewQueue.AccessQueue(config.reviewQueue, openInputOptions);
+                    _reviewQueue = _mqManagerReviewQueue.AccessQueue(config.reviewQueue, openInputOutputOptions);
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.reviewQueue);
                     _ofacInQueue = _mqManagerOfacInQueue.AccessQueue(config.ofacInputQueue, openOutputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.ofacInputQueue);
+                    
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.ofacInputQueue);
                     _ofacOkQueue = _mqManagerOfacOkQueue.AccessQueue(config.ofacOkQueue, openInputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.ofacOkQueue);
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.ofacOkQueue);
                     _ofacConfirmQueue = _mqManagerOfacConfirmQueue.AccessQueue(config.ofacConfirmQueue, openInputOptions);
-                    LogUtil.logInfo("Succesully connected to the queue:" + config.ofacConfirmQueue);
+                    
+                    LogUtil.logInfo("Successfully connected to the queue:" + config.ofacConfirmQueue);
 
                     Thread threadInputQueue = new Thread(listenInputQueue);
                     Thread threadOfacOkQueue = new Thread(listenOfacOkQueue);
@@ -276,10 +282,41 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
             gmo.Options = MQC.MQGMO_FAIL_IF_QUIESCING | MQC.MQGMO_WAIT | MQC.MQGMO_SYNCPOINT;
             gmo.WaitInterval = 5000;
             MQMessage message = new MQMessage();
+
             try
             {
                 //wait for message
                 queue.Get(message, gmo); ;
+            }
+            catch (MQException ex)
+            {
+                message = null;
+                if (ex.CompletionCode == MQC.MQCC_FAILED && ex.ReasonCode == MQC.MQRC_NO_MSG_AVAILABLE)
+                {
+                    return null;
+                }
+                else
+                {
+                    throw ex;
+                }
+            }
+            return message;
+        }
+
+        private MQMessage getMessagebyCorelationId(MQQueue queue, string correlationId)
+        {
+            MQGetMessageOptions gmo = new MQGetMessageOptions();
+            gmo.Options = MQC.MQGMO_FAIL_IF_QUIESCING | MQC.MQGMO_WAIT | MQC.MQGMO_SYNCPOINT | MQC.MQMO_MATCH_CORREL_ID;
+;
+            gmo.WaitInterval = 5000;
+            MQMessage message = new MQMessage();
+            message.CorrelationId = System.Text.ASCIIEncoding.ASCII.GetBytes(correlationId);
+            MQQueueManager manager = _mqManagerReviewQueue;
+            try
+            {
+                //wait for message
+                queue.Get(message, gmo); ;
+                manager.Commit();
             }
             catch (MQException ex)
             {
@@ -317,7 +354,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
                     manager.Commit();
                 }
-                catch (Exception e)
+                catch (MQException e)
                 {
                     LogUtil.log("Error when getting message from the " +queueName+" queue", e);
                     manager.Backout();
@@ -342,8 +379,14 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
             Request request = new Request();
             request.Name = System.Text.ASCIIEncoding.ASCII.GetString(message.MessageId);
             request.MessageBody = message.ReadString(message.DataLength);
+            
+            WindowsIdentity windowsIdentity = WindowsIdentity.GetCurrent();
+            if (windowsIdentity != null) request.CreateOper = windowsIdentity.Name;
             RequestHeader header = new RequestHeader();
+            
+            
             header.correlationId = System.Text.ASCIIEncoding.ASCII.GetString(message.CorrelationId);
+            
 
             request.Header = header.ToString();
             request.InterfaceId = _interfaceId;
@@ -382,27 +425,37 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
         private void handleResponseMessage(MQMessage message, OfacStatus status)
         {
-            String requestId = System.Text.ASCIIEncoding.ASCII.GetString(message.CorrelationId);
-            String name = System.Text.ASCIIEncoding.ASCII.GetString(message.MessageId);
-            String messageText = message.ReadString(message.DataLength);
-
-            OfacResponse response = new OfacResponse();
-            response.message = messageText;
-            response.requestId = Convert.ToInt32(requestId);
-            response.name = name;
-
-            _dbUtils.addOfacResponse(response.requestId, name, messageText, status);
-
-            lock (syncLock)
+            try
             {
-                currentMessagesToBeProcessed++;
-            }
+                String requestId = System.Text.ASCIIEncoding.ASCII.GetString(message.CorrelationId);
+                String name = System.Text.ASCIIEncoding.ASCII.GetString(message.MessageId);
+                String messageText = message.ReadString(message.DataLength);
 
-            //queue the work with the thread pool
-            if (status == OfacStatus.Confirm)
-                ThreadPool.QueueUserWorkItem(new WaitCallback(startConfirmResponse), response);
-            else
-                ThreadPool.QueueUserWorkItem(new WaitCallback(startOkResponse), response);
+            
+                OfacResponse response = new OfacResponse();
+                response.message = messageText;
+                response.requestId = Convert.ToInt32(requestId);
+                response.name = name;
+                
+
+                _dbUtils.addOfacResponse(response.requestId, name, messageText, status);
+
+                lock (syncLock)
+                {
+                    currentMessagesToBeProcessed++;
+                }
+                
+                //queue the work with the thread pool
+                if (status == OfacStatus.Confirm)
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(startConfirmResponse), response);
+                else
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(startOkResponse), response);
+                
+            }
+            catch (MQException e)
+            {
+                LogUtil.log("Error while adding response after watchlist filtering check:", e);
+            }
         }
 
         public void startOkResponse(object objMessage)
@@ -417,12 +470,21 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
         public void startResponse(object objMessage, OfacStatus ofacStatus)
         {
-            OfacResponse response = (OfacResponse)objMessage;
-            _manager.processResponse(response.requestId, _interfaceId, response.name, response.message, ofacStatus);
-            updateStatistics();
-            lock (syncLock)
+            try
             {
-                currentMessagesToBeProcessed--;
+                OfacResponse response = (OfacResponse)objMessage;
+                
+                _manager.processResponse(response.requestId, _interfaceId, response.name, response.message, ofacStatus);
+                updateStatistics();
+                lock (syncLock)
+                {
+                    currentMessagesToBeProcessed--;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                LogUtil.log("startReponse", e);
             }
         }
 
@@ -436,15 +498,30 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
         private void listenOfacConfirmQueue()
         {
-            isthreadConfirmOfacRunning = true;
-            listen(_ofacConfirmQueue, _mqManagerOfacConfirmQueue, config.ofacConfirmQueue, new HandleMessage(handleResponseMessage), OfacStatus.Confirm);
-            LogUtil.logInfo("Shutting ofacConfirm queue thread for interface:" + _interfaceId);
-            isthreadConfirmOfacRunning = false;
+            try
+            {
+                isthreadConfirmOfacRunning = true;
+                listen(_ofacConfirmQueue, _mqManagerOfacConfirmQueue, config.ofacConfirmQueue, new HandleMessage(handleResponseMessage), OfacStatus.Confirm);
+                LogUtil.logInfo("Shutting ofacConfirm queue thread for interface:" + _interfaceId);
+                isthreadConfirmOfacRunning = false;
+            }
+            catch (Exception e)
+            {
+                LogUtil.log("Error in listening to OFAC Confirm Queue:" , e);
+            }
         }
 
         public bool sendForOfacCheck(Request request)
         {
-            return sendMessage(config.ofacInputQueue, request.RequestId, _ofacInQueue,_mqManagerOfacInQueue, request.Name, request.TranslatedMessage, Convert.ToString(request.RequestId), syncOfacInQueueLock);
+            if (request.Status == Status.Review)
+            {
+                getMessagebyCorelationId(_reviewQueue, request.RequestId.ToString());
+                
+            }
+            
+            return sendMessage(config.ofacInputQueue, request.RequestId, _ofacInQueue, _mqManagerOfacInQueue, 
+                    request.Name, request.TranslatedMessage, Convert.ToString(request.RequestId), syncOfacInQueueLock);
+            
         }
         public bool sendResponse(Request request, string ofacResponseIdentifier)
         {
@@ -452,6 +529,7 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
             Object lockObject = syncOkQueueLock;
             string queueName = config.okQueue;
             MQQueueManager manager = _mqManagerOkQueue;
+            
 
             if (request.OfacStatus == OfacStatus.Confirm)
             {
@@ -460,25 +538,31 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                 queueName = config.confirmQueue;
                 manager = _mqManagerConfirmQueue;
             }
-
-
+            
             RequestHeader header = RequestHeader.getRequestHeader(request.Header);
-            return sendMessage(queueName, request.RequestId, queue, manager, request.Name, request.ResponseMessage, header.correlationId, lockObject);
+            
+            
+            return sendMessage(queueName, request.RequestId, queue, manager, request.Name, request.ResponseMessage, request.RequestId.ToString(), lockObject);
+
         }
         public bool moveToError(Request request)
         {
             RequestHeader header = RequestHeader.getRequestHeader(request.Header);
-            return sendMessage(config.errorQueue, request.RequestId, _errorQueue, _mqManagerErrorQueue, request.Name, request.MessageBody, header.correlationId, syncErrorQueueLock);
+            return sendMessage(config.errorQueue, request.RequestId, _errorQueue, _mqManagerErrorQueue, request.Name, request.MessageBody, request.RequestId.ToString(), syncErrorQueueLock);
 
         }
 
         public bool moveToReview(Request request)
         {
             RequestHeader header = RequestHeader.getRequestHeader(request.Header);
-            return sendMessage(config.reviewQueue, request.RequestId, _reviewQueue, _mqManagerReviewQueue, request.Name, request.MessageBody, header.correlationId, syncReviewQueueLock);
-
+            header = RequestHeader.getRequestHeader(request.Header);
+            
+            return sendMessage(config.reviewQueue, request.RequestId, _reviewQueue, _mqManagerReviewQueue, request.Name, request.MessageBody, request.RequestId.ToString(), syncReviewQueueLock);
+            
+            
         }
 
+        
         private bool sendMessage(string queueName, int requestId, MQQueue queue, MQQueueManager manager, string messageId, string message, string correlationId, Object lockObject)
         {
             lock (lockObject)
@@ -486,19 +570,24 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
                 bool sentMessage = false;
                 try
                 {
+                 
+
                     MQPutMessageOptions pmo = new MQPutMessageOptions();
-                    pmo.Options = MQC.MQPMO_FAIL_IF_QUIESCING | MQC.MQPMO_SYNCPOINT;
+                    pmo.Options = MQC.MQOO_INQUIRE| MQC.MQPMO_FAIL_IF_QUIESCING | MQC.MQPMO_SYNCPOINT;
                     MQMessage mqMessage = new MQMessage();
                     mqMessage.Write(System.Text.ASCIIEncoding.ASCII.GetBytes(message));
                     mqMessage.Format = MQC.MQFMT_STRING;
                     mqMessage.MessageId = System.Text.ASCIIEncoding.ASCII.GetBytes(messageId);
                     mqMessage.CorrelationId = System.Text.ASCIIEncoding.ASCII.GetBytes(correlationId);
                     queue.Put(mqMessage, pmo);
+                    
+
                     manager.Commit();
                     sentMessage = true;
                     LogUtil.logInfo("Sent message " +requestId+" to " + queueName);
+                    LogUtil.logInfo("End SendMesage:");
                 }
-                catch (Exception e)
+                catch (MQException e)
                 {
                     sentMessage = false;
                     manager.Backout();
