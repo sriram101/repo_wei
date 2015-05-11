@@ -156,6 +156,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
             LogUtil.logDebug("Raw translated response:" + output);
             output = processResponse(output, message, fromLanguage, toLanguage);
 
+            
+
             return output;
         }
 
