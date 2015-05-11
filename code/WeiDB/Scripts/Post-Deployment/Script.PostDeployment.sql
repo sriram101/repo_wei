@@ -53,3 +53,19 @@ INSERT INTO Interfaces(name, handler, driver, fileformat, config)
 INSERT INTO Interfaces(name, handler, driver, fileformat, config)
 	VALUES ( 'MQDriver2', 1, 2, 'SWIFT, XML, CHIPS', '<config><queueManager>QM_WEI</queueManager><inputQueue>InQueue2</inputQueue><okQueue>OkQueue2</okQueue><confirmQueue>ConfirmQueue2</confirmQueue><errorQueue>ErrorQueue2</errorQueue><ofacInputQueue>PrimeInQueue2</ofacInputQueue><ofacOkQueue>PrimeOkQueue2</ofacOkQueue><ofacConfirmQueue>PrimeConfirmQueue2</ofacConfirmQueue></config>')
 
+DBCC CHECKIDENT (Status, RESEED, 0)
+
+go
+
+INSERT INTO Status (Description,DisplayName,ShowStatus)
+VALUES('UnProcessed','', true)
+INSERT INTO Status (Description,DisplayName,ShowStatus)
+VALUES('Translated','Message with CTC Codes translated successfully', false)
+INSERT INTO Status (Description,DisplayName,ShowStatus)
+VALUES('Review','Message needs review for translation', true)
+INSERT INTO Status (Description,DisplayName,ShowStatus)
+VALUES('SentForOFACCheck','Message sent for Watchlist Filtering Check', false)
+INSERT INTO Status (Description,DisplayName,ShowStatus)
+VALUES('OFACResponseReceived','Response Received from Watchlist Filtering Program', false)
+INSERT INTO Status (Description,DisplayName,ShowStatus)
+VALUES('Processed','Message Processing Complete', true)
