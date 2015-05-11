@@ -42,27 +42,27 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             sw.Flush();
             sw.Close();*/
 
-            var assemblyPath = this.Context.Parameters["assemblypath"];
-            FileInfo info = new FileInfo(assemblyPath);
+            //var assemblyPath = this.Context.Parameters["assemblypath"];
+            //FileInfo info = new FileInfo(assemblyPath);
 
-            if (info.Exists == false)
-            {
-                throw new InstallException("File " + assemblyPath + " does not exist");
-            }
+            //if (info.Exists == false)
+            //{
+            //    throw new InstallException("File " + assemblyPath + " does not exist");
+            //}
 
-            StreamReader reader = new StreamReader(assemblyPath+".config");
-            string content = reader.ReadToEnd();
-            reader.Dispose();
-            string dir = this.Context.Parameters["installdir"].ToString();
-            dir = dir.Substring(0, dir.Length - 1).Replace('\\','/');
+            //StreamReader reader = new StreamReader(assemblyPath+".config");
+            //string content = reader.ReadToEnd();
+            //reader.Dispose();
+            //string dir = this.Context.Parameters["installdir"].ToString();
+            //dir = dir.Substring(0, dir.Length - 1).Replace('\\','/');
             
-            //string searchText = "C:/wei/Code/WeiService/bin/Release/";
-            //content = Regex.Replace(content, searchText, dir);
-            //content = Regex.Replace(content, "key=\".*\"", "key=\"Enter Key\"");
+            ////string searchText = "C:/wei/Code/WeiService/bin/Release/";
+            ////content = Regex.Replace(content, searchText, dir);
+            ////content = Regex.Replace(content, "key=\".*\"", "key=\"Enter Key\"");
 
-            StreamWriter writer = new StreamWriter(assemblyPath + ".config");
-            writer.Write(content);
-            writer.Dispose();
+            //StreamWriter writer = new StreamWriter(assemblyPath + ".config");
+            //writer.Write(content);
+            //writer.Dispose();
 
             //couldnt use the below code because configelements are in a differnt dll. Ahhhhhh
 

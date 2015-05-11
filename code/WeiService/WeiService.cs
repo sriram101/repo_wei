@@ -86,9 +86,14 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
                 // Open the ServiceHostBase to create listeners and start 
                 // listening for messages.
+
                 serviceHost.Open();
                 instance = this;
                 LogUtil.logInfo("Started Wei Service");
+            }
+            catch (AddressAlreadyInUseException e)
+            {
+                LogUtil.log("Service address is already in use", e);
             }
             catch (Exception e)
             {

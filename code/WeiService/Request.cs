@@ -54,12 +54,14 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         private String _messageBody;
         private Status _status;
         private bool _isError = false;
+        private bool _isCTCApproved = false;
         private OfacStatus _ofacStatus = OfacStatus.None;
         private String _translatedMessage = null;
         private String _responseMessage = null;
         private bool _hasCTC = false;
         private DateTime _dCreateDate;
         private DateTime _dModifiedDate;
+        private String _user;
 
         public int RequestId
         {
@@ -168,6 +170,18 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
         }
 
+        public bool hasCTCApproved
+        {
+            get
+            {
+                return _isCTCApproved;
+            }
+            set
+            {
+                _isCTCApproved = value;
+            }
+        }
+
         public OfacStatus OfacStatus
         {
             get
@@ -215,6 +229,16 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
         }
 
-        
+        public String CreateOper
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                _user = value;
+            }
+        }
     }
 }

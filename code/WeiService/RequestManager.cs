@@ -60,8 +60,10 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         private IMessageParser _fallBackParser;
         private int _maxTranslateRetryCount;
         private int _waitTimeBetweenRetries = 10000; //10 sec
-        bool _bReview = false;
+        bool _bSentForOFACCheck = false;
         private bool _brequiresReview;
+        private string _searchString;
+        private string _replaceString;
 
         private Translator translator;
 
@@ -72,6 +74,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
 
             WeiConfiguration weiConfig = (WeiConfiguration)ConfigurationManager.GetSection("Wei");
             _brequiresReview = weiConfig.requiresReview;
+            _searchString = weiConfig.searchString;
+            _replaceString = weiConfig.replaceString;
 
             int threadPoolSize = 0;
             try
@@ -112,12 +116,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
         }
 
-        public void processMessageForOFACCheck(Request request)
+        public bool processMessageForOFACCheck(Request request)
         {
-            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Started processing the message");
+            //AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Started processing the message");
             bool bLocked = false;
             int iStatus =0;
-            Boolean bSuccess;
+            bool bSuccess = false;
             Interface i = InterfaceManager.getInterface(request.InterfaceId);
 
             try
@@ -157,6 +161,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                     _dbUtils.releaseLock(request.RequestId);
                 }
             }
+            return bSuccess;
         }
         public void process(Request request)
         {
@@ -173,19 +178,21 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                 bLocked = _dbUtils.acquireLock(request.RequestId);
                 if (bLocked)
                 {
-                    bSuccess = translateRequest(request, i);
+                    //if (!_bSentForOFACCheck)
+                    //{
+                        bSuccess = translateRequest(request, i);
                     //If translation was success and the review flag is false
-                    if (bSuccess && !_bReview)
-                    {
-                        bSuccess = i.Driver.sendForOfacCheck(request);
-                        if (bSuccess)
-                        {
-                            request.Status = Status.SentForOfacCheck;
-                            request.IsError = false;
-                            _dbUtils.changeStatus(request);
-                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message sent for watchlist filtering check");
-                        }
-                        else
+                    //if (bSuccess && (_brequiresReview == false) && (_bSentForOFACCheck == false))
+                    //{
+                    //    bSuccess = i.Driver.sendForOfacCheck(request);
+                        if (!bSuccess )
+                        //{
+                        //    request.Status = Status.SentForOfacCheck;
+                        //    request.IsError = false;
+                        //    _dbUtils.changeStatus(request);
+                        //    AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Translation review flag is not set. Message directly sent for watchlist filtering check");
+                        //}
+                        //else
                         {
                             request.Status = Status.Translated;
                             request.IsError = true;
@@ -193,8 +200,9 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                             LogUtil.logError("Error sending the message - " + request.RequestId + " for watchlist filtering check");
                             AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Error, "Error sending the message for watchlist filtering check");
                         }
-                    }
+                    //}
                 }
+               
                 else
                 {
                     LogUtil.logError("Cannot acquire lock for message :" + request.RequestId + ". Translation incomplete");
@@ -227,11 +235,17 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         private bool translateRequest(Request request, Interface i)
         {
             bool bTranslate = false;
+            bool bSuccess = false;
             String message = "";
             try
             {
                 AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Translation started for the message");
+                translator.RequestId = request.RequestId;
                 message = i.Handler.getMessageForTranslation(request.MessageBody);
+                //if (_searchString != "")
+                //{
+                //    message = message.Replace(_searchString, " " + _replaceString + " ");
+                //}
                 IList<IMessageParser> currentParsers = new List<IMessageParser>();
 
                 foreach (string fileFormat in i.FileFormats)
@@ -294,7 +308,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                     }
                 }
 
-                if (bTranslate)
+                 if (bTranslate)
                 {
                     request.Status = Status.Translated;
                     request.IsError = false;
@@ -307,19 +321,46 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
                         AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message doesn't have telegraphic codes");
 
                     AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Translation complete");
+                    //if review of translations flag is set to false, move the message to OFAC Queue                    
+                    if (_brequiresReview == false)
+                    {
+                        bSuccess = i.Driver.sendForOfacCheck(request);
+                        if (bSuccess)
+                        {
+                            _bSentForOFACCheck = true;
+                            request.Status = Status.SentForOfacCheck;
+                            request.IsError = false;
+                            _dbUtils.changeStatus(request);
+                            AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Translation review flag is not set. Message directly sent for watchlist filtering check");
+                        }
+                    }
+                    // if the message has set of CTC codes that have already been reviewed and approved, move the message
+                    // directly for OFAC Check
 
-                    //If Requires Review flag is set to true then move the message to Review Queue
-                    if (_brequiresReview)
+                    else if (_dbUtils.getApprovedTranslationsByRequest(request.RequestId))
+                    {
+                        i.Driver.sendForOfacCheck(request);
+                        //Set the boolean variable to true to indicate that the message has already been sent for OFAC check
+                        _bSentForOFACCheck = true;
+                        //change status and log and audit and return
+                        request.Status = Status.SentForOfacCheck;
+                        request.IsError = false;
+                        _dbUtils.changeStatus(request);
+                        AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message sent for watchlist filtering check");
+                    }
+                    //If Requires Review flag is set to true and the message as CTC codes then move the message to Review Queue
+                    else if (_brequiresReview && request.HasCTC)
                     {
                         if (i.Driver.shouldMoveToReview())
                         {
                             //send it to review Queue
                             i.Driver.moveToReview(request);
-                            _bReview = true;
+                            _bSentForOFACCheck = false;
+                            //_bReview = true;
                             //change status and log and audit and return
                             request.Status = Status.Review;
                             request.IsError = false;
-                           _dbUtils.changeStatus(request);
+                            _dbUtils.changeStatus(request);
                             AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Message moved to Review Queue for verification of translation");
                         }
                     }
