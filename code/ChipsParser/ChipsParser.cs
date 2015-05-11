@@ -8,6 +8,7 @@ using Telavance.AdvantageSuite.Wei.WeiCommon;
 using System.Configuration;
 using System.Text.RegularExpressions;
 using System.IO;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 
 namespace Telavance.AdvantageSuite.Wei.ChipsParser
 {
@@ -17,10 +18,16 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
         private static string pattern = "^\\s*\\{[0-9]{1,}\\}";
         private Regex regex = new Regex(pattern);
         private Translator _translator;
+        private string _searchString;
+        private string _replaceString;
 
         private static List<string> tags = new List<string>();
         
         private bool translateAlltags = false;
+
+        WeiConfiguration weiConfig = (WeiConfiguration)ConfigurationManager.GetSection("Wei");
+            
+            
 
         public bool translate(Request request, String message)
         {
@@ -41,17 +48,23 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
             string originalText = text;
             request.HasCTC = false;
             StringBuilder translatedText = new StringBuilder();
+            _searchString = weiConfig.searchString;
+            _replaceString = weiConfig.replaceString;
 
             while (text!=null) //enless loop
             {
                 int indexEnd = text.IndexOf("{", 1);
                 string currentTag = (indexEnd!=-1) ? text.Substring(0, indexEnd): text;
                 text = (indexEnd!=-1) ? text.Substring(indexEnd):null;
-                if (processTag(translatedText, currentTag, translateAlltags ? null : tags))
+                if (processTag(request.RequestId,translatedText, currentTag, translateAlltags ? null : tags))
                         request.HasCTC = true;
             }
-
-            request.TranslatedMessage = translatedText.ToString();
+            
+            if (_searchString != "")
+            {
+                request.TranslatedMessage = translatedText.ToString().Replace(_searchString, " " + _replaceString + " ");
+            }
+            
 
             return;
         }
@@ -74,7 +87,7 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
 
         
 
-       private bool processTag(StringBuilder translatedText, string currentTag, List<string> currentTagsToTranslate)
+       private bool processTag(int requestId,StringBuilder translatedText, string currentTag, List<string> currentTagsToTranslate)
         {
             Console.WriteLine("Current Tag:" + currentTag);
             string tag = getText(currentTag, "{", "}");
@@ -96,7 +109,7 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
                     string tagContents = currentTag.Substring(index + 1);
 
                     //string translatedTagContents = _translator.convertAndTranslate(tagContents, false, new Preprocess(preProcess));
-                    string translatedTagContents = translate(tagContents);
+                    string translatedTagContents = translate(requestId,tagContents);
 
                     translatedText.Append(tagText);
                     translatedText.Append(translatedTagContents);
@@ -116,7 +129,7 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
         }
 
 
-        private string translate(string text)
+        private string translate(int requestId,string text)
         {
             StringBuilder output = new StringBuilder();
             
@@ -125,7 +138,7 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
                 int index = text.IndexOf("*");
                 string tag = index == -1 ? text : text.Substring(0, index);
                 text = index == -1 ? null : text.Substring(index + 1);
-
+                _translator.RequestId = requestId;
                 string translatedTagContents = _translator.convertAndTranslate(tag, false, null);
                 output.Append(translatedTagContents);
                 if (text != null)
