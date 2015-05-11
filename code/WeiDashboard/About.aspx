@@ -67,7 +67,7 @@
             <td>
             <asp:Label ID="Label1" text="Contact:" CssClass="Label" runat="server"></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;<blockquote id="Blockquote1" 
-                    runat="server" class="BlockQuote"> 120, Wood Avenue South Ste 407<br /> Iselin, NJ 08830<br /> 
+                    runat="server" class="BlockQuote"> 517, RT 1 South Ste 5400<br /> Iselin, NJ 08830<br /> 
                     Ph: 732-744-0066<br /> Website: <a href="http://www.telavance.com" runat="server" target="_blank">www.telavance.com</a><br />
                 </blockquote>
                 &nbsp;</td>

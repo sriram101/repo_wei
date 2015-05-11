@@ -50,6 +50,7 @@ using System;
 using System.Data;
 using System.Collections.Generic;
 using System.Web;
+using System.ServiceModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Security.Principal;
@@ -96,6 +97,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             Review = 1,
             Approve = 2
         }
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+        }
+
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -106,10 +113,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 _gridRefresh = Convert.ToInt32(ConfigurationManager.AppSettings["GridRefresh"]);
                 _pageSize = Convert.ToInt32(ConfigurationManager.AppSettings.Get("GridPaging"));
 
-
+                
                 ViewState["GridRowHighlight"] = true;
                 ViewState["RowHighlightLabel"] = null;
                 ViewState["SortDirection"] = SortDirection.Ascending;
+               
 
 
                 txtFromDate.Attributes.Add("ReadOnly", "true"); // Make the text box readonly.
@@ -140,7 +148,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     ViewState["hasCTC"] = "true";
                     ViewState["hasError"] = "false";
                     ViewState["EditRow"] = String.Empty;
-
+                    ViewState["CurrentPageNumber"] = 1;
+                   
 
                     _sdropdownvalue = string.Empty;
                     _hasCTC = true;
@@ -167,13 +176,17 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     {
                         ViewState["SortDirection"] = SortDirection.Ascending;
                     }
+
+                   // ViewState["MessageId"] = null;
+                   // ViewState["GridRowIndex"] = null;
+
                 }
 
             }
             catch (Exception ex)
             {
-                LogUtil.log("Unexpected error in Page Load method.", ex);
-                throw;
+                LogUtil.logError("Unexpected error in Page Load method."+ ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);
             }
         }
 
@@ -256,20 +269,13 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            try
-            {
+            Timer1.Enabled = true;
+            resetParams();
+            labelText();
+            populateGridView();
+            PopulateMessageDetail();
 
-                Timer1.Enabled = true;
-                resetParams();
-                labelText();
-                populateGridView();
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
+            
         }
         void resetParams()
         {
@@ -283,6 +289,9 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             ViewState["EndDate"] = _dtodate;
             _sdropdownvalue = string.Empty;
             ViewState["Status"] = "";
+            //ViewState["MessageId"] = null;
+            //ViewState["GridRowIndex"] = null;
+
 
 
         }
@@ -321,6 +330,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             {
                 case "First":
                     _currentPageNumber = 1;
+                    
                     break;
                 case "Previous":
                     _currentPageNumber = Int32.Parse(ddlPage.SelectedValue) - 1;
@@ -333,6 +343,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     break;
 
             }
+            ViewState["CurrentPageNumber"] = _currentPageNumber;
             setParams();
             populateGridView();
         }
@@ -348,19 +359,31 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
         {
             String strSort = String.Empty;
 
+            
+            
+
             // Refresh the grid 
             if (grdShowMessages.PageSize > 0)
             {
                 _pageSize = grdShowMessages.PageSize;
+                if (grdShowMessages.Rows.Count ==1)
+                {
+                    ViewState["CurrentPageNumber"] = 1;
+                }
             }
             //string _sorting;
             strSort = String.Format("{0} {1}", _strSortExp, (_SortDirection == SortDirection.Descending) ? "DESC" : "ASC");
 
             _dDataset = _dataAccess.getMessages(Convert.ToDateTime(ViewState["StartDate"]), Convert.ToDateTime(ViewState["EndDate"]), ViewState["Status"].ToString(),
-                         Convert.ToBoolean(ViewState["hasCTC"]), Convert.ToBoolean(ViewState["hasError"]), txtSearchText.Text, strSort, _currentPageNumber, _pageSize, out _recCount);
-            _dDataTable = _dDataset.Tables[0];
+                         Convert.ToBoolean(ViewState["hasCTC"]), Convert.ToBoolean(ViewState["hasError"]), txtSearchText.Text, strSort,Int32.Parse(ViewState["CurrentPageNumber"].ToString()), _pageSize, out _recCount);
+            if (_dDataset != null)
+            {
+                _dDataTable = _dDataset.Tables[0];
 
-            Session["DataTable"] = _dDataTable;
+                Session["DataTable"] = _dDataTable;
+            }
+
+
 
             ddlPage.Items.Clear();
             if (_recCount > 0)
@@ -377,6 +400,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             }
 
             navigateButtons(_currentPageNumber);
+
+
 
             if (null != _strSortExp &&
                 String.Empty != _strSortExp)
@@ -398,10 +423,10 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 lblInfo.Text = "";
                 Panel5.Visible = false;
                 //Panel3.Visible = false;
-                // pnlTranslations.Visible = false;
+               // pnlTranslations.Visible = false;
                 pnlSummary.Visible = false;
                 insertGridRow(grdShowMessages, _dDataTable);
-
+                
             }
             else
             {
@@ -439,6 +464,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 lblTotalRecords.Visible = true;
                 lblTotalRecords.Text = "Total Number of Records: " + _recCount.ToString();
             }
+
+
         }
 
         void insertGridRow(GridView grdView, DataTable _dtTable)
@@ -451,6 +478,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             grdView.Rows[0].Cells.Add(new TableCell());
             grdView.Rows[0].Cells[0].ColumnSpan = TotalColumns;
             grdView.Rows[0].Cells[0].Text = "No matching records found.";
+            btnProcessReview.Enabled = false;
         }
 
 
@@ -504,10 +532,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             if (chkShowCTC.Checked)
             {
                 _hasCTC = true;
+                
             }
             else
             {
                 _hasCTC = false;
+
             }
 
             if (chkShowErrors.Checked)
@@ -533,10 +563,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 setParams();
                 labelText();
                 populateGridView();
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Unexpected error occured in search button click - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);
             }
         }
 
@@ -554,7 +586,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 WindowsIdentity identity = WindowsIdentity.GetCurrent();
                 WindowsPrincipal principle = new WindowsPrincipal(identity);
 
-                LogUtil.logInfo("User Identity: " + identity.Name);
+              //  LogUtil.logInfo("User Identity: " + identity.Name);
 
                 Session["User"] = identity.Name;
 
@@ -570,12 +602,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 {
                     bValid = principle.IsInRole(_arrReviewerRoles[i].ToString());
 
-#if DEBUG
-                    bValid = true;
-#endif
+//#if DEBUG
+//                    bValid = true;
+//#endif
                     if (bValid)
                     {
-                        LogUtil.logInfo("User is member of:--" + _arrReviewerRoles[i].ToString());
+                       // LogUtil.logInfo("User is member of:--" + _arrReviewerRoles[i].ToString());
                         rolecount = rolecount + 1;
                     }
                 }
@@ -598,9 +630,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 //        rolecount = rolecount + 1;
                 //    }
                 //}
-                
-
                 //WEIRole["WEIApprover"] = (rolecount > 0) ? "Y" : "N";
+
                 //Session["WEIApprover"] = WEIRole["WEIApprover"];
                 Session["WEIReviewer"] = WEIRole["WEIReviewer"];
 
@@ -617,40 +648,38 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     if ((httpCookie["WEIReviewer"] == "N"))// && httpCookie["WEIApprover"] == "N"))
                     {
                         LogUtil.logInfo("Login failed. User does not belong to a valid role.");
-                        Response.Redirect("/pages/Logout.aspx", false);
+                        Response.Redirect("Logout.aspx", false);
                     }
                 }
                 else
                 {
                     LogUtil.logInfo("Login failed. User does not belong to a valid role.");
-                    Response.Redirect("/pages/Logout.aspx", false);
+                    Response.Redirect("Logout.aspx", false);
                 }
                 //}
             }
             catch (Exception ex)
             {
-                LogUtil.log("Login Failed", ex);
-                Response.Redirect("/pages/Logout.aspx", false);
+                LogUtil.logError("Method: UserRole - " + ex.InnerException.ToString());
+                Response.Redirect("Logout.aspx", false);
             }
         }
 
 
         void populateDropDownlist()
         {
-            try
-            {
                 DataSet _dataset = _dataAccess.MessageStatus();
-                ddlMessageStatus.DataSource = _dataset;
-                ddlMessageStatus.DataValueField = _dataset.Tables[0].Columns[0].ColumnName;
-                ddlMessageStatus.DataTextField = _dataset.Tables[0].Columns[1].ColumnName;
-                ddlMessageStatus.DataBind();
-                ddlMessageStatus.Items.Insert(0, new ListItem("---All----", String.Empty));
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                if (_dataset != null)
+                {
+                    ddlMessageStatus.DataSource = _dataset;
+                    ddlMessageStatus.DataValueField = _dataset.Tables[0].Columns[0].ColumnName;
+                    ddlMessageStatus.DataTextField = _dataset.Tables[0].Columns[1].ColumnName;
+                    ddlMessageStatus.DataBind();
+                    ddlMessageStatus.Items.Insert(0, new ListItem("---All----", String.Empty));
+                }
+           
         }
+
 
         protected void grdShowMessages_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -662,28 +691,58 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 
                 _sSearchString = txtSearchText.Text;
                 ViewState["EditRow"] = String.Empty;
-                //_grdViewRow = ((LinkButton)sender).Parent.Parent as GridViewRow;
-                _grdViewRow = (GridViewRow)((LinkButton)e.CommandSource).Parent.Parent;
-                if (_grdViewRow.RowType == DataControlRowType.DataRow)
+
+                if (e.CommandName == "ShowTranslations")
                 {
-                    _igrdRowIndex = _grdViewRow.RowIndex;
 
-                    ViewState["GridRowIndex"] = _igrdRowIndex;
-                    _iRowIndex = Convert.ToInt32(_grdViewRow.Cells[1].Text);
+                    _grdViewRow = (GridViewRow)((LinkButton)e.CommandSource).Parent.Parent;
+                    if (_grdViewRow.RowType == DataControlRowType.DataRow)
+                    {
+                        _igrdRowIndex = _grdViewRow.RowIndex;
 
-                    ViewState["MessageId"] = _iRowIndex;
+                        ViewState["GridRowIndex"] = _igrdRowIndex;
+                        _iRowIndex = Convert.ToInt32(_grdViewRow.Cells[1].Text);
+
+                        ViewState["MessageId"] = _iRowIndex;
+
+                        if (grdShowMessages.Rows.Count > 0)
+                        {
+                            //Assign the message details to the labels
+                            if (ViewState["GridRowIndex"] != null)
+                            {
+
+                                //_rowindex = Convert.ToInt32(ViewState["GridRowIndex"]);
+                                pnlSummary.Visible = true;
+                                if (grdShowMessages.Rows[_igrdRowIndex].Cells.Count > 1)
+                                {
+                                    lblRequestValue.Text = grdShowMessages.Rows[_igrdRowIndex].Cells[1].Text;
+                                    lblInterfaceValue.Text = grdShowMessages.Rows[_igrdRowIndex].Cells[2].Text;
+                                    lblDescValue.Text = grdShowMessages.Rows[_igrdRowIndex].Cells[3].Text;
+                                    lblCreateTimeValue.Text = grdShowMessages.Rows[_igrdRowIndex].Cells[7].Text;
+                                    lblModifiedTimeValue.Text = grdShowMessages.Rows[_igrdRowIndex].Cells[8].Text;
+                                    //ViewState["Description"] = lblDescValue.Text;
+                                    //ViewState["OriginalMessage"] = grdShowMessages.Rows[_igrdRowIndex].Cells[10].Text;
+                                    //ViewState["TranslatedMessage"] = grdShowMessages.Rows[_igrdRowIndex].Cells[11].Text;
+                                    //ViewState["HasCTCApproved"] = grdShowMessages.Rows[_igrdRowIndex].Cells[13].Text;
+
+                                   // lblNote.Visible = false;
+                                   // lblNoteValue.Visible = false;
+                                }
+
+                            }
+               }
+                    }
+
+                    PopulateMessageDetail();
+                    ModalPopupExtender1.Show();
                 }
-
-                //ResetPopupControls();                
-
-                PopulateMessageDetail();
-                ModalPopupExtender1.Show();
             }
-            catch (Exception)
-            {
-                throw;
+            catch (Exception ex)
+             {
+                 LogUtil.logError("Unexpected error occured in grdShowMessages RowCommand: - " + ex.InnerException.ToString());
+                 Response.Redirect("CustomErrorPage.aspx",false);
             }
-        }
+       }
 
         void highlightGridRowEx(GridViewRow _row)
         {
@@ -702,8 +761,9 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                         ViewState["RowHighlightLabel"] = true;
                     }
                 }
-
+                
             }
+            
         }
 
         void highlightGridRow(GridViewRow _row)
@@ -711,6 +771,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             //Check if the row created is a datarow and the row dataitem is not null
             if (_row.RowType == DataControlRowType.DataRow && _row.DataItem != null)
             {
+
                 //highlight the row that has errors in red.
 
                 if (DataBinder.Eval(_row.DataItem, "IsError").ToString().Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
@@ -722,11 +783,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                         ViewState["RowHighlightLabel"] = true;
                     }
                 }
+
             }
         }
-
         protected void grdShowMessages_RowCreated(object sender, GridViewRowEventArgs e)
         {
+
             try
             {
                 if (e.Row.RowType == DataControlRowType.Header)
@@ -739,9 +801,10 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 
                 highlightGridRow(e.Row);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Method: grdShowMessages_RowCreated - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);
             }
         }
 
@@ -767,12 +830,13 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 populateGridView();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Unexpected error occured in grdShowMessages Sorting - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);
             }
         }
-
+        
         protected void btnRefresh_Click(object sender, EventArgs e)
         {
             try
@@ -785,107 +849,183 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             }
             catch (Exception ex)
             {
-                LogUtil.log("Unexpected error occured while refreshing the search :", ex);
-                throw;
+                LogUtil.logError("Unexpected error occured in btnRefresh Click - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);
             }
         }
 
+
         protected void btnProcessReview_Click(object sender, EventArgs e)
         {
+            WeiMonitoringClient client = new WeiMonitoringClient();
             try
             {
                 string _sUser;
                 GridViewRow drRow;
                 int iRowIndex;
                 bool bReviewed = false;
-                WeiMonitoringClient client;
                 //bool bApproved = false; ;
-
+                //lblMsgTranslations.Visible = false;
+                lblNoteValue.Visible = false;
+                lblNote.Visible = false;
                 _sUser = WindowsIdentity.GetCurrent().Name;
-
+                bool bSuccess = false;
+                string _sMessage = string.Empty;
 
                 for (iRowIndex = 0; iRowIndex < grdShowTranslations.Rows.Count; iRowIndex++)
                 {
                     drRow = grdShowTranslations.Rows[iRowIndex];
-                    if (ViewState["EditRow"].ToString() == "")
+                    //if (ViewState["EditRow"].ToString() == "")
+                    //if (drRow.RowState == DataControlRowState.Edit)
+                    //{
+                    //    drRow.RowState = DataControlRowState.Normal;
+                    //    populateTranslationsGrid(Convert.ToInt32(ViewState["MessageId"]), false);
+                    //}
+
+                    if ((Label)drRow.FindControl("lblReviewed") != null)
                     {
                         bReviewed = Convert.ToBoolean(((Label)drRow.FindControl("lblReviewed")).Text);
+                        if (!bReviewed)
+                        {
+                            break;
+                        }
                         //  bApproved = Convert.ToBoolean(((Label)drRow.FindControl("lblApproved")).Text);
                     }
-                    else
-                    {
-                        bReviewed = ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked;
-                        //bApproved = ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked;
-                    }
+                    //else
+                    // {
+                    //bReviewed = ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked;
+                    //bApproved = ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked;
+                    //}
                 }
 
                 if (bReviewed)
                 {
-
                     if (grdShowMessages.Rows.Count > 0)
                     {
-                        client = new WeiMonitoringClient();
+                        //client = new WeiMonitoringClient();
                         if (client != null)
                         {
                             if (grdShowTranslations.Rows.Count > 0)
                             {
-                                if (_dataAccess.AddAuditForReview(Int32.Parse(ViewState["RequestID"].ToString()), _sUser))
+                                if (_dataAccess.AddAuditForReview(Int32.Parse(ViewState["MessageId"].ToString()), _sUser))
                                 {
 
                                     //AuditUtil.getInstance().audit(Int32.Parse(ViewState["RequestID"].ToString()), AuditLevel.Info, "Message has been released for OFAC Check by user: " + _sUser);
-                                    client.processMessageForOFACCheck(Int32.Parse(ViewState["RequestID"].ToString()));
+                                    bSuccess = client.processMessageForOFACCheck(Int32.Parse(ViewState["MessageId"].ToString()));
+                                    if (bSuccess)
+                                    {
+                                        _sMessage = "Message successfully released for OFAC check";
+                                    }
+                                    else
+                                    {
+                                        _sMessage = "There was an error sending the message for OFAC check";
+                                    }
+ 
                                 }
+                                lblNote.Visible = true;
+                                lblNoteValue.Text = _sMessage;
+                                lblNoteValue.Visible = true;
 
                             }
 
                         }
                     }
 
-                    populateGridView();
+                    //populateGridView();
                 }
                 else
                 {
-                    lblMsgTranslations.Text = "Please review the translation before sending the message for OFAC check";
+                    lblNote.Visible = true;
+                    lblNoteValue.Text = "Please review the translation before sending the message for OFAC check";
+                    lblNoteValue.Visible = true;
 
                 }
+                PopulateMessageDetail();
+            }
+            catch (TimeoutException ex)
+            {
+                LogUtil.logError("Timeout while waiting for the service" +  ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);;
+            }
+            catch (CommunicationException ex)
+            {
+                LogUtil.logError("Error while establishing connection with the service:" + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);;
             }
             catch (Exception ex)
             {
+                LogUtil.logError("Unexpected error occured in Process Review Method - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);;
 
-                throw;
-                LogUtil.log("Unexpected error occured while processing the message for OFAC check", ex);
             }
             finally
             {
-                Dispose();
+                client.Close();
             }
         }
+        protected void lnkShowTranslations_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
 
+            //    int _iRowIndex;
+            //    int _igrdRowIndex;
+            //    GridViewRow _grdViewRow;
+
+            //    _sSearchString = txtSearchText.Text;
+            //    ViewState["EditRow"] = String.Empty;
+            //    _grdViewRow = ((LinkButton)sender).Parent.Parent as GridViewRow;
+            //    if (_grdViewRow.RowType == DataControlRowType.DataRow)
+            //    {
+
+            //        _igrdRowIndex = _grdViewRow.RowIndex;
+
+            //        ViewState["GridRowIndex"] = _igrdRowIndex;
+            //        _iRowIndex = Convert.ToInt32(_grdViewRow.Cells[1].Text);
+            //        //ViewState["RowIndex"] = _iRowIndex;
+            //        populateTranslationsGrid(_iRowIndex, false);
+            //        //if (ViewState["EditRow"].ToString() != "")
+            //        //{
+            //        //    setTranslations(_iRowIndex);
+            //        //}
+            //        tbContainer.ActiveTabIndex = 0;
+            //        tbTranslations.Visible = true;
+            //    }
+
+
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
+        }
         protected void tbContainer_TabChanged(object sender, EventArgs e)
         {
-            if (tbContainer.ActiveTabIndex == 0)
-            {
-                tbContainer.ActiveTabIndex = 0;
-                tbContainer.Visible = true;
-            }
-            else if (tbContainer.ActiveTabIndex == 1)
-            {
-                if (grdShowMessages.Rows.Count > 0)
+
+                if (tbContainer.ActiveTabIndex == 0)
                 {
-                    tbContainer.ActiveTabIndex = 1;
+                    tbContainer.ActiveTabIndex = 0;
                     tbContainer.Visible = true;
                 }
+                else if (tbContainer.ActiveTabIndex ==1)
+                {
+                    if (grdShowMessages.Rows.Count > 0)
+                    {
+
+                         tbContainer.ActiveTabIndex = 1;
+                         tbContainer.Visible = true;
+                   }
+                }
+                else 
+                {
+                    tbContainer.ActiveTabIndex = 2;
+                    tbContainer.Visible = true;
+                   
+                }
+                pnlSummary.Visible = true;
             }
-            else
-            {
-                tbContainer.ActiveTabIndex = 2;
-                tbContainer.Visible = true;
-            }
-            pnlSummary.Visible = true;
-        }
 
         protected void tbContainer_TabChangedEx(object sender, EventArgs e)
-        {
+            {
             //int _iRowIndex = 0;
             //int _igrdRowIndex = 0;
 
@@ -937,32 +1077,35 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             //    throw;
             //}
         }
-
         protected void btnProcessError_Click(object sender, EventArgs e)
         {
             string requestID;
             string _sUser;
             _sUser = WindowsIdentity.GetCurrent().Name;
+            WeiMonitoringClient client = new WeiMonitoringClient();
             try
             {
                 if (grdShowMessages.Rows.Count > 0)
                 {
-                    WeiMonitoringClient client = new WeiMonitoringClient();
+
                     if (client != null)
                     {
                         for (int iRow = 0; iRow < grdShowMessages.Rows.Count; iRow++)
                         {
                             GridViewRow row = grdShowMessages.Rows[iRow];
-                            bool isChecked = ((CheckBox)row.FindControl("chkSelectRecord")).Checked;
-                            if (isChecked)
+                            if (row != null)
                             {
-                                requestID = row.Cells[1].Text;
-                                if (_dataAccess.AddAuditForErrorProcess(Int32.Parse(requestID), _sUser))
+                                bool isChecked = ((CheckBox)row.FindControl("chkSelectRecord")).Checked;
+                                if (isChecked)
                                 {
-                                    //AuditUtil.getInstance().audit(Int32.Parse(requestID), WeiCommon.AuditLevel.Info, "Error message has been processed by user: " + _sUser);
-                                    client.reprocess(Int32.Parse(requestID));
-                                }
+                                    requestID = row.Cells[1].Text;
+                                    if (_dataAccess.AddAuditForErrorProcess(Int32.Parse(requestID), _sUser))
+                                    {
+                                        //AuditUtil.getInstance().audit(Int32.Parse(requestID), WeiCommon.AuditLevel.Info, "Error message has been processed by user: " + _sUser);
+                                        client.reprocess(Int32.Parse(requestID));
+                                    }
 
+                                }
                             }
                         }
 
@@ -971,13 +1114,27 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 
                 populateGridView();
             }
-            catch (Exception)
+            catch (TimeoutException ex)
             {
+                LogUtil.log("Timeout while waiting for the service", ex.InnerException);
+                Response.Redirect("CustomErrorPage.aspx", false);;
+            }
+            catch (CommunicationException ex)
+            {
+                LogUtil.logError("Error while establishing connection with the service:" + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);;
+            }
 
-                throw;
+            catch (Exception ex)
+            {
+                LogUtil.logError("Error while releasing error messages:" + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);
+            }
+            finally
+            {
+                client.Close();
             }
         }
-
         protected void btnShowDetails_Click(object sender, EventArgs e)
         {
             try
@@ -999,9 +1156,10 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 }
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Unexpected error occured while showing the message details - " + ex.InnerException.ToString());
+                  Response.Redirect("CustomErrorPage.aspx", false);
             }
         }
 
@@ -1020,18 +1178,19 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 // Bind the reader to the GridView
                 // You can also use a lighter control 
                 // like the Repeater to display data
+
                 int _iRowIndex;
                 int _igrdRowIndex;
                 GridViewRow _grdViewRow;
-
+                
                 _sSearchString = txtSearchText.Text;
                 ViewState["EditRow"] = String.Empty;
                 _grdViewRow = ((LinkButton)sender).Parent.Parent as GridViewRow;
                 if (_grdViewRow.RowType == DataControlRowType.DataRow)
                 {
-
+                    
                     _igrdRowIndex = _grdViewRow.RowIndex;
-
+                   
                     ViewState["GridRowIndex"] = _igrdRowIndex;
                     _iRowIndex = Convert.ToInt32(_grdViewRow.Cells[1].Text);
                     //ViewState["RowIndex"] = _iRowIndex;
@@ -1058,44 +1217,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 ModalPopupExtender1.Show();
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Unexpected error occured in lnkShowTranslations method :" + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);
             }
-        }
-
-        protected void lnkShowTranslations_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-
-            //    int _iRowIndex;
-            //    int _igrdRowIndex;
-            //    GridViewRow _grdViewRow;
-
-            //    _sSearchString = txtSearchText.Text;
-            //    ViewState["EditRow"] = String.Empty;
-            //    _grdViewRow = ((LinkButton)sender).Parent.Parent as GridViewRow;
-            //    if (_grdViewRow.RowType == DataControlRowType.DataRow)
-            //    {
-
-            //        _igrdRowIndex = _grdViewRow.RowIndex;
-
-            //        ViewState["GridRowIndex"] = _igrdRowIndex;
-            //        _iRowIndex = Convert.ToInt32(_grdViewRow.Cells[1].Text);
-            //        //ViewState["RowIndex"] = _iRowIndex;
-            //        populateTranslationsGrid(_iRowIndex, false);
-            //        //if (ViewState["EditRow"].ToString() != "")
-            //        //{
-            //        //    setTranslations(_iRowIndex);
-            //        //}
-            //        tbContainer.ActiveTabIndex = 0;
-            //        tbTranslations.Visible = true;
-            //    }
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
         }
 
         void populateTranslationsGrid(int _key, bool _bEditMode)
@@ -1104,7 +1230,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             int _rowindex;
             try
             {
-                if (grdShowMessages.Rows.Count > 0)
+                if (grdShowMessages.Rows.Count > 1)
                 {
                     //Assign the message details to the labels
                     if (ViewState["GridRowIndex"] != null)
@@ -1112,135 +1238,125 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 
                         _rowindex = Convert.ToInt32(ViewState["GridRowIndex"]);
                         pnlSummary.Visible = true;
-                        lblRequestValue.Text = grdShowMessages.Rows[_rowindex].Cells[1].Text;
-                        lblInterfaceValue.Text = grdShowMessages.Rows[_rowindex].Cells[2].Text;
-                        lblDescValue.Text = grdShowMessages.Rows[_rowindex].Cells[3].Text;
-                        lblCreateTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[7].Text;
-                        lblModifiedTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[8].Text;
+                        if (grdShowMessages.Rows[_rowindex].Cells.Count > 1)
+                        {
+                            lblRequestValue.Text = grdShowMessages.Rows[_rowindex].Cells[1].Text;
+                            lblInterfaceValue.Text = grdShowMessages.Rows[_rowindex].Cells[2].Text;
+                            lblDescValue.Text = grdShowMessages.Rows[_rowindex].Cells[3].Text;
+                            lblCreateTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[7].Text;
+                            lblModifiedTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[8].Text;
+                            // lblNote.Visible = false;
+                            // lblNoteValue.Visible = false;
+                        }
 
                     }
                 }
 
-                _dataset = _dataAccess.getTranslations(_key);
+               _dataset = _dataAccess.getTranslations(_key);
+               if (_dataset != null)
+                {
+                    DataView dv = new DataView(_dataset.Tables[0]);
+                    if (_dataset.Tables[0].Rows.Count > 0)
+                    {
+                        grdShowTranslations.DataSource = dv;
+                        grdShowTranslations.DataBind();
+                        //ViewState["RequestID"] = _key;
 
-                DataView dv = new DataView(_dataset.Tables[0]);
-                if (_dataset.Tables[0].Rows.Count > 0)
-                {
-                    grdShowTranslations.DataSource = dv;
-                    grdShowTranslations.DataBind();
-                    ViewState["RequestID"] = _key;
+                        // Panel3.Visible = true;
+                        pnlSummary.Visible = true;
+                        //pnlTranslations.Visible = true;
+                       // btnProcessReview.Enabled = true;
+                        //lblMsgTranslations.Text = "Chinese Telegraphic Codes translations for message : " + _key;
+                    }
+                    else
+                    {
+                        //Insert a blank row 
+                        insertGridRow(grdShowTranslations, _dataset.Tables[0]);
+                        //pnlTranslations.Visible = true;
+                        //lblMsgTranslations.Text = "No Chinese Telegraphic Codes for message: " + _key;
+                        //btnProcessReview.Enabled = false;
+                        //Panel3.Visible = false;
+                    }
 
-                    //Panel3.Visible = true;
-                    pnlSummary.Visible = true;
-                    //pnlTranslations.Visible = true;
-                    //btnProcessReview.Enabled = true;
-                    //lblMsgTranslations.Text = "Chinese Telegraphic Codes translations for message : " + _key;
-                }
-                else
-                {
-                    //Insert a blank row 
-                    insertGridRow(grdShowTranslations, _dataset.Tables[0]);
-                    //pnlTranslations.Visible = true;
-                    //lblMsgTranslations.Text = "No Chinese Telegraphic Codes for message: " + _key;
-                    //btnProcessReview.Enabled = false;
-                    //Panel3.Visible = false;
-                }
-                if (_bEditMode)
-                {
-                    gridRowEditCheck();
+
+
+                    if (_bEditMode)
+                    {
+                        gridRowEditCheck();
+                    }
                 }
             }
+
             catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Method: populateTranslationsGrid - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);
             }
         }
 
-        //private void setTranslations(int _requestId)
+        
+        //populate the translations grid
+        //void populateTranslationsGridEx(int _key, bool _bEditMode)
         //{
-        //    int iRowIndex = 0;
-        //    GridViewRow drRow;
-
+        //    DataSet _dataset;
+        //    int _rowindex;
         //    try
         //    {
-        //        if (grdShowTranslations.Rows.Count > 0)
+        //        if (grdShowMessages.Rows.Count > 0) 
         //        {
-
-        //            for (iRowIndex = 0; iRowIndex < grdShowTranslations.Rows.Count; iRowIndex++)
+        //        //Assign the message details to the labels
+        //            if (ViewState["GridRowIndex"] != null)
         //            {
-        //                drRow = grdShowTranslations.Rows[iRowIndex];
 
-        //               // ((LinkButton)drRow.FindControl("btnUpdate")).Visible = false; ;
-        //                ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked = false;
+        //                _rowindex = Convert.ToInt32(ViewState["GridRowIndex"]);
+        //                pnlSummary.Visible = true;
+        //                if (grdShowMessages.Rows[_rowindex].Cells.Count > 0)
+        //                {
+        //                    lblRequestValue.Text = grdShowMessages.Rows[_rowindex].Cells[1].Text;
+        //                    lblInterfaceValue.Text = grdShowMessages.Rows[_rowindex].Cells[2].Text;
+        //                    lblDescValue.Text = grdShowMessages.Rows[_rowindex].Cells[3].Text;
+        //                    lblCreateTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[7].Text;
+        //                    lblModifiedTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[8].Text;
+        //                }
 
         //            }
         //        }
-        //    }
+                
+        //        _dataset = _dataAccess.getTranslations(_key);
+                
+        //        DataView dv = new DataView(_dataset.Tables[0]);
+        //        if (_dataset.Tables[0].Rows.Count > 0)
+        //        {
+        //            grdShowTranslations.DataSource = dv;
+        //            grdShowTranslations.DataBind();
+        //            ViewState["RequestID"] = _key;
 
-        //    catch(Exception)
+        //            //Panel3.Visible = true;
+        //            pnlSummary.Visible = true;
+        //            //pnlTranslations.Visible = true;
+        //            btnProcessReview.Enabled = true;
+        //            //lblMsgTranslations.Text = "Chinese Telegraphic Codes translations for message : " + _key;
+        //        }
+        //        else
+        //        {
+        //            //Insert a blank row 
+        //            insertGridRow(grdShowTranslations, _dataset.Tables[0]);
+        //            //pnlTranslations.Visible = true;
+        //            //lblMsgTranslations.Text = "No Chinese Telegraphic Codes for message: " + _key;
+        //            btnProcessReview.Enabled = false;
+        //            //Panel3.Visible = false;
+        //        }
+        //        if (_bEditMode)
+        //        {
+        //            gridRowEditCheck();
+        //        }
+        //    }
+        //    catch (Exception ex)
         //    {
-        //        throw;
+        //        LogUtil.logError("Method: populateTranslationsGridEx - " + ex.InnerException.ToString());
+        //        Response.Redirect("CustomErrorPage.aspx", false);
         //    }
         //}
-
-        //populate the translations grid
-        void populateTranslationsGridEx(int _key, bool _bEditMode)
-        {
-            DataSet _dataset;
-            int _rowindex;
-            try
-            {
-                if (grdShowMessages.Rows.Count > 0)
-                {
-                    //Assign the message details to the labels
-                    if (ViewState["GridRowIndex"] != null)
-                    {
-
-                        _rowindex = Convert.ToInt32(ViewState["GridRowIndex"]);
-                        pnlSummary.Visible = true;
-                        lblRequestValue.Text = grdShowMessages.Rows[_rowindex].Cells[1].Text;
-                        lblInterfaceValue.Text = grdShowMessages.Rows[_rowindex].Cells[2].Text;
-                        lblDescValue.Text = grdShowMessages.Rows[_rowindex].Cells[3].Text;
-                        lblCreateTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[7].Text;
-                        lblModifiedTimeValue.Text = grdShowMessages.Rows[_rowindex].Cells[8].Text;
-
-                    }
-                }
-
-                _dataset = _dataAccess.getTranslations(_key);
-
-                DataView dv = new DataView(_dataset.Tables[0]);
-                if (_dataset.Tables[0].Rows.Count > 0)
-                {
-                    grdShowTranslations.DataSource = dv;
-                    grdShowTranslations.DataBind();
-                    ViewState["RequestID"] = _key;
-
-                    //Panel3.Visible = true;
-                    pnlSummary.Visible = true;
-                    //pnlTranslations.Visible = true;
-                    btnProcessReview.Enabled = true;
-                    //lblMsgTranslations.Text = "Chinese Telegraphic Codes translations for message : " + _key;
-                }
-                else
-                {
-                    //Insert a blank row 
-                    insertGridRow(grdShowTranslations, _dataset.Tables[0]);
-                    //pnlTranslations.Visible = true;
-                    //lblMsgTranslations.Text = "No Chinese Telegraphic Codes for message: " + _key;
-                    btnProcessReview.Enabled = false;
-                    //Panel3.Visible = false;
-                }
-                if (_bEditMode)
-                {
-                    gridRowEditCheck();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
         void populateAuditGrid(int _rowindex, int _key)
         {
@@ -1265,11 +1381,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 
 
                 }
-
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Method: PopulateAuditGrid - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);
             }
         }
 
@@ -1289,21 +1406,19 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             return "<span class='highlight'>" + m.Value + "</span>";
         }
 
-        protected void grdShowMessages_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         protected void grdShowTranslations_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             try
             {
                 grdShowTranslations.EditIndex = -1;
-                populateTranslationsGrid(Convert.ToInt32(ViewState["RequestID"]), false);
+                populateTranslationsGrid(Convert.ToInt32(ViewState["MessageId"]),false);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Unexpected error occured in grdShowTranslations_RowCancelingEdit method: " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);
             }
         }
 
@@ -1313,10 +1428,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             string sUser = "";
             int iRowIndex = 0;
             bool bSuccess;
-            bool bReviewed = false;
+            bool bReviewed =false;
             bool bApproved = false;
             string sReviewedBy = String.Empty;
             string sApprovedBy = String.Empty;
+            string sNewTrans;
             try
             {
 
@@ -1330,10 +1446,13 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 {
                     sUser = Session["User"].ToString();
                 }
-                if (Session["WEIReviewer"].ToString() == "Y")
+                if (Session["WeiReviewer"] != null)
                 {
-                    sReviewMode = "Review";
-                    sReviewedBy = sUser;
+                    if (Session["WEIReviewer"].ToString() == "Y")
+                    {
+                        sReviewMode = "Review";
+                        sReviewedBy = sUser;
+                    }
                 }
                 //if (Session["WEIApprover"].ToString() == "Y") { sReviewMode = "Approve"; sApprovedBy = sUser; }
                 //if ((Session["WEIApprover"].ToString() == "Y") && (Session["WEIReviewer"].ToString() == "Y"))
@@ -1351,45 +1470,60 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     for (iRowIndex = 0; iRowIndex < grdShowTranslations.Rows.Count; iRowIndex++)
                     {
                         drRow = grdShowTranslations.Rows[iRowIndex];
-                        if ((DataControlRowState.Edit) > 0)
+
+                        if (drRow.RowState == DataControlRowState.Edit || drRow.RowState == (DataControlRowState.Edit | DataControlRowState.Alternate))
+
                         {
-                            int iTranID = Convert.ToInt32(((Label)drRow.FindControl("lblID")).Text.Trim());
-                            string sCTCCode = ((Label)drRow.FindControl("lblCTCCodes")).Text.Trim();
-                            string sChinesChar = ((Label)drRow.FindControl("lblChineseChar")).Text.Trim();
-                            string sOldTrans = ((Label)drRow.FindControl("lblOldTrans")).Text.Trim();
-                            string sNewTrans = ((TextBox)drRow.FindControl("txtNewTranslations")).Text.Trim();
-                            bReviewed = ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked;
+                            if (grdShowTranslations.EditIndex != -1)
+                            {
 
-                            //if (sReviewMode == "Approve")
-                            //{
-                            //    sReviewedBy = ((Label)drRow.FindControl("lblReviewedBy")).Text;
-                            //    bApproved = ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked;
-                            //}
-                            //else
-                            //{
-                            //    ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked = false;
-                            //    ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked = true;
-                            //    bReviewed = ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked;
+                                int iTranID = Convert.ToInt32(((Label)drRow.FindControl("lblID")).Text.Trim());
+                                string sCTCCode = ((Label)drRow.FindControl("lblCTCCodes")).Text.Trim();
+                                string sChinesChar = ((Label)drRow.FindControl("lblChineseChar")).Text.Trim();
+                                string sOldTrans = ((Label)drRow.FindControl("lblOldTrans")).Text.Trim();
+                                //if (((TextBox)drRow.FindControl("txtNewTranslations")).Text.Trim() != null)
+                                //{
+                                sNewTrans = ((TextBox)drRow.FindControl("txtNewTranslations")).Text.Trim();
+                                bReviewed = ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked;
+                                sReviewedBy = WindowsIdentity.GetCurrent().Name;
+                                //}
+                                //else
+                                //{
+                                //  sNewTrans = ((Label)drRow.FindControl("lblNewTrans")).Text.Trim();
+                                // bReviewed = Convert.ToBoolean(((Label)drRow.FindControl("chkReviewMessage")).Text);
+                                //}
 
-                            //}
-                            //if (sReviewedBy == "" && !bReviewed)
-                            //{
-                            //    lblMsgTranslations.Text = "Approver cannot approve the translations that are not reviewed.";
-                            //}
-                            //else if (sReviewedBy == sApprovedBy && Session["WEIApprover"].ToString() == "N")
-                            //{
-                            //    lblMsgTranslations.Text = "Reviewer does not have the priveleges to approve the translations";
-                            //}
-                            //else
-                            //{
-                            //lblMsgTranslations.Text = "";
-                            bSuccess = _dataAccess.UpdateTranslations(iTranID, Convert.ToInt32(ViewState["RequestID"]), sNewTrans,
+
+                                //if (sReviewMode == "Approve")
+                                //{
+                                //    sReviewedBy = ((Label)drRow.FindControl("lblReviewedBy")).Text;
+                                //    bApproved = ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked;
+                                //}
+                                //else
+                                //{
+                                //    ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked = false;
+                                //    ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked = true;
+                                //    bReviewed = ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked;
+
+                                //}
+                                //if (sReviewedBy == "" && !bReviewed)
+                                //{
+                                //    lblMsgTranslations.Text = "Approver cannot approve the translations that are not reviewed.";
+                                //}
+                                //else if (sReviewedBy == sApprovedBy && Session["WEIApprover"].ToString() == "N")
+                                //{
+                                //    lblMsgTranslations.Text = "Reviewer does not have the priveleges to approve the translations";
+                                //}
+                                //else
+                                //{
+                                //lblMsgTranslations.Text = "";
+                                
+                                bSuccess = _dataAccess.UpdateTranslations(iTranID, Convert.ToInt32(ViewState["MessageId"]), sNewTrans,
                                      sReviewMode, sReviewedBy, bReviewed, sApprovedBy, bApproved, sCTCCode);
 
-                            //SMU: Feb 01, 2013
-                            grdShowTranslations.EditIndex = -1;
-                            PopulateMessageDetail();
-                            PopulateOriginalMessage();
+                                //SMU: Feb 01, 2013
+                                grdShowTranslations.EditIndex = -1;
+                            }
                             //EU: Feb 01, 2013
                             //}
                         }
@@ -1397,39 +1531,42 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     }
 
                 }
+                PopulateMessageDetail();
+                PopulateOriginalMessage();
                 ViewState["EditRow"] = "true";
-
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Unexpected error occured in grdShowTranslations_RowUpdating method: " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);
             }
 
         }
-
         protected void grdShowTranslations_RowEditing(object sender, GridViewEditEventArgs e)
         {
             try
             {
                 grdShowTranslations.EditIndex = e.NewEditIndex;
                 ViewState["EditRow"] = "true";
-                populateTranslationsGrid(Convert.ToInt32(ViewState["RequestID"]), true);
+                populateTranslationsGrid(Convert.ToInt32(ViewState["MessageId"]),true);
                 checkMode(e.NewEditIndex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Method: grdShowTranslations_RowEditing - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx",false);
             }
         }
-
+        
         private void gridRowEditCheck()
         {
             GridViewRow drRow;
-            int iRowIndex = 0;
+            int iRowIndex =0;
             bool bReviewed;
             //bool bApproved;
 
-
+            
             if ((grdShowTranslations.Rows.Count > 0) && (ViewState["EditRow"].ToString() != ""))
             {
                 for (iRowIndex = 0; iRowIndex < grdShowTranslations.Rows.Count; iRowIndex++)
@@ -1438,7 +1575,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     if (drRow.RowState == DataControlRowState.Edit)
                     {
                         bReviewed = ((CheckBox)drRow.FindControl("chkReviewMessage")).Checked;
-                        //          bApproved = ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked;
+              //          bApproved = ((CheckBox)drRow.FindControl("chkApproveMessage")).Checked;
 
                         //if (bReviewed && bApproved)
                         //{
@@ -1453,7 +1590,6 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             }
 
         }
-
         //disable the approve checkbox if the user has review priveleges
         private void checkMode(int iRowIndex)
         {
@@ -1465,13 +1601,13 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 drRow = grdShowTranslations.Rows[iRowIndex];
                 if ((DataControlRowState.Edit) > 0)
                 {
-                    if (Session["WEIReviewer"].ToString() != null)
+                    if (Session["WEIReviewer"] != null)
                     {
                         if (Session["WEIReviewer"].ToString() == "Y")
                         {
 
                             //((CheckBox)drRow.FindControl("chkApproveMessage")).Enabled = false;
-                            // ((Label)drRow.FindControl("lblApproved")).Visible = true;
+                           // ((Label)drRow.FindControl("lblApproved")).Visible = true;
 
                         }
                     }
@@ -1510,14 +1646,16 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 sbFormattedXml = new StringBuilder();                       //will hold formatted xml
                 StringWriter sw = new StringWriter(sbFormattedXml);         //pumps the formatted xml into the StringBuilder above
 
-                xtw = new XmlTextWriter(sw);                                //point the xtw at the StringWriter
-                xtw.Formatting = Formatting.Indented;                       //we want the output formatted
-                xmlDoc.WriteTo(xtw);                                        //get the dom to dump its contents into the xtw 
+                xtw = new XmlTextWriter(sw);                //point the xtw at the StringWriter
+                xtw.Formatting = Formatting.Indented;       //we want the output formatted
+                xmlDoc.WriteTo(xtw);                        //get the dom to dump its contents into the xtw 
                 strReturn = sbFormattedXml.ToString();                           //return the formatted xml
             }
             catch (Exception)
             {
                 strReturn = strUnformattedXml;
+
+
             }
             finally
             {
@@ -1528,7 +1666,12 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 
         private void PopulateMessageDetail()
         {
-            int _iRowIndex = Convert.ToInt32(ViewState["MessageId"]);
+            int _iRowIndex = 0;
+            string strMessage = string.Empty;
+            if (ViewState["MessageId"] != null)
+            {
+                _iRowIndex = Convert.ToInt32(ViewState["MessageId"]);
+            }
             //ViewState["RowIndex"] = _iRowIndex;
             populateTranslationsGrid(_iRowIndex, false);
             //if (ViewState["EditRow"].ToString() != "")
@@ -1541,33 +1684,41 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             //Tab Original Message
             //====================
 
-            if (grdShowMessages.Rows.Count > 0)
+            if (grdShowMessages.Rows.Count > 1)
             {
                 if (Session["DataTable"] != null)
                 {
                     _dDataTable = (DataTable)Session["DataTable"];
-                    DataRow[] drSelectedRow = _dDataTable.Select("id = " + ViewState["MessageId"].ToString());
+                    if (ViewState["MessageId"] != null)
+                    {
+                        DataRow[] drSelectedRow = _dDataTable.Select("id = " + ViewState["MessageId"].ToString());
 
-                    //grdShowDetails.DataSource = _dDataTable;
-                    //grdShowDetails.DataBind();
+                        if (drSelectedRow.Length > 0)
+                        {
+                            strMessage = drSelectedRow[0]["messagebody"].ToString();
+                            if (!string.IsNullOrEmpty(strMessage)) txtMessagebody.Text = FormatXml(strMessage);
 
-                    string strMessage = drSelectedRow[0]["messagebody"].ToString();
-                    if (!string.IsNullOrEmpty(strMessage)) txtMessagebody.Text = FormatXml(strMessage);
+                            //if (ViewState["TranslatedMessage"] != null)
+                            //{
+                            //    strMessage = ViewState["TranslatedMessage"].ToString();
+                            //}
+                            strMessage = drSelectedRow[0]["translatedmessage"].ToString();
+                            if (!string.IsNullOrEmpty(strMessage)) txtTranslatedmessage.Text = FormatXml(strMessage);
 
-                    strMessage = drSelectedRow[0]["translatedmessage"].ToString();
-                    if (!string.IsNullOrEmpty(strMessage)) txtTranslatedmessage.Text = FormatXml(strMessage).Replace("*"," * ");
+                            //strMessage = drSelectedRow[0]["responsemessage"].ToString();
+                            //if (!string.IsNullOrEmpty(strMessage)) txtResponsemessage.Text = FormatXml(strMessage);
+                        }
+                    }
 
-                    //strMessage = drSelectedRow[0]["responsemessage"].ToString();
-                    //if (!string.IsNullOrEmpty(strMessage)) txtResponsemessage.Text = FormatXml(strMessage);
                 }
-            }
+            
 
             //Tab Audit Details
             //====================
             int _igrdRowIndex;
             _igrdRowIndex = Convert.ToInt32(ViewState["GridRowIndex"]);
             populateAuditGrid(_igrdRowIndex, _iRowIndex);
-
+            }
         }
 
         protected void NavigateMessage(object sender, CommandEventArgs e)
@@ -1601,10 +1752,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                 {
                     ViewState["GridRowIndex"] = _currentRowNumber;
                     ViewState["MessageId"] = Int32.Parse(_dDataTable.Rows[_currentRowNumber]["id"].ToString());
+                    //Session["MessageId"] = Int32.Parse(_dDataTable.Rows[_currentRowNumber]["id"].ToString());
                     PopulateMessageDetail();
                     grdShowTranslations.EditIndex = -1;
 
-                    //ResetPopupControls();
+                    ResetPopupControls();
                     ModalPopupExtender1.Show();
                 }
             }
@@ -1612,7 +1764,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
 
         private void ResetPopupControls()
         {
-            int intCurrentRowNumber = Int32.Parse(ViewState["GridRowIndex"].ToString());
+            int intCurrentRowNumber =  Int32.Parse(ViewState["GridRowIndex"].ToString());
             _dDataTable = (DataTable)Session["DataTable"];
 
             if (intCurrentRowNumber > -1 && null != _dDataTable)
@@ -1645,6 +1797,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
         {
             try
             {
+                string strDescription = string.Empty;
                 if (e.Row.RowType == DataControlRowType.DataRow && e.Row.DataItem != null)
                 {
                     LinkButton btnEdit = (LinkButton)e.Row.FindControl("btnEdit");
@@ -1652,91 +1805,120 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     if (null != Session["DataTable"] && null != ViewState["MessageId"])
                     {
                         _dDataTable = (DataTable)Session["DataTable"];
-                        //_dDataTable.DefaultView.RowFilter = "ID=" + Int32.Parse(ViewState["MessageId"].ToString());
-
-                        DataRow[] drSelectedRow = _dDataTable.Select("id = " + ViewState["MessageId"].ToString());
-
-                        //string strHasCTC = _dDataTable.Rows[0]["HasCTC"].ToString();
-                        //string strDescription = _dDataTable.Rows[0]["Description"].ToString().Trim();
-                        string strHasCTC = drSelectedRow[0]["HasCTC"].ToString();
-                        string strDescription = drSelectedRow[0]["Description"].ToString().Trim();
-                        string strHasCTCApproved = drSelectedRow[0]["HasCTCApproved"].ToString();
-
-                        int intStatus = 0;
-
-                        switch (strDescription)
+                        if (_dDataTable != null)
                         {
-                            case "UnProcessed":
-                                intStatus = 1;
-                                break;
-
-                            case "Translated":
-                                intStatus = 2;
-                                break;
-
-                            case "Review":
-                                intStatus = 3;
-                                break;
-
-                            case "SentForOFACCheck":
-                                intStatus = 4;
-                                break;
-
-                            case "OFACResponseReceived":
-                                intStatus = 5;
-                                break;
-
-                            case "Processed":
-                                intStatus = 6;
-                                break;
-                        }
-
-                        if (null != btnEdit)
-                        {
-
-                            if (strHasCTCApproved.Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
+                    //        //_dDataTable.DefaultView.RowFilter = "ID=" + Int32.Parse(ViewState["MessageId"].ToString());
+                            if (ViewState["MessageId"].ToString() != null)
                             {
-                                lblNoteValue.Visible = true;
-                                lblNote.Visible = true;
-                                lblNoteValue.Text = "Translations have been already approved";
-
-                                btnEdit.Enabled = false;
-                                //btnEdit.Text = "";
-                                btnProcessReview.Enabled = false;
-                            }
-                            else
-                            {
-                                if (strHasCTC.Equals("No", StringComparison.InvariantCultureIgnoreCase))
+                                DataRow[] drSelectedRow = _dDataTable.Select("id = " + ViewState["MessageId"].ToString());
+                                if (drSelectedRow.Length > 0)
                                 {
-                                    lblNoteValue.Visible = true;
-                                    lblNote.Visible = true;
-                                    lblNoteValue.Text = "No CTC Code";
+                                    //string strHasCTC = _dDataTable.Rows[0]["HasCTC"].ToString();
+                                    //string strDescription = _dDataTable.Rows[0]["Description"].ToString().Trim();
 
-                                    btnEdit.Enabled = false;
-                                    //btnEdit.Text = "";
-                                    btnProcessReview.Enabled = false;
-                                }
-                                else
-                                {
-                                    if (intStatus > 3)
+                                    string strHasCTC = drSelectedRow[0]["HasCTC"].ToString();
+                                    strDescription = drSelectedRow[0]["Description"].ToString().Trim();
+                                    string strHasCTCApproved = drSelectedRow[0]["HasCTCApproved"].ToString();
+
+                                    int intStatus = 0;
+                                    switch (strDescription)
                                     {
-                                        lblNoteValue.Visible = true;
-                                        lblNote.Visible = true;
-                                        lblNoteValue.Text = "Translations have been already approved";
+                                        case "UnProcessed":
+                                            intStatus = 1;
+                                            break;
 
-                                        btnEdit.Enabled = false;
-                                        //btnEdit.Text = "";
-                                        btnProcessReview.Enabled = false;
+                                        case "Translated":
+                                            intStatus = 2;
+                                            break;
+
+                                        case "Review":
+                                            intStatus = 3;
+                                            break;
+
+                                        case "SentForOFACCheck":
+                                            intStatus = 4;
+                                            break;
+
+                                        case "OFACResponseReceived":
+                                            intStatus = 5;
+                                            break;
+
+                                        case "Processed":
+                                            intStatus = 6;
+                                            break;
                                     }
-                                    else
-                                    {
-                                        lblNoteValue.Visible = false;
-                                        lblNote.Visible = false;
-                                        lblNoteValue.Text = "";
 
-                                        btnEdit.Enabled = true;
-                                        //btnEdit.Text = "Edit";
-                                        btnProcessReview.Enabled = true;
+                                    if (null != btnEdit)
+                                    {
+
+                                        //if (strHasCTCApproved.Equals("Yes", StringComparison.InvariantCultureIgnoreCase))
+                                        //{
+                                        //    lblNoteValue.Visible = true;
+                                        //    lblNote.Visible = true;
+                                        //    lblNoteValue.Text = "Translations have been already approved";
+
+                                        //    btnEdit.Enabled = false;
+                                        //    //btnEdit.Text = "";
+                                        //    if (intStatus == 3)
+                                        //    {
+                                        //        btnProcessReview.Enabled = true;
+                                        //    }
+                                        //    else
+                                        //    {
+                                        //        btnProcessReview.Enabled = false;
+                                        //    }
+                                        //}
+                                        //else
+                                        //{
+                                        //    if (strHasCTC.Equals("No", StringComparison.InvariantCultureIgnoreCase))
+                                        //    {
+                                        //        lblNoteValue.Visible = true;
+                                        //        lblNote.Visible = true;
+                                        //        lblNoteValue.Text = "No CTC Code";
+
+                                        //        btnEdit.Enabled = false;
+                                        //        //btnEdit.Text = "";
+                                        //        btnProcessReview.Enabled = false;
+                                        //    }
+                                        //    else
+                                        //    {
+                                        if (intStatus > 3)
+                                        {
+                                            lblNoteValue.Visible = true;
+                                            lblNote.Visible = true;
+                                            if (intStatus == 4)
+                                            {
+                                                lblNoteValue.Text = "Message has been sent for OFAC check";
+                                                btnEdit.Enabled = false;
+                                                //btnEdit.Text = "";
+                                                btnProcessReview.Enabled = false;
+                                            }
+                                            
+                                            else if (intStatus == 5)
+                                            {
+                                                lblNoteValue.Text = "Message was OFAC checked successfully. ";
+                                            }
+                                            btnEdit.Enabled = false;
+                                            //btnEdit.Text = "";
+                                            btnProcessReview.Enabled = false;
+                                        }
+                                        else
+                                        {
+                                            if ( intStatus == 3)
+                                            {
+                                                lblNoteValue.Text = "Translations need to be reviewed before releasing the message for OFAC check ";
+                                            }
+                                            lblNoteValue.Visible = true;
+                                            lblNote.Visible = true;
+                                            //lblNoteValue.Text = "";
+
+                                            btnEdit.Enabled = true;
+                                            //btnEdit.Text = "Edit";
+                                            btnProcessReview.Enabled = true;
+                                        }
+                                        //}
+                                        //}
+                                        //    }
                                     }
                                 }
                             }
@@ -1744,9 +1926,10 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("unexpected error occured in grdShowTranslations_OnRowDataBound method - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);
             }
         }
 
@@ -1769,10 +1952,16 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                     //if (!string.IsNullOrEmpty(strMessage)) txtResponsemessage.Text = FormatXml(strMessage);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                LogUtil.logError("Unexpected error occured in PopulateOriginalMessage method - " + ex.InnerException.ToString());
+                Response.Redirect("CustomErrorPage.aspx", false);
+
             }
+
         }
+       
+
     }
+
 }
