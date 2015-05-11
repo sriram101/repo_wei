@@ -18,7 +18,8 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
         private Regex regex = new Regex(pattern);
         private Translator _translator;
 
-        public static List<string> tags = new List<string>();
+        private static List<string> tags = new List<string>();
+        
         private bool translateAlltags = false;
 
         public bool translate(Request request, String message)
@@ -168,6 +169,7 @@ namespace Telavance.AdvantageSuite.Wei.ChipsParser
             {
                 isIntialized = false;
                 LogUtil.log("Error loading config for ChipsParser", e);
+                throw;
             }
         }
     }
