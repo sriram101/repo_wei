@@ -48,6 +48,7 @@ using Telavance.AdvantageSuite.Wei.WeiCommon;
 using Telavance.AdvantageSuite.Wei.WeiService;
 using System.IO;
 using System.Threading;
+using System.Security.Principal;
 
 namespace Telavance.AdvantageSuite.Wei.FileDriver
 {
@@ -409,6 +410,9 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
                 request.Name = filename;
                 request.MessageBody = message;
                 request.InterfaceId = _interfaceId;
+                WindowsIdentity windowsIdentity = WindowsIdentity.GetCurrent();
+                if (windowsIdentity != null) request.CreateOper = windowsIdentity.Name;
+
                 _dbUtils.addRequest(request);
                 File.Delete(filename);
 
@@ -479,6 +483,7 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
                 sw.Write(request.TranslatedMessage);
                 sw.Close();
                 retValue = true;
+               
             }
             catch (IOException e)
             {
@@ -586,6 +591,7 @@ namespace Telavance.AdvantageSuite.Wei.FileDriver
                 sw.Write(request.MessageBody);
                 sw.Close();
                 retValue = true;
+                File.Delete(filename);
             }
             catch (Exception e)
             {
