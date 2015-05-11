@@ -1,8 +1,8 @@
-c:\wei\Wei\WeiDB\sql\release\Wei_Script.PreDeployment.sql
-c:\wei\Wei\WeiDB\sql\release\Wei_Script.PostDeployment.sql
-c:\wei\Wei\WeiDB\sql\release\Wei_Database.sqlsettings
-c:\wei\Wei\WeiDB\sql\release\Wei_Database.sqldeployment
-c:\wei\Wei\WeiDB\sql\release\Wei_Database.sqlcmdvars
-c:\wei\Wei\WeiDB\sql\release\WeiDB.deploymanifest
-c:\wei\Wei\WeiDB\sql\release\WeiDB.dbschema
-c:\wei\Wei\WeiDB\obj\Release\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\release\Wei_Script.PreDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\release\Wei_Script.PostDeployment.sql
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\release\Wei_Database.sqlsettings
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\release\Wei_Database.sqldeployment
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\release\Wei_Database.sqlcmdvars
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\release\WeiDB.deploymanifest
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\sql\release\WeiDB.dbschema
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiDB\obj\Release\WeiDB.dbschema
