@@ -43,13 +43,13 @@ DBCC CHECKIDENT (Interfaces, RESEED, 0)
 go
 
 INSERT INTO Interfaces(name, handler, driver, fileformat, config)
-	VALUES ( 'Driver1', 1, 1, 'SWIFT , XML', '<config><inputFilePattern>*.*</inputFilePattern><inputFolder>C:\wei\driver1\input</inputFolder><okFolder>C:\wei\driver1\ok</okFolder><confirmFolder>C:\wei\driver1\confirm</confirmFolder><errorFolder>C:\wei\driver1\error</errorFolder><ofacInputFolder>C:\wei\driver1\primeInput</ofacInputFolder><ofacOkFolder>C:\wei\driver1\primeOk</ofacOkFolder><ofacConfirmFolder>C:\wei\driver1\primeConfirm</ofacConfirmFolder></config>')
+	VALUES ( 'Driver1', 1, 1, 'SWIFT , XML, CHIPS', '<config><inputFilePattern>*.*</inputFilePattern><inputFolder>C:\wei\driver1\input</inputFolder><okFolder>C:\wei\driver1\ok</okFolder><confirmFolder>C:\wei\driver1\confirm</confirmFolder><errorFolder>C:\wei\driver1\error</errorFolder><ofacInputFolder>C:\wei\driver1\primeInput</ofacInputFolder><ofacOkFolder>C:\wei\driver1\primeOk</ofacOkFolder><ofacConfirmFolder>C:\wei\driver1\primeConfirm</ofacConfirmFolder></config>')
 
 go
 
 INSERT INTO Interfaces(name, handler, driver, fileformat, config)
-	VALUES ( 'MQDriver1', 1, 2, 'SWIFT, XML', '<config><queueManager>QM_WEI</queueManager><inputQueue>InQueue</inputQueue><okQueue>OkQueue</okQueue><confirmQueue>ConfirmQueue</confirmQueue><errorQueue>ErrorQueue</errorQueue><ofacInputQueue>PrimeInQueue</ofacInputQueue><ofacOkQueue>PrimeOkQueue</ofacOkQueue><ofacConfirmQueue>PrimeConfirmQueue</ofacConfirmQueue></config>')
+	VALUES ( 'MQDriver1', 1, 2, 'SWIFT, XML, CHIPS', '<config><queueManager>QM_WEI</queueManager><inputQueue>InQueue</inputQueue><okQueue>OkQueue</okQueue><confirmQueue>ConfirmQueue</confirmQueue><errorQueue>ErrorQueue</errorQueue><ofacInputQueue>PrimeInQueue</ofacInputQueue><ofacOkQueue>PrimeOkQueue</ofacOkQueue><ofacConfirmQueue>PrimeConfirmQueue</ofacConfirmQueue></config>')
 
 INSERT INTO Interfaces(name, handler, driver, fileformat, config)
-	VALUES ( 'MQDriver2', 1, 2, 'SWIFT, XML', '<config><queueManager>QM_WEI</queueManager><inputQueue>InQueue2</inputQueue><okQueue>OkQueue2</okQueue><confirmQueue>ConfirmQueue2</confirmQueue><errorQueue>ErrorQueue2</errorQueue><ofacInputQueue>PrimeInQueue2</ofacInputQueue><ofacOkQueue>PrimeOkQueue2</ofacOkQueue><ofacConfirmQueue>PrimeConfirmQueue2</ofacConfirmQueue></config>')
+	VALUES ( 'MQDriver2', 1, 2, 'SWIFT, XML, CHIPS', '<config><queueManager>QM_WEI</queueManager><inputQueue>InQueue2</inputQueue><okQueue>OkQueue2</okQueue><confirmQueue>ConfirmQueue2</confirmQueue><errorQueue>ErrorQueue2</errorQueue><ofacInputQueue>PrimeInQueue2</ofacInputQueue><ofacOkQueue>PrimeOkQueue2</ofacOkQueue><ofacConfirmQueue>PrimeConfirmQueue2</ofacConfirmQueue></config>')
 
