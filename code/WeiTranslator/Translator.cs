@@ -46,19 +46,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
-
+using System.Configuration;
 using Telavance.AdvantageSuite.Wei.WeiCommon;
 //using Telavance;
 //using Telavance.AdvantageSuite.Wei.Wei
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Net;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 
-
+[assembly:CLSCompliant(true)]
 namespace Telavance.AdvantageSuite.Wei.WeiTranslator
 {
 
     public delegate string Preprocess(string message);
+     
+
 
     public class Word
     {
@@ -71,6 +74,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
     {
         private String _currentLanguage;
         private String _currentTranslationProvider;
+        private DBUtils _dbutils;
         
         private IDictionary<String, MapFile> mapFiles = new Dictionary<String, MapFile>();
 
@@ -85,13 +89,18 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
         private int _determiningCTCCount;
         private bool _applyCustomName;
         private string _sCustomName;
+        private bool _requiresReview;
 
+        
         public Translator(WeiConfiguration weiConfig)
         {
 
             TranslateConfigElement config = weiConfig.TranslatorSetting;
             _applyCustomName = weiConfig.applyCustomName;
-            _sCustomName = weiConfig.CustomName;
+            _sCustomName = weiConfig.customName;
+            _requiresReview = weiConfig.requiresReview;
+
+            this._dbutils = EnterpriseLibraryContainer.Current.GetInstance<DBUtils>();
 
             foreach (ProviderConfigElement provider in config.Providers)
             {
@@ -103,7 +112,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
                 {
                     maxLength = Convert.ToInt32(provider.MaxLength);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     LogUtil.logInfo("Invalid maxLength for provider:" + provider.Name + ". So defaulting to -1.");
                     maxLength = -1;
@@ -184,6 +193,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
         }
         public String convertAndTranslate(String srcLanguage, String message, String translationProvider, bool translateOnlyCTC, Preprocess handler)
         {
+           
             String converted = convert(srcLanguage, message, translateOnlyCTC, handler);
             if (converted != null)
             {
@@ -307,18 +317,21 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                throw;
             }
             //process any remaining characters
             processWord(srcLanguage, mapFile, sb, possibleCtcs, currentWord, true, translateOnlyCTC);
-
+           
             return sb.ToString();
+            
         }
 
         private void processWord(String srcLanguage, MapFile mapFile, StringBuilder sb, List<Word> possibleCtcs, StringBuilder currentWord, bool bFinish, bool translateOnlyCTC)
         {
             bool bProcessed = false;
+            string sCTCCode = "";
 
             if (currentWord.Length >= 4)
             {
@@ -371,12 +384,26 @@ namespace Telavance.AdvantageSuite.Wei.WeiTranslator
                         OriginalWord.Append(word.precedingChars.ToString());
                         OriginalWord.Append(word.ctcCode);
                         OriginalWord.Append(word.succeedingChars.ToString());
+                        sCTCCode = sCTCCode + " " + word.ctcCode;
                     }
                     possibleCtcs.Clear();
 
                     if (bConvert && translateOnlyCTC)
                     {
-                        string translated = translate(srcLanguage, currentConvertedWord.ToString());
+                        string translated;
+                        translated = "";
+                        
+                        //Check if the translation exists in the translations table
+                        translated = _dbutils.getCTCTranslations(sCTCCode.Trim());
+                        if (translated == null)
+                        {
+                            //Add the translation to the translations table if it does not exist
+                            translated = translate(srcLanguage, currentConvertedWord.ToString());
+                            _dbutils.addTranslation(sCTCCode.Trim(), currentConvertedWord.ToString(), "", translated);
+                            LogUtil.logInfo("New translation added to Translations table for the telegraphic code: " + sCTCCode.Trim());
+
+                        }
+                        LogUtil.logInfo("Translation already exists for telegraphic Code:" + sCTCCode.Trim());
                         sb.Append(formattedTranslatedString(OriginalWord.ToString(), translated));
                     }
                     else
