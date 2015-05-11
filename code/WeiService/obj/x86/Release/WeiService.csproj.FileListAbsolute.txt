@@ -1,114 +1,154 @@
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.exe.config
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.exe.manifest
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.application
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.exe
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiCommon.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiTranslator.dll
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiCommon.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiTranslator.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.pdb
-C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.pdb
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\Telavance.AdvantageSuite.Wei.WeiService.ProjectInstaller.resources
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\GenerateResource.read.1.tlog
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\GenerateResource.write.1.tlog
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.exe.manifest
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.application
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.exe
-C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.exe.config
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.exe.manifest
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.application
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.exe
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiCommon.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiTranslator.dll
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiCommon.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiTranslator.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.pdb
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\Telavance.AdvantageSuite.Wei.WeiService.ProjectInstaller.resources
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\GenerateResource.read.1.tlog
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\GenerateResource.write.1.tlog
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.exe.manifest
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.application
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.exe
-C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.exe.config
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.exe.manifest
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.application
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.exe
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiCommon.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiTranslator.dll
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiCommon.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiTranslator.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.pdb
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\Telavance.AdvantageSuite.Wei.WeiService.ProjectInstaller.resources
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\GenerateResource.read.1.tlog
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\GenerateResource.write.1.tlog
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.exe.manifest
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.application
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.exe
-C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.exe.config
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.exe.manifest
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.application
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.exe
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiService.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiCommon.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiTranslator.dll
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiCommon.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\WeiTranslator.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Telavance\Development\Wei\code\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\Telavance.AdvantageSuite.Wei.WeiService.ProjectInstaller.resources
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.exe.manifest
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.application
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.exe
+C:\Telavance\Development\Wei\code\WeiService\obj\x86\Release\WeiService.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.exe.config
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.exe.manifest
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.application
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.exe
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiService.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiCommon.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiTranslator.dll
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiCommon.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\WeiTranslator.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\Telavance.AdvantageSuite.Wei.WeiService.ProjectInstaller.resources
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.exe.manifest
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.application
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.exe
+C:\Telavance\Development\Wei\Development\Source\WeiService\obj\x86\Release\WeiService.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.exe.config
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.exe.manifest
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.application
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiService.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiCommon.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiTranslator.dll
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiCommon.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\WeiTranslator.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\Telavance.AdvantageSuite.Wei.WeiService.ProjectInstaller.resources
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.exe.manifest
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.application
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.exe
+C:\Telavance\Product Development\Wei\MAIN\Source\WeiService\obj\x86\Release\WeiService.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiService.exe.config
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiService.exe.manifest
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiService.application
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiService.exe
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiService.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\DataAccess.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.Unity.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiCommon.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiTranslator.dll
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\DataAccess.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiCommon.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\WeiTranslator.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.xml
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.xml
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.Unity.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\ResolveAssemblyReference.cache
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\Telavance.AdvantageSuite.Wei.WeiService.ProjectInstaller.resources
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\GenerateResource.read.1.tlog
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\GenerateResource.write.1.tlog
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\WeiService.exe.manifest
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\WeiService.application
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\WeiService.exe
+E:\Muthukrishnan\Projects\WEI\WEI\Source-012013\WeiService\obj\x86\Release\WeiService.pdb
