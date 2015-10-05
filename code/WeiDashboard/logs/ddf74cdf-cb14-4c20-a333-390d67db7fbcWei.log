@@ -1,6 +1,0 @@
-7/24/2011 8:56:54 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '0488'  Key being added: '0488'
-7/24/2011 8:56:54 PM:General:-1: 0: Information: :Error reading mapfile:C:\Telavance\Development\Wei\code\WeiService\data\Traditional Chinese.ctc.map for line:System.String[].Exception Message:Item has already been added. Key in dictionary: '6480'  Key being added: '6480'
-7/24/2011 8:58:00 PM:General:-1: 0: Verbose: :Raw translated response:{"responseData": {"translatedText":"Osama bin Laden"}, "responseDetails": null, "responseStatus": 200}
-7/24/2011 8:58:00 PM:General:-1: 0: Verbose: :convertedString:烏 薩 馬 本 拉 丹. Translated:Osama bin Laden
-7/24/2011 8:58:01 PM:General:-1: 0: Verbose: :Raw translated response:{"responseData": {"translatedText":"Osama bin Laden"}, "responseDetails": null, "responseStatus": 200}
-7/24/2011 8:58:01 PM:General:-1: 0: Verbose: :convertedString:烏 薩 馬 本 拉 丹. Translated:Osama bin Laden
