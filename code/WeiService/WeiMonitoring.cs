@@ -82,13 +82,22 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         public void reprocess(int requestId)
         {
             Request request = WeiService.instance.DBUtil.getRequest(requestId);
+            request.OfacCheckSource = OfacCheckSource.ErrorQueue;
             WeiService.instance.RequestManager.process(request);
         }
 
-        public bool processMessageForOFACCheck(int requestId)
+        public bool processMessageForOFACCheck(int requestId, bool fromErrorQueue)
         {
             Request request = WeiService.instance.DBUtil.getRequest(requestId);
-            return WeiService.instance.RequestManager.processMessageForOFACCheck(request);
+            if (fromErrorQueue)
+            {
+                request.OfacCheckSource = OfacCheckSource.ErrorQueue;
+            }
+            else
+            {
+                request.OfacCheckSource = OfacCheckSource.ReviewQueue;
+            }
+            return WeiService.instance.RequestManager.processMessageForOFACCheck(request, fromErrorQueue);
         }
     }
 }

@@ -63,6 +63,14 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         private DateTime _dModifiedDate;
         private String _user;
 
+        private OfacCheckSource _OfacCheckSource = OfacCheckSource.None;
+
+        public OfacCheckSource OfacCheckSource
+        {
+            get { return _OfacCheckSource; }
+            set { _OfacCheckSource = value; }
+        }
+
         public int RequestId
         {
             get

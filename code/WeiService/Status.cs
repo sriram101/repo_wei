@@ -80,4 +80,11 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
         Confirm=3
     }
 
+    public enum OfacCheckSource
+    {
+        None = 1,
+        ReviewQueue = 2,
+        ErrorQueue = 3
+    }
+
 }

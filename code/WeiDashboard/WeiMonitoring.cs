@@ -515,7 +515,7 @@ public interface IWeiMonitoring
     void reprocess(int requestId);
 
     [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IWeiMonitoring/processMessageForOFACCheck", ReplyAction = "http://tempuri.org/IWeiMonitoring/processMessageForOFACCheckResponse")]
-    bool processMessageForOFACCheck(int requestId);
+    bool processMessageForOFACCheck(int requestId, bool fromErrorQueue);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -587,8 +587,8 @@ public partial class WeiMonitoringClient : System.ServiceModel.ClientBase<IWeiMo
         base.Channel.reprocess(requestId);
     }
 
-    public bool processMessageForOFACCheck(int requestId)
+    public bool processMessageForOFACCheck(int requestId, bool fromErrorQueue)
     {
-        return base.Channel.processMessageForOFACCheck(requestId);
+        return base.Channel.processMessageForOFACCheck(requestId, fromErrorQueue);
     }
 }
