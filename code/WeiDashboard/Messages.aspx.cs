@@ -185,7 +185,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
             }
             catch (Exception ex)
             {
-                LogUtil.logError("Unexpected error in Page Load method."+ ex.InnerException.ToString());
+                LogUtil.logError("Unexpected error in Page Load method."+ ex.Message);
                 Response.Redirect("CustomErrorPage.aspx",false);
             }
         }
@@ -911,7 +911,8 @@ namespace Telavance.AdvantageSuite.Wei.WeiDashboard
                                 {
 
                                     //AuditUtil.getInstance().audit(Int32.Parse(ViewState["RequestID"].ToString()), AuditLevel.Info, "Message has been released for OFAC Check by user: " + _sUser);
-                                    bSuccess = client.processMessageForOFACCheck(Int32.Parse(ViewState["MessageId"].ToString()));
+                                    
+                                    bSuccess = client.processMessageForOFACCheck(Int32.Parse(ViewState["MessageId"].ToString()), false);
                                     if (bSuccess)
                                     {
                                         _sMessage = "Message successfully released for OFAC check";

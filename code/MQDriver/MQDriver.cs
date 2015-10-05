@@ -513,16 +513,20 @@ namespace Telavance.AdvantageSuite.Wei.MQDriver
 
         public bool sendForOfacCheck(Request request)
         {
-            if (request.Status == Status.Review)
+            if (request.OfacCheckSource == OfacCheckSource.ReviewQueue)
             {
                 getMessagebyCorelationId(_reviewQueue, request.RequestId.ToString());
-                
+            }
+            else if (request.OfacCheckSource == OfacCheckSource.ErrorQueue)
+            {
+                getMessagebyCorelationId(_reviewQueue, request.RequestId.ToString());
             }
             
             return sendMessage(config.ofacInputQueue, request.RequestId, _ofacInQueue, _mqManagerOfacInQueue, 
                     request.Name, request.TranslatedMessage, Convert.ToString(request.RequestId), syncOfacInQueueLock);
             
         }
+
         public bool sendResponse(Request request, string ofacResponseIdentifier)
         {
             MQQueue queue = _okQueue;

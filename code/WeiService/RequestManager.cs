@@ -116,7 +116,7 @@ namespace Telavance.AdvantageSuite.Wei.WeiService
             }
         }
 
-        public bool processMessageForOFACCheck(Request request)
+        public bool processMessageForOFACCheck(Request request, bool fromErrorQueue)
         {
             //AuditUtil.getInstance().audit(request.RequestId, AuditLevel.Info, "Started processing the message");
             bool bLocked = false;
